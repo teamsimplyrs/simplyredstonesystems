@@ -268,7 +268,7 @@
 		"thirdperson_righthand": {
 			"rotation": [74, 0, 0],
 			"translation": [0, 1.5, 2.5],
-			"scale": [0.41, 0.41, 0.41]
+			"scale": [0.8, 0.8, 0.8]
 		}
 	},
 	"groups": [
