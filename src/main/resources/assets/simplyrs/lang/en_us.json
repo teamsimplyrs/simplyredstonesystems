@@ -1,0 +1,8 @@
+{
+  "item.simplyrs.logicgate_or" : "Logic Gate: OR",
+  "item.simplyrs.logicgate_and": "Logic Gate: AND",
+  "item.simplyrs.logicgate_nor": "Logic Gate: NOR",
+  "item.simplyrs.logicgate_nand": "Logic Gate: NAND",
+  "itemGroup.simplyrscreativetab": "Simply Redstone Systems"
+
+}

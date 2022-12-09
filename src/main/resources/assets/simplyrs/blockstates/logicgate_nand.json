@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": {
+      "model": "simplyrs:block/logicgate_nand"
+    },
+    "#": {
+      "model": "simplyrs:block/logicgate_nand"
+    }
+  }
+}
