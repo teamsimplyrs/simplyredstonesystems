@@ -2,10 +2,13 @@ package com.critmxbelvix.simplyrs;
 
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import com.critmxbelvix.simplyrs.common.registers.ItemRegister;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -14,7 +17,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,6 +38,7 @@ public class SimplyRedstoneSystems
         eventBus.addListener(this::commonsetup);
         eventBus.addListener(this::enqueueIMC);
         eventBus.addListener(this::processIMC);
+        eventBus.addListener(this::clientsetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
     private void commonsetup(final FMLCommonSetupEvent event)
@@ -44,9 +47,13 @@ public class SimplyRedstoneSystems
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
 
-    private void clientsetup(final FMLClientSetupEvent event)
+    @SubscribeEvent
+    public void clientsetup(final FMLClientSetupEvent event)
     {
-
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_AND.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_NAND.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_OR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_NOR.get(), RenderType.translucent());
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
