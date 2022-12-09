@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class SimplyRSCreativeTab
 {
-    public static final CreativeModeTab SRS_TAB = new CreativeModeTab("srscreativetab") {
+    public static final CreativeModeTab SRS_TAB = new CreativeModeTab("simplyrscreativetab") {
         @Override @NotNull
         public ItemStack makeIcon() {
             return new ItemStack(BlockRegister.LOGICGATE_OR.get());
