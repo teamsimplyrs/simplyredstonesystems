@@ -2,9 +2,6 @@
   "variants": {
     "": {
       "model": "simplyrs:block/logicgate_nor"
-    },
-    "#": {
-      "model": "simplyrs:block/logicgate_nor"
     }
   }
 }
