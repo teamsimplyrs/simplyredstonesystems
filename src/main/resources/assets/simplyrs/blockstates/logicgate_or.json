@@ -2,9 +2,6 @@
   "variants": {
     "": {
       "model": "simplyrs:block/logicgate_or"
-    },
-    "#": {
-      "model": "simplyrs:block/logicgate_or"
     }
   }
 }
