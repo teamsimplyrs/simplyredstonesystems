@@ -8,13 +8,11 @@ import net.minecraft.world.level.material.Material;
 import org.jetbrains.annotations.NotNull;
 
 public class LogicGateOR extends Block {
-    String name;
-    CreativeModeTab tab;
+    final String name = "logicgate_or";
+    final CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
     public static final Properties gate_or_properties = BlockBehaviour.Properties.of(Material.STONE).strength(0.1f).dynamicShape();
     public LogicGateOR(Properties m_properties) {
         super(m_properties);
-        name = "logicgate_or";
-        tab = SimplyRSCreativeTab.SRS_TAB;
     }
     public static final LogicGateOR LOGICGATE_OR = new LogicGateOR(gate_or_properties);
 
