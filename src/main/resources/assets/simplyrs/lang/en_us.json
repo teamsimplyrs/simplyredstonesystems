@@ -3,6 +3,8 @@
   "block.simplyrs.logicgate_and": "Logic Gate: AND",
   "block.simplyrs.logicgate_nor": "Logic Gate: NOR",
   "block.simplyrs.logicgate_nand": "Logic Gate: NAND",
+  "block.simplyrs.logicgate_xor": "Logic Gate: XOR",
+  "block.simplyrs.logicgate_xnor": "Logic Gate: XNOR",
   "itemGroup.simplyrscreativetab": "Simply Redstone Systems"
 
 }
