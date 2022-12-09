@@ -1,4 +1,5 @@
 {
+	"parent": "block/cube_all",
 	"textures": {
 		"0": "simplyrs:block/gold_block",
 		"1": "simplyrs:block/red_concrete_powder",
