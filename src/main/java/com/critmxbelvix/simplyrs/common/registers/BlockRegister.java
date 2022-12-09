@@ -51,14 +51,14 @@ public class BlockRegister {
     public static final RegistryObject<Block> LOGICGATE_XOR = registerBlock
             (
                     LogicGateXOR.LOGICGATE_XOR.m_getName(),
-                    ()-> new Block(LogicGateXOR.LOGICGATE_XOR.m_getProperties()),
+                    ()-> new Block(LogicGateXOR.LOGICGATE_XOR.m_getProperties().noOcclusion()),
                     LogicGateXOR.LOGICGATE_XOR.m_getTab()
             );
     //Logic Gate: XNOR --> Registry
     public static final RegistryObject<Block> LOGICGATE_XNOR = registerBlock
             (
                     LogicGateXNOR.LOGICGATE_XNOR.m_getName(),
-                    ()-> new Block(LogicGateXNOR.LOGICGATE_XNOR.m_getProperties()),
+                    ()-> new Block(LogicGateXNOR.LOGICGATE_XNOR.m_getProperties().noOcclusion()),
                     LogicGateXNOR.LOGICGATE_XNOR.m_getTab()
             );
     //
