@@ -1,5 +1,6 @@
 package com.critmxbelvix.simplyrs;
 
+import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import com.critmxbelvix.simplyrs.common.registers.ItemRegister;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -34,6 +35,7 @@ public class SimplyRedstoneSystems
 
         ItemRegister.register(eventBus);
         BlockRegister.register(eventBus);
+        BlockEntityRegister.register(eventBus);
 
         eventBus.addListener(this::commonsetup);
         eventBus.addListener(this::enqueueIMC);
