@@ -1,7 +1,8 @@
 {
   "variants": {
-    "": {
-      "model": "simplyrs:block/logicgate_nand"
-    }
+    "facing=north": { "model": "simplyrs:block/logicgate_nand" },
+    "facing=east": { "model": "simplyrs:block/logicgate_nand","y": 90 },
+    "facing=south": { "model": "simplyrs:block/logicgate_nand","y": 180 },
+    "facing=west": { "model": "simplyrs:block/logicgate_nand","y": 270 }
   }
 }
