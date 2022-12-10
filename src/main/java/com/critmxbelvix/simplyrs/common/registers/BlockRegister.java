@@ -22,44 +22,44 @@ public class BlockRegister {
     //Logic Gate: OR --> Registry
     public static final RegistryObject<Block> LOGICGATE_OR = registerBlock
             (
-                    LogicGateOR.LOGICGATE_OR.m_getName(),
-                    ()->new Block(LogicGateOR.LOGICGATE_OR.m_getProperties().noOcclusion()),
-                    LogicGateOR.LOGICGATE_OR.m_getTab()
+                    LogicGateOR.m_getName(),
+                    ()->new LogicGateOR(LogicGateOR.gate_or_properties.noOcclusion()),
+                    LogicGateOR.m_getTab()
             );
     //Logic Gate: AND --> Registry
     public static final RegistryObject<Block> LOGICGATE_AND = registerBlock
             (
-                    LogicGateAND.LOGICGATE_AND.m_getName(),
-                    ()->new Block(LogicGateAND.LOGICGATE_AND.m_getProperties().noOcclusion()),
-                    LogicGateAND.LOGICGATE_AND.m_getTab()
+                    LogicGateAND.m_getName(),
+                    ()->new LogicGateAND(LogicGateAND.gate_and_properties.noOcclusion()),
+                    LogicGateAND.m_getTab()
             );
     //Logic Gate: NOR --> Registry
     public static final RegistryObject<Block> LOGICGATE_NOR = registerBlock
             (
-                    LogicGateNOR.LOGICGATE_NOR.m_getName(),
-                    ()->new Block(LogicGateNOR.LOGICGATE_NOR.m_getProperties().noOcclusion()),
-                    LogicGateNOR.LOGICGATE_NOR.m_getTab()
+                    LogicGateNOR.m_getName(),
+                    ()->new LogicGateNOR(LogicGateNOR.gate_nor_properties.noOcclusion()),
+                    LogicGateNOR.m_getTab()
             );
     //Logic Gate: NAND --> Registry
     public static final RegistryObject<Block> LOGICGATE_NAND = registerBlock
             (
-                    LogicGateNAND.LOGICGATE_NAND.m_getName(),
-                    ()->new Block(LogicGateNOR.LOGICGATE_NOR.m_getProperties().noOcclusion()),
-                    LogicGateNAND.LOGICGATE_NAND.m_getTab()
+                    LogicGateNAND.m_getName(),
+                    ()->new LogicGateNAND(LogicGateNAND.gate_nand_properties.noOcclusion()),
+                    LogicGateNAND.m_getTab()
             );
     //Logic Gate: XOR --> Registry
     public static final RegistryObject<Block> LOGICGATE_XOR = registerBlock
             (
-                    LogicGateXOR.LOGICGATE_XOR.m_getName(),
-                    ()-> new Block(LogicGateXOR.LOGICGATE_XOR.m_getProperties().noOcclusion()),
-                    LogicGateXOR.LOGICGATE_XOR.m_getTab()
+                    LogicGateXOR.m_getName(),
+                    ()-> new LogicGateXOR(LogicGateXOR.gate_xor_properties.noOcclusion()),
+                    LogicGateXOR.m_getTab()
             );
     //Logic Gate: XNOR --> Registry
     public static final RegistryObject<Block> LOGICGATE_XNOR = registerBlock
             (
-                    LogicGateXNOR.LOGICGATE_XNOR.m_getName(),
-                    ()-> new Block(LogicGateXNOR.LOGICGATE_XNOR.m_getProperties().noOcclusion()),
-                    LogicGateXNOR.LOGICGATE_XNOR.m_getTab()
+                    LogicGateXNOR.m_getName(),
+                    ()-> new LogicGateXNOR(LogicGateXNOR.gate_xnor_properties.noOcclusion()),
+                    LogicGateXNOR.m_getTab()
             );
     //
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab CreativeTab)
