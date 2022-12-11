@@ -4,6 +4,7 @@ import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -15,10 +16,16 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.Collections.singletonList;
 
 public class LogicGateNOT extends Block
 {
@@ -146,6 +153,16 @@ public class LogicGateNOT extends Block
             return 0;
         }
 
+    }
+
+    //Block drops
+    @Override
+    public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+
+        List<ItemStack> drops = super.getDrops(pState, pBuilder);
+        if (!drops.isEmpty())
+            return drops;
+        return singletonList(new ItemStack(this, 1));
     }
 
 }

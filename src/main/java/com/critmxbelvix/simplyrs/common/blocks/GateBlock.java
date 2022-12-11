@@ -2,6 +2,7 @@ package com.critmxbelvix.simplyrs.common.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -12,10 +13,16 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.Collections.singletonList;
 
 public abstract class GateBlock extends Block{
     private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 1, 15);
@@ -146,5 +153,17 @@ public abstract class GateBlock extends Block{
             return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
         }
     }
+
+    //Block Drops
+    @Override
+    public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+
+        List<ItemStack> drops = super.getDrops(pState, pBuilder);
+        if (!drops.isEmpty())
+            return drops;
+        return singletonList(new ItemStack(this, 1));
+    }
+
+
 
 }
