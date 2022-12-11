@@ -1,8 +1,12 @@
 package com.critmxbelvix.simplyrs.common.blocks;
 
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 
 public class LogicGateNAND extends GateBlock {
@@ -26,5 +30,28 @@ public class LogicGateNAND extends GateBlock {
     public BlockBehaviour.Properties m_getProperties()
     {
         return gate_nand_properties;
+    }
+
+    /* Redstone */
+
+    @Override
+    public int getDirectSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
+        return pBlockState.getSignal(pBlockAccess, pPos, pSide);
+    }
+
+    @Override
+    public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
+        boolean input1 = pBlockState.getValue(INPUT_1);
+        boolean input2 = pBlockState.getValue(INPUT_2);
+        boolean input3 = pBlockState.getValue(INPUT_3);
+
+        if (input1==true && input2==true && input3==true ) {
+            return 0;
+        } else if(pSide == pBlockState.getValue(FACING).getOpposite()) {
+            return this.getOutputSignal(pBlockAccess, pPos, pBlockState);
+        }
+        else{
+            return 0;
+        }
     }
 }
