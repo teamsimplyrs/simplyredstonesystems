@@ -5,7 +5,13 @@
   "block.simplyrs.logicgate_nand": "Logic Gate: NAND",
   "block.simplyrs.logicgate_xor": "Logic Gate: XOR",
   "block.simplyrs.logicgate_xnor": "Logic Gate: XNOR",
+  "block.simplyrs.logicgate_nand2": "Logic Gate: NAND (2-input)",
   "block.simplyrs.logicgate_and2": "Logic Gate: AND (2-input)",
+  "block.simplyrs.logicgate_or2": "Logic Gate: OR (2-input)",
+  "block.simplyrs.logicgate_nor2": "Logic Gate: NOR (2-input)",
+  "block.simplyrs.logicgate_xor2": "Logic Gate: XOR (2-input)",
+  "block.simplyrs.logicgate_xnor2": "Logic Gate: XNOR (2-input)",
+  "block.simplyrs.logicgate_not": "Logic Gate: NOT (Inverter)",
   "itemGroup.simplyrscreativetab": "Simply Redstone Systems"
 
 }

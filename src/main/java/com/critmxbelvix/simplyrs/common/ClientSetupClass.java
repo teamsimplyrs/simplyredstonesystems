@@ -15,6 +15,12 @@ public class ClientSetupClass {
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XOR.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XNOR.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_AND2.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_NAND2.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_OR2.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_NOR2.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_NOT.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XOR2.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XNOR2.get(), RenderType.translucent());
     }
 
 

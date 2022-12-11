@@ -45,7 +45,7 @@ public class LogicGateNOR extends GateBlock {
         boolean input2 = pBlockState.getValue(INPUT_2);
         boolean input3 = pBlockState.getValue(INPUT_3);
 
-        if (!input1 && !input2 && !input3 && pSide == pBlockState.getValue(FACING).getOpposite()) {
+        if (!(input1 || input2 || input3) && pSide == pBlockState.getValue(FACING).getOpposite()) {
             return this.getOutputSignal(pBlockAccess, pPos, pBlockState);
         }
         else {
