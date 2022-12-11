@@ -1,13 +1,13 @@
 {
   "variants":
   {
-    "facing=north,input=false": { "model": "simplyrs/block/logicgate_not" },
-    "facing=north,input=true": { "model": "simplyrs/block/logicgate_not_on" },
-    "facing=east,input=false": { "model": "simplyrs/block/logicgate_not","y": 90  },
-    "facing=east,input=true": { "model": "simplyrs/block/logicgate_not_on","y": 90 },
-    "facing=south,input=false": { "model": "simplyrs/block/logicgate_not","y": 180 },
-    "facing=south,input=true": { "model": "simplyrs/block/logicgate_not_on","y": 180 },
-    "facing=west,input=false": { "model": "simplyrs/block/logicgate_not","y": 270  },
-    "facing=west,input=true": { "model": "simplyrs/block/logicgate_not_on","y": 270 }
+    "facing=north,input=false": { "model": "simplyrs:block/logicgate_not" },
+    "facing=north,input=true": { "model": "simplyrs:block/logicgate_not_on" },
+    "facing=east,input=false": { "model": "simplyrs:block/logicgate_not","y": 90  },
+    "facing=east,input=true": { "model": "simplyrs:block/logicgate_not_on","y": 90 },
+    "facing=south,input=false": { "model": "simplyrs:block/logicgate_not","y": 180 },
+    "facing=south,input=true": { "model": "simplyrs:block/logicgate_not_on","y": 180 },
+    "facing=west,input=false": { "model": "simplyrs:block/logicgate_not","y": 270  },
+    "facing=west,input=true": { "model": "simplyrs:block/logicgate_not_on","y": 270 }
   }
 }
