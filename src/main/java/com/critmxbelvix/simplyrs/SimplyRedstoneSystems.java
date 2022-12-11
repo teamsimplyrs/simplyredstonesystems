@@ -1,5 +1,6 @@
 package com.critmxbelvix.simplyrs;
 
+import com.critmxbelvix.simplyrs.common.ClientSetupClass;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import com.critmxbelvix.simplyrs.common.registers.ItemRegister;
@@ -52,12 +53,7 @@ public class SimplyRedstoneSystems
     @SubscribeEvent
     public void clientsetup(final FMLClientSetupEvent event)
     {
-        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_AND.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_NAND.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_OR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_NOR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XOR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XNOR.get(), RenderType.translucent());
+        ClientSetupClass.renderAllTranslucent();
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
