@@ -104,13 +104,13 @@ public abstract class GateBlock extends Block{
 
     protected int getInputSignalAt(LevelReader pLevel, BlockPos pPos, Direction pSide) {
         BlockState blockstate = pLevel.getBlockState(pPos);
+
         if (this.isSideInput(blockstate)) {
             if (blockstate.is(Blocks.REDSTONE_BLOCK)) {
                 LOGGER.info("BLOCK");
                 return 15;
             } else {
-                LOGGER.info("wire");
-                return blockstate.is(Blocks.REDSTONE_WIRE) ? blockstate.getValue(RedStoneWireBlock.POWER) : pLevel.getDirectSignal(pPos, pSide);
+                return blockstate.is(Blocks.REDSTONE_WIRE) ? blockstate.getValue(RedStoneWireBlock.POWER) : blockstate.getSignal(pLevel, pPos, pSide);
             }
         } else {
             return 0;
@@ -124,6 +124,7 @@ public abstract class GateBlock extends Block{
     protected int getOutputSignal(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
         return 15;
     }
+
 
     @Override
     public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
