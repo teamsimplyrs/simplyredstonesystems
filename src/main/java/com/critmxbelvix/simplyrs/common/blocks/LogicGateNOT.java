@@ -6,7 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
@@ -113,20 +113,13 @@ public class LogicGateNOT extends Block
     protected int getOutputSignal(BlockGetter pLevel, BlockState pState, BlockPos pPos) { return 15; }
 
     @Override
-    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos)
-    {
-        if (!pLevel.isClientSide())
-        {
-            if (pFacing == pState.getValue(FACING).getOpposite()) {
-                return pState.setValue(INPUT, this.isInput(pState, pLevel, pFacingPos));
-            }
-            else{
-                return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
-            }
-        }
-        else{
-            return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
-        }
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        Direction direction = pLevel.getBlockState(pPos).getValue(FACING);
+        Direction direction1 = direction.getOpposite();
+
+        BlockState blockstate = pLevel.getBlockState(pPos)
+                .setValue(INPUT,pLevel.getSignal(pPos.relative(direction1),direction1)>0);
+        pLevel.setBlockAndUpdate(pPos, blockstate);
     }
 
     @Override

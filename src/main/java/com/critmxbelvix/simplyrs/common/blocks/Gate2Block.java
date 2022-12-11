@@ -4,7 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
@@ -113,24 +113,17 @@ public abstract class Gate2Block extends Block
     protected int getOutputSignal(BlockGetter pLevel, BlockState pState, BlockPos pPos) { return 15; }
 
     @Override
-    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos)
-    {
-        if (!pLevel.isClientSide())
-        {
-            if (pFacing == pState.getValue(FACING).getCounterClockWise())
-            {
-                return pState.setValue(INPUT_1, this.isInputOne(pState, pLevel, pFacingPos));
-            } else if (pFacing == pState.getValue(FACING).getClockWise())
-            {
-                return pState.setValue(INPUT_2, this.isInputTwo(pState,pLevel,pFacingPos));
-            }
-            else{
-                return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
-            }
-        }
-        else{
-            return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        Direction direction = pLevel.getBlockState(pPos).getValue(FACING);
+        Direction direction1 = direction.getCounterClockWise();
+        Direction direction2 = direction.getClockWise();
+
+        BlockState blockstate = pLevel.getBlockState(pPos)
+                .setValue(INPUT_1,pLevel.getSignal(pPos.relative(direction1),direction1)>0)
+                .setValue(INPUT_2,pLevel.getSignal(pPos.relative(direction2),direction2)>0);
+        boolean done = pLevel.setBlockAndUpdate(pPos, blockstate);
+        if(done){
+            LOGGER.info("done");
         }
     }
-
 }
