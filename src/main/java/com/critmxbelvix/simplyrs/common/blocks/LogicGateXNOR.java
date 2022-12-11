@@ -15,7 +15,7 @@ public class LogicGateXNOR extends GateBlock {
 
     final static String name = "logicgate_xnor";
     final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
-    public static final BlockBehaviour.Properties gate_xnor_properties = BlockBehaviour.Properties.of(Material.STONE).strength(0.1f).dynamicShape();
+    private static final BlockBehaviour.Properties gate_xnor_properties = BlockBehaviour.Properties.of(Material.STONE).strength(0.1f).dynamicShape();
 
     public LogicGateXNOR(BlockBehaviour.Properties m_properties) {
         super(m_properties);
@@ -29,7 +29,7 @@ public class LogicGateXNOR extends GateBlock {
     {
         return tab;
     }
-    public BlockBehaviour.Properties m_getProperties()
+    public static BlockBehaviour.Properties m_getProperties()
     {
         return gate_xnor_properties;
     }

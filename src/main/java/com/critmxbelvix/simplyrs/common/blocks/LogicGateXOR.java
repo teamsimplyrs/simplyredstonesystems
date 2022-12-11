@@ -15,7 +15,7 @@ public class LogicGateXOR extends GateBlock {
 
     final static String name = "logicgate_xor";
     final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
-    public static final Properties gate_xor_properties = BlockBehaviour.Properties.of(Material.STONE).strength(0.1f).dynamicShape();
+    private static final Properties gate_xor_properties = BlockBehaviour.Properties.of(Material.STONE).strength(0.1f).dynamicShape();
 
     public LogicGateXOR(Properties m_properties) {
         super(m_properties);
@@ -29,7 +29,7 @@ public class LogicGateXOR extends GateBlock {
     {
         return tab;
     }
-    public Properties m_getProperties()
+    public static Properties m_getProperties()
     {
         return gate_xor_properties;
     }

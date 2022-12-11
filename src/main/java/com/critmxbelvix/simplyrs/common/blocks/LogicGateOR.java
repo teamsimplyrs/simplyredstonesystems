@@ -12,7 +12,7 @@ import net.minecraft.world.level.material.Material;
 public class LogicGateOR extends GateBlock {
     final static String name = "logicgate_or";
     final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
-    public static final Properties gate_or_properties = BlockBehaviour.Properties.of(Material.STONE).strength(0.1f).dynamicShape();
+    private static final Properties gate_or_properties = BlockBehaviour.Properties.of(Material.STONE).strength(0.1f).dynamicShape();
 
     public LogicGateOR(Properties m_properties) {
         super(m_properties);
@@ -26,7 +26,7 @@ public class LogicGateOR extends GateBlock {
     {
         return tab;
     }
-    public Properties m_getProperties()
+    public static Properties m_getProperties()
     {
         return gate_or_properties;
     }
@@ -44,9 +44,7 @@ public class LogicGateOR extends GateBlock {
         boolean input2 = pBlockState.getValue(INPUT_2);
         boolean input3 = pBlockState.getValue(INPUT_3);
 
-        if (input1==false && input2==false && input3==false) {
-            return 0;
-        } else if(pSide == pBlockState.getValue(FACING).getOpposite()) {
+        if((input1 || input2 || input3) && pSide == pBlockState.getValue(FACING).getOpposite()) {
             return this.getOutputSignal(pBlockAccess, pPos, pBlockState);
         }
         else{
