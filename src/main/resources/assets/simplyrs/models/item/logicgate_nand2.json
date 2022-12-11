@@ -1,3 +1,6 @@
 {
-  "parent":"simplyrs:block/logicgate_nand2"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "simplyrs:item/logicgate_nand2"
+  }
 }
