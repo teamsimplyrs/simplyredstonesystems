@@ -2,9 +2,11 @@ package com.critmxbelvix.simplyrs.common.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
@@ -16,10 +18,12 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.ticks.TickPriority;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.Random;
 
 import static java.util.Collections.singletonList;
 
@@ -28,6 +32,8 @@ public abstract class Gate2Block extends Block
     private static final VoxelShape SHAPE = Block.box(1,0,1,15,1,15);
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public static final BooleanProperty INPUT_1 = BooleanProperty.create("input_1");
     public static final BooleanProperty INPUT_2 = BooleanProperty.create("input_2");
@@ -147,4 +153,8 @@ public abstract class Gate2Block extends Block
         return singletonList(new ItemStack(this, 1));
     }
 
+    @Override
+    public boolean canConnectRedstone(BlockState pState, BlockGetter pLevel, BlockPos pPos, Direction pSide) {
+        return pState.getValue(FACING) != pSide;
+    }
 }
