@@ -148,6 +148,11 @@ public class LogicGateNOT extends Block
 
     }
 
+    @Override
+    public boolean canConnectRedstone(BlockState pState, BlockGetter pLevel, BlockPos pPos, Direction pSide) {
+        return pState.getValue(FACING) == pSide || pState.getValue(FACING).getOpposite() == pSide;
+    }
+
     //Block drops
     @Override
     public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
@@ -157,5 +162,7 @@ public class LogicGateNOT extends Block
             return drops;
         return singletonList(new ItemStack(this, 1));
     }
+
+
 
 }

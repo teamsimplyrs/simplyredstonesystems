@@ -131,6 +131,7 @@ public abstract class GateBlock extends Block{
         return 15;
     }
 
+
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         Direction direction = pLevel.getBlockState(pPos).getValue(FACING);

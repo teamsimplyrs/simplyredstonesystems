@@ -136,6 +136,11 @@ public abstract class Gate2Block extends Block
     }
 
     @Override
+    public boolean canConnectRedstone(BlockState pState, BlockGetter pLevel, BlockPos pPos, Direction pSide) {
+        return pState.getValue(FACING) != pSide;
+    }
+
+    @Override
     public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
 
         List<ItemStack> drops = super.getDrops(pState, pBuilder);
@@ -144,8 +149,5 @@ public abstract class Gate2Block extends Block
         return singletonList(new ItemStack(this, 1));
     }
 
-    @Override
-    public boolean canConnectRedstone(BlockState pState, BlockGetter pLevel, BlockPos pPos, Direction pSide) {
-        return pState.getValue(FACING) != pSide;
-    }
+
 }
