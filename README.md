@@ -5,7 +5,7 @@ A Minecraft Mod that introduces many little utilities for redstone like gates, c
 >> A ✅ indicates a finished goal <br>
 >> A ⭕ indicates a goal that has been partially completed or is buggy <br>
 >> A ❌ indicates an unreached goal
-<br><br><br>
+<br><br>
 
 <ul>
 <li> All 3-input basic logic gates ⭕</li>
