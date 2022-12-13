@@ -2,6 +2,7 @@
 A Minecraft Mod that introduces many little utilities for redstone like gates, clocks and flipflops, making redstone systems simpler, compact and cleaner. <br>
 
 <h2>Current Roadmap</h2>
+<br><br>
 >> A ✅ indicates a finished goal <br>
 >> A ⭕ indicates a goal that has been partially completed or is buggy <br>
 >> A ❌ indicates an unreached goal <br>
