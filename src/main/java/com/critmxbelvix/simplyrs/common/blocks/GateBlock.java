@@ -8,11 +8,13 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -133,20 +135,41 @@ public abstract class GateBlock extends Block{
 
 
     @Override
-    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
-        Direction direction = pLevel.getBlockState(pPos).getValue(FACING);
-        Direction direction1 = direction.getCounterClockWise();
-        Direction direction2 = direction.getOpposite();
-        Direction direction3 = direction.getClockWise();
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (!pIsMoving && !pState.is(pNewState.getBlock())) {
+            super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+            pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this, pPos);
+        }
+    }
 
-        BlockState blockstate = pLevel.getBlockState(pPos)
-                .setValue(INPUT_1,pLevel.getSignal(pPos.relative(direction1),direction1)>0)
-                .setValue(INPUT_2,pLevel.getSignal(pPos.relative(direction2),direction2)>0)
-                .setValue(INPUT_3,pLevel.getSignal(pPos.relative(direction3),direction3)>0);
-        pLevel.setBlockAndUpdate(pPos, blockstate);
+    @Override
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        if(!pState.canSurvive(pLevel,pPos)){
+            BlockEntity blockentity = pState.hasBlockEntity() ? pLevel.getBlockEntity(pPos) : null;
+            dropResources(pState, pLevel, pPos, blockentity);
+            pLevel.removeBlock(pPos, false);
+        }
+        else {
+            Direction direction = pLevel.getBlockState(pPos).getValue(FACING);
+            Direction direction1 = direction.getCounterClockWise();
+            Direction direction2 = direction.getOpposite();
+            Direction direction3 = direction.getClockWise();
+
+            BlockState blockstate = pLevel.getBlockState(pPos)
+                    .setValue(INPUT_1, pLevel.getSignal(pPos.relative(direction1), direction1) > 0)
+                    .setValue(INPUT_2, pLevel.getSignal(pPos.relative(direction2), direction2) > 0)
+                    .setValue(INPUT_3, pLevel.getSignal(pPos.relative(direction3), direction3) > 0);
+            pLevel.setBlockAndUpdate(pPos, blockstate);
+        }
     }
 
     //Block Drops
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.DESTROY;
+    }
+
     @Override
     public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
 
