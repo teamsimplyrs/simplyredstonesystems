@@ -2,20 +2,28 @@ package com.critmxbelvix.simplyrs.common.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
+
+import static java.util.Collections.singletonList;
 
 public abstract class GateBlock extends Block{
     private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 1, 15);
@@ -127,24 +135,47 @@ public abstract class GateBlock extends Block{
 
 
     @Override
-    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
-        if(!pLevel.isClientSide()){
-            if(pFacing == pState.getValue(FACING).getCounterClockWise()){
-                return pState.setValue(INPUT_1, Boolean.valueOf(this.isInputOne(pLevel, pFacingPos, pState)));
-            }
-            else if(pFacing == pState.getValue(FACING).getOpposite()){
-                return pState.setValue(INPUT_2, Boolean.valueOf(this.isInputTwo(pLevel, pFacingPos, pState)));
-            }
-            else if(pFacing == pState.getValue(FACING).getClockWise()){
-                return pState.setValue(INPUT_3, Boolean.valueOf(this.isInputThree(pLevel, pFacingPos, pState)));
-            }
-            else{
-                return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
-            }
-        }
-        else{
-            return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (!pIsMoving && !pState.is(pNewState.getBlock())) {
+            super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+            pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this, pPos);
         }
     }
 
+    @Override
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        if(!pState.canSurvive(pLevel,pPos)){
+            BlockEntity blockentity = pState.hasBlockEntity() ? pLevel.getBlockEntity(pPos) : null;
+            dropResources(pState, pLevel, pPos, blockentity);
+            pLevel.removeBlock(pPos, false);
+        }
+        else {
+            Direction direction = pLevel.getBlockState(pPos).getValue(FACING);
+            Direction direction1 = direction.getCounterClockWise();
+            Direction direction2 = direction.getOpposite();
+            Direction direction3 = direction.getClockWise();
+
+            BlockState blockstate = pLevel.getBlockState(pPos)
+                    .setValue(INPUT_1, pLevel.getSignal(pPos.relative(direction1), direction1) > 0)
+                    .setValue(INPUT_2, pLevel.getSignal(pPos.relative(direction2), direction2) > 0)
+                    .setValue(INPUT_3, pLevel.getSignal(pPos.relative(direction3), direction3) > 0);
+            pLevel.setBlockAndUpdate(pPos, blockstate);
+        }
+    }
+
+    //Block Drops
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.DESTROY;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+
+        List<ItemStack> drops = super.getDrops(pState, pBuilder);
+        if (!drops.isEmpty())
+            return drops;
+        return singletonList(new ItemStack(this, 1));
+    }
 }

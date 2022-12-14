@@ -2,26 +2,36 @@ package com.critmxbelvix.simplyrs.common.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
+
+import static java.util.Collections.singletonList;
 
 public abstract class Gate2Block extends Block
 {
     private static final VoxelShape SHAPE = Block.box(1,0,1,15,1,15);
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public static final BooleanProperty INPUT_1 = BooleanProperty.create("input_1");
     public static final BooleanProperty INPUT_2 = BooleanProperty.create("input_2");
@@ -109,28 +119,53 @@ public abstract class Gate2Block extends Block
             return 0;
         }
     }
-    protected boolean isSideInput(BlockState pState) { return pState.isSignalSource();}
-    protected int getOutputSignal(BlockGetter pLevel, BlockState pState, BlockPos pPos) { return 15; }
+    protected boolean isSideInput(BlockState pState) {
+        return pState.isSignalSource();
+    }
+
+    protected int getOutputSignal(BlockGetter pLevel, BlockState pState, BlockPos pPos) {
+        return 15;
+    }
 
     @Override
-    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos)
-    {
-        if (!pLevel.isClientSide())
-        {
-            if (pFacing == pState.getValue(FACING).getCounterClockWise())
-            {
-                return pState.setValue(INPUT_1, this.isInputOne(pState, pLevel, pFacingPos));
-            } else if (pFacing == pState.getValue(FACING).getClockWise())
-            {
-                return pState.setValue(INPUT_2, this.isInputTwo(pState,pLevel,pFacingPos));
-            }
-            else{
-                return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
-            }
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        if(!pState.canSurvive(pLevel,pPos)){
+            BlockEntity blockentity = pState.hasBlockEntity() ? pLevel.getBlockEntity(pPos) : null;
+            dropResources(pState, pLevel, pPos, blockentity);
+            pLevel.removeBlock(pPos, false);
         }
-        else{
-            return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
+        else {
+            Direction direction = pLevel.getBlockState(pPos).getValue(FACING);
+            Direction direction1 = direction.getCounterClockWise();
+            Direction direction2 = direction.getClockWise();
+
+            BlockState blockstate = pLevel.getBlockState(pPos)
+                    .setValue(INPUT_1, pLevel.getSignal(pPos.relative(direction1), direction1) > 0)
+                    .setValue(INPUT_2, pLevel.getSignal(pPos.relative(direction2), direction2) > 0);
+            pLevel.setBlockAndUpdate(pPos, blockstate);
+
         }
     }
+    //Block Drops
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.DESTROY;
+    }
+
+    @Override
+    public boolean canConnectRedstone(BlockState pState, BlockGetter pLevel, BlockPos pPos, Direction pSide) {
+        return pState.getValue(FACING) != pSide;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+
+        List<ItemStack> drops = super.getDrops(pState, pBuilder);
+        if (!drops.isEmpty())
+            return drops;
+        return singletonList(new ItemStack(this, 1));
+    }
+
 
 }
