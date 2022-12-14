@@ -3,6 +3,7 @@ package com.critmxbelvix.simplyrs.common.blocks;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -10,20 +11,23 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.ticks.TickPriority;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import static java.util.Collections.singletonList;
 
@@ -34,6 +38,7 @@ public class LogicGateNOT extends Block
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public static final BooleanProperty INPUT = BooleanProperty.create("input");
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -85,7 +90,7 @@ public class LogicGateNOT extends Block
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
-        pBuilder.add(FACING,INPUT);
+        pBuilder.add(FACING,INPUT,POWERED);
     }
 
     // Redstone Control
@@ -116,17 +121,52 @@ public class LogicGateNOT extends Block
             return 0;
         }
     }
-    protected boolean isSideInput(BlockState pState) { return pState.isSignalSource();}
-    protected int getOutputSignal(BlockGetter pLevel, BlockState pState, BlockPos pPos) { return 15; }
+    protected boolean isSideInput(BlockState pState) {
+        return pState.isSignalSource();
+    }
+
+    protected int getOutputSignal(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+        return 15;
+    }
+
+    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
+        boolean flag = pState.getValue(POWERED);
+        boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
+        if (flag && !flag1) {
+            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(false)), 2);
+        } else if(flag1){
+            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(true)), 2);
+        }
+        pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
+    }
+
 
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
-        Direction direction = pLevel.getBlockState(pPos).getValue(FACING);
-        Direction direction1 = direction.getOpposite();
+        if(!pState.canSurvive(pLevel,pPos)){
+            BlockEntity blockentity = pState.hasBlockEntity() ? pLevel.getBlockEntity(pPos) : null;
+            dropResources(pState, pLevel, pPos, blockentity);
+            pLevel.removeBlock(pPos, false);
+        }
+        else {
+            Direction direction = pLevel.getBlockState(pPos).getValue(FACING);
+            Direction direction1 = direction.getOpposite();
 
-        BlockState blockstate = pLevel.getBlockState(pPos)
-                .setValue(INPUT,pLevel.getSignal(pPos.relative(direction1),direction1)>0);
-        pLevel.setBlockAndUpdate(pPos, blockstate);
+            BlockState blockstate = pLevel.getBlockState(pPos)
+                    .setValue(INPUT, pLevel.getSignal(pPos.relative(direction1), direction1) > 0);
+            pLevel.setBlockAndUpdate(pPos, blockstate);
+            pLevel.scheduleTick(pPos, this, 1, TickPriority.VERY_HIGH);
+        }
+    }
+
+    protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
+        boolean input = pState.getValue(INPUT);
+
+        if (!input) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -135,17 +175,12 @@ public class LogicGateNOT extends Block
     }
 
     @Override
-    public int getSignal(BlockState pState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide)
-    {
-        boolean input = pState.getValue(INPUT);
-
-        if (!input && pSide == pState.getValue(FACING).getOpposite())
-        {
-            return this.getOutputSignal(pBlockAccess,pState,pPos);
-        } else {
+    public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
+        if (!pBlockState.getValue(POWERED)) {
             return 0;
+        } else {
+            return pBlockState.getValue(FACING).getOpposite() == pSide ? this.getOutputSignal(pBlockAccess, pPos, pBlockState) : 0;
         }
-
     }
 
     @Override
@@ -153,7 +188,13 @@ public class LogicGateNOT extends Block
         return pState.getValue(FACING) == pSide || pState.getValue(FACING).getOpposite() == pSide;
     }
 
-    //Block drops
+    //Block Drops
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.DESTROY;
+    }
+
     @Override
     public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
 
