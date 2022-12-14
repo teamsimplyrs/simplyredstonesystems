@@ -137,6 +137,7 @@ public abstract class GateBlock extends Block{
         return 15;
     }
 
+
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (!pIsMoving && !pState.is(pNewState.getBlock())) {

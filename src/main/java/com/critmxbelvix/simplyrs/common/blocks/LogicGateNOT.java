@@ -183,6 +183,11 @@ public class LogicGateNOT extends Block
         }
     }
 
+    @Override
+    public boolean canConnectRedstone(BlockState pState, BlockGetter pLevel, BlockPos pPos, Direction pSide) {
+        return pState.getValue(FACING) == pSide || pState.getValue(FACING).getOpposite() == pSide;
+    }
+
     //Block Drops
 
     @Override
@@ -198,5 +203,7 @@ public class LogicGateNOT extends Block
             return drops;
         return singletonList(new ItemStack(this, 1));
     }
+
+
 
 }
