@@ -2,6 +2,7 @@ package com.critmxbelvix.simplyrs.common.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -18,10 +19,12 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.ticks.TickPriority;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.Random;
 
 import static java.util.Collections.singletonList;
 
@@ -32,6 +35,7 @@ public abstract class GateBlock extends Block{
     public static final BooleanProperty INPUT_1 = BooleanProperty.create("input_1");
     public static final BooleanProperty INPUT_2 = BooleanProperty.create("input_2");
     public static final BooleanProperty INPUT_3 = BooleanProperty.create("input_3");
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     private static final Logger LOGGER = LogManager.getLogger();
 
     public GateBlock(Properties m_properties) {
@@ -80,7 +84,7 @@ public abstract class GateBlock extends Block{
     /* Blockstates */
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
-        pBuilder.add(FACING,INPUT_1,INPUT_2,INPUT_3);
+        pBuilder.add(FACING,INPUT_1,INPUT_2,INPUT_3,POWERED);
     }
 
     /* Redstone */
@@ -141,6 +145,20 @@ public abstract class GateBlock extends Block{
         }
     }
 
+    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
+        LOGGER.info("tick");
+        boolean flag = pState.getValue(POWERED);
+        boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
+        if (flag && !flag1) {
+            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(false)), 2);
+        } else if(flag1){
+            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(true)), 2);
+        }
+        pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
+    }
+
+    protected abstract boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState);
+
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if(!pState.canSurvive(pLevel,pPos)){
@@ -159,6 +177,7 @@ public abstract class GateBlock extends Block{
                     .setValue(INPUT_2, pLevel.getSignal(pPos.relative(direction2), direction2) > 0)
                     .setValue(INPUT_3, pLevel.getSignal(pPos.relative(direction3), direction3) > 0);
             pLevel.setBlockAndUpdate(pPos, blockstate);
+            pLevel.scheduleTick(pPos, this, 1, TickPriority.VERY_HIGH);
         }
     }
 
