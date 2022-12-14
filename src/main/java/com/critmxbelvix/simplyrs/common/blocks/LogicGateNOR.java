@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
@@ -34,6 +35,18 @@ public class LogicGateNOR extends GateBlock {
 
     /* Redstone */
 
+    protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
+        boolean input1 = pState.getValue(INPUT_1);
+        boolean input2 = pState.getValue(INPUT_2);
+        boolean input3 = pState.getValue(INPUT_3);
+
+        if (!(input1 || input2 || input3)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public int getDirectSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
         return pBlockState.getSignal(pBlockAccess, pPos, pSide);
@@ -41,15 +54,10 @@ public class LogicGateNOR extends GateBlock {
 
     @Override
     public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
-        boolean input1 = pBlockState.getValue(INPUT_1);
-        boolean input2 = pBlockState.getValue(INPUT_2);
-        boolean input3 = pBlockState.getValue(INPUT_3);
-
-        if (!(input1 || input2 || input3) && pSide == pBlockState.getValue(FACING).getOpposite()) {
-            return this.getOutputSignal(pBlockAccess, pPos, pBlockState);
-        }
-        else {
+        if (!pBlockState.getValue(POWERED)) {
             return 0;
+        } else {
+            return pBlockState.getValue(FACING).getOpposite() == pSide ? this.getOutputSignal(pBlockAccess, pPos, pBlockState) : 0;
         }
     }
 }
