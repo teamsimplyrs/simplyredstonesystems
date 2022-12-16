@@ -118,6 +118,14 @@ public class BlockRegister {
                     LogicGateNOT.m_getTab()
             );
 
+    //Clock Block --> Registry
+    public static final RegistryObject<Block> CLOCK_BLOCK = registerBlock
+            (
+                    ClockBlock.m_getName(),
+                    ()-> new ClockBlock(ClockBlock.m_getProperties().noOcclusion()),
+                    ClockBlock.m_getTab()
+            );
+
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab CreativeTab)
     {
         RegistryObject<T> toReturn = BLOCKS.register(name,block);

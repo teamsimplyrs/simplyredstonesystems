@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "simplyrs:block/clock_block" }
+  }
+}
