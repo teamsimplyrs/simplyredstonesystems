@@ -1,6 +1,6 @@
 {
 	"textures": {
-		"0": "block/copper_block",
+		"0": "simplyrs:block/copper_block",
 		"1": "block/gold_block",
 		"2": "block/quartz_block_top",
 		"3": "block/red_concrete_powder",
