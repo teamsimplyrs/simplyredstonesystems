@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 public class RedstoneClock extends BaseEntityBlock {
     final static String name = "redstone_clock";
     final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
-    private static final BlockBehaviour.Properties gate_and_properties = BlockBehaviour.Properties.of(Material.STONE).strength(0.1f).dynamicShape();
+    private static final BlockBehaviour.Properties gate_and_properties = BlockBehaviour.Properties.of(Material.METAL).strength(0.3f).dynamicShape();
     private static final VoxelShape SHAPE = Shapes.join(Block.box(1, 0, 1, 15, 2, 15), Block.box(4, 6, 5, 12, 14, 11), BooleanOp.OR);
 
     public RedstoneClock(BlockBehaviour.Properties m_properties) {
