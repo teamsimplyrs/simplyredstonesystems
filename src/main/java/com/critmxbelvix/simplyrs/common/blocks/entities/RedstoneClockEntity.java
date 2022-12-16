@@ -1,7 +1,7 @@
 package com.critmxbelvix.simplyrs.common.blocks.entities;
 
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
-import com.critmxbelvix.simplyrs.common.screen.ClockBlockMenu;
+import com.critmxbelvix.simplyrs.common.screen.RedstoneClockMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 import java.util.Random;
 
-public class ClockBlockEntity extends BlockEntity implements MenuProvider {
+public class RedstoneClockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -41,8 +41,8 @@ public class ClockBlockEntity extends BlockEntity implements MenuProvider {
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
-    public ClockBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(BlockEntityRegister.CLOCK_BLOCK_ENTITY.get(), pPos, pBlockState);
+    public RedstoneClockEntity(BlockPos pPos, BlockState pBlockState) {
+        super(BlockEntityRegister.REDSTONE_CLOCK_ENTITY.get(), pPos, pBlockState);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ClockBlockEntity extends BlockEntity implements MenuProvider {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new ClockBlockMenu(pContainerId,pPlayerInventory,this);
+        return new RedstoneClockMenu(pContainerId,pPlayerInventory,this);
     }
 
     @Nonnull
@@ -99,13 +99,13 @@ public class ClockBlockEntity extends BlockEntity implements MenuProvider {
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, ClockBlockEntity pBlockEntity) {
+    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, RedstoneClockEntity pBlockEntity) {
         if(hasRecipe(pBlockEntity) && hasNotReachedStackLimit(pBlockEntity)) {
             craftItem(pBlockEntity);
         }
     }
 
-    private static void craftItem(ClockBlockEntity entity) {
+    private static void craftItem(RedstoneClockEntity entity) {
         entity.itemHandler.extractItem(0, 1, false);
         entity.itemHandler.extractItem(1, 1, false);
         entity.itemHandler.getStackInSlot(2).hurt(1, new Random(), null);
@@ -114,7 +114,7 @@ public class ClockBlockEntity extends BlockEntity implements MenuProvider {
                 entity.itemHandler.getStackInSlot(3).getCount() + 1));
     }
 
-    private static boolean hasRecipe(ClockBlockEntity entity) {
+    private static boolean hasRecipe(RedstoneClockEntity entity) {
         boolean hasItemInWaterSlot = PotionUtils.getPotion(entity.itemHandler.getStackInSlot(0)) == Potions.WATER;
         boolean hasItemInFirstSlot = entity.itemHandler.getStackInSlot(1).getItem() == Items.DIAMOND;
         boolean hasItemInSecondSlot = entity.itemHandler.getStackInSlot(2).getItem() == Items.DIAMOND_PICKAXE;
@@ -122,7 +122,7 @@ public class ClockBlockEntity extends BlockEntity implements MenuProvider {
         return hasItemInWaterSlot && hasItemInFirstSlot && hasItemInSecondSlot;
     }
 
-    private static boolean hasNotReachedStackLimit(ClockBlockEntity entity) {
+    private static boolean hasNotReachedStackLimit(RedstoneClockEntity entity) {
         return entity.itemHandler.getStackInSlot(3).getCount() < entity.itemHandler.getStackInSlot(3).getMaxStackSize();
     }
 }

@@ -119,11 +119,11 @@ public class BlockRegister {
             );
 
     //Clock Block --> Registry
-    public static final RegistryObject<Block> CLOCK_BLOCK = registerBlock
+    public static final RegistryObject<Block> REDSTONE_CLOCK = registerBlock
             (
-                    ClockBlock.m_getName(),
-                    ()-> new ClockBlock(ClockBlock.m_getProperties().noOcclusion()),
-                    ClockBlock.m_getTab()
+                    RedstoneClock.m_getName(),
+                    ()-> new RedstoneClock(RedstoneClock.m_getProperties().noOcclusion()),
+                    RedstoneClock.m_getTab()
             );
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab CreativeTab)

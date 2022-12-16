@@ -1,6 +1,6 @@
 package com.critmxbelvix.simplyrs.common.screen;
 
-import com.critmxbelvix.simplyrs.common.blocks.entities.ClockBlockEntity;
+import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import com.critmxbelvix.simplyrs.common.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
@@ -15,19 +15,19 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class ClockBlockMenu extends AbstractContainerMenu {
+public class RedstoneClockMenu extends AbstractContainerMenu {
 
-    private final ClockBlockEntity blockEntity;
+    private final RedstoneClockEntity blockEntity;
     private final Level level;
 
-    public ClockBlockMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public RedstoneClockMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId,inv,inv.player.level.getBlockEntity(extraData.readBlockPos()));
     }
 
-    public ClockBlockMenu(int pContainerId, Inventory inv, BlockEntity entity) {
-        super(ModMenuTypes.CLOCK_BLOCK_MENU.get(), pContainerId);
+    public RedstoneClockMenu(int pContainerId, Inventory inv, BlockEntity entity) {
+        super(ModMenuTypes.REDSTONE_CLOCK_MENU.get(), pContainerId);
         checkContainerSize(inv, 4);
-        blockEntity = ((ClockBlockEntity) entity);
+        blockEntity = ((RedstoneClockEntity) entity);
         this.level = inv.player.level;
 
         addPlayerInventory(inv);
@@ -96,7 +96,7 @@ public class ClockBlockMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, BlockRegister.CLOCK_BLOCK.get());
+                pPlayer, BlockRegister.REDSTONE_CLOCK.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

@@ -13,11 +13,11 @@ import net.minecraft.world.entity.player.Inventory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ClockBlockScreen extends AbstractContainerScreen<ClockBlockMenu> {
+public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(SimplyRedstoneSystems.MOD_ID, "textures/gui/gem_cutting_station_gui.png");
     private static final Logger LOGGER = LogManager.getLogger();
-    public ClockBlockScreen(ClockBlockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    public RedstoneClockScreen(RedstoneClockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 
