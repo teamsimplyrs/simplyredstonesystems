@@ -147,7 +147,6 @@ public abstract class GateBlock extends Block{
     }
 
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
-        LOGGER.info("tick");
         boolean flag = pState.getValue(POWERED);
         boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
         if (flag && !flag1) {

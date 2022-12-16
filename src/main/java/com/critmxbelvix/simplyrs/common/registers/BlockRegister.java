@@ -118,6 +118,14 @@ public class BlockRegister {
                     LogicGateNOT.m_getTab()
             );
 
+    //Clock Block --> Registry
+    public static final RegistryObject<Block> REDSTONE_CLOCK = registerBlock
+            (
+                    RedstoneClock.m_getName(),
+                    ()-> new RedstoneClock(RedstoneClock.m_getProperties().noOcclusion()),
+                    RedstoneClock.m_getTab()
+            );
+
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab CreativeTab)
     {
         RegistryObject<T> toReturn = BLOCKS.register(name,block);

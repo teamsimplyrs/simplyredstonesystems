@@ -21,6 +21,7 @@ public class ClientSetupClass {
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_NOT.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XOR2.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XNOR2.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_CLOCK.get(), RenderType.translucent());
     }
 
 
