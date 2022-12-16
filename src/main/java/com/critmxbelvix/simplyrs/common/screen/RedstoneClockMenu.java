@@ -30,8 +30,8 @@ public class RedstoneClockMenu extends AbstractContainerMenu {
         blockEntity = ((RedstoneClockEntity) entity);
         this.level = inv.player.level;
 
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
+        //addPlayerInventory(inv);
+        //addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
             this.addSlot(new SlotItemHandler(handler, 0, 34, 40));

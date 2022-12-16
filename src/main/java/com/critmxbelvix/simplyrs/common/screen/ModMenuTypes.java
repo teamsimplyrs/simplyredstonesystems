@@ -15,7 +15,7 @@ public class ModMenuTypes {
             DeferredRegister.create(ForgeRegistries.CONTAINERS, SimplyRedstoneSystems.MOD_ID);
 
     public static final RegistryObject<MenuType<RedstoneClockMenu>> REDSTONE_CLOCK_MENU =
-            registerMenuType(RedstoneClockMenu::new, "gem_cutting_station_menu");
+            registerMenuType(RedstoneClockMenu::new, "redstone_clock_menu");
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory,
                                                                                                  String name) {
