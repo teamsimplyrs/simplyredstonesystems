@@ -8,7 +8,6 @@ import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +22,12 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
 
     public RedstoneClockScreen(RedstoneClockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
+        this.imageWidth = 247;
+        this.imageHeight = 165;
+        this.titleLabelX = 8;
+        this.titleLabelY = 6;
+        this.inventoryLabelX = 1000;
+        this.inventoryLabelY = 1000;
     }
 
     @Override
@@ -30,11 +35,7 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         super.init();
 
         // Add widgets and precomputed values
-        this.addRenderableWidget(new Button(0,0,30,20,new TextComponent("Test"),Button::onPress){
-            public void onPress(){
-                LOGGER.info("Button pressed");
-            }
-        });
+
         this.addRenderableWidget(new ImageButton(getMidX()+20,getMidY(),17,17,0,166,17,TEXTURE,256,256,Button::onPress){
             public void onPress() {
                 LOGGER.info("Image button pressed");
@@ -57,6 +58,11 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         int y = (height - 165) / 2;
 
         this.blit(pPoseStack, x, y, 0, 0, 248, 166);
+    }
+
+    @Override
+    protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
+        this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
     }
 
     @Override
