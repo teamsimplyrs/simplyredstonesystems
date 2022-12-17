@@ -1,7 +1,8 @@
 {
 	"texture_size": [48, 32],
 	"textures": {
-		"6": "simplyrs:block/redstone_clock_texture.png"
+		"0": "simplyrs:block/redstone_clock_texture.png",
+		"particle": "simplyrs:block/copper_block"
 	},
 	"elements": [
 		{

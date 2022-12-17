@@ -18,6 +18,6 @@ public class RedstoneClockModel extends AnimatedGeoModel<RedstoneClockEntity> {
 
     @Override
     public ResourceLocation getAnimationFileLocation(RedstoneClockEntity animatable) {
-        return new ResourceLocation(SimplyRedstoneSystems.MOD_ID, "geo/redstone_clock_anim.animation.json");
+        return new ResourceLocation(SimplyRedstoneSystems.MOD_ID, "animations/redstone_clock_anim.animation.json");
     }
 }

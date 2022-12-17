@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.redstone_clock_anim.new": {
+		"new": {
 			"loop": true,
 			"animation_length": 4,
 			"bones": {
@@ -24,7 +24,7 @@
 						}
 					}
 				},
-				"energy band 1": {
+				"energyband1": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -34,7 +34,7 @@
 						}
 					}
 				},
-				"energy band 2": {
+				"energyband2": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -56,5 +56,6 @@
 				}
 			}
 		}
-	}
+	},
+	"geckolib_format_version": 2
 }
