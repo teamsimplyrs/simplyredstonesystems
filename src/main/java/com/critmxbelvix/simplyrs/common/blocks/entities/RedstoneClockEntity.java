@@ -47,7 +47,7 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return new TextComponent("Clock Block");
+        return new TextComponent("Redstone Clock");
     }
 
     @Nullable
