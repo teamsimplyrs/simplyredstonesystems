@@ -21,4 +21,4 @@ public class BlockEntityRegister {
     {
         BLOCKENTITIES.register(eventBus);
     }
-}
+}                                                                                                                                                                                                       
