@@ -30,11 +30,7 @@ public class LogicGateXNOR2 extends Gate2Block{
         boolean input2 = pState.getValue(INPUT_2);
         long count = Stream.of(input1, input2).filter(b -> b).count();
 
-        if (count%2==0) {
-            return true;
-        } else {
-            return false;
-        }
+        return count % 2 == 0;
     }
 
     @Override

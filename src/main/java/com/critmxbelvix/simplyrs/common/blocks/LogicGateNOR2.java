@@ -27,11 +27,7 @@ public class LogicGateNOR2 extends Gate2Block{
         boolean input1 = pState.getValue(INPUT_1);
         boolean input2 = pState.getValue(INPUT_2);
 
-        if (!(input1 || input2)) {
-            return true;
-        } else {
-            return false;
-        }
+        return !(input1 || input2);
     }
 
     @Override

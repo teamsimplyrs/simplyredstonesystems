@@ -40,11 +40,7 @@ public class LogicGateNAND extends GateBlock {
         boolean input2 = pState.getValue(INPUT_2);
         boolean input3 = pState.getValue(INPUT_3);
 
-        if (!(input1 && input2 && input3 )) {
-            return true;
-        } else {
-            return false;
-        }
+        return !(input1 && input2 && input3);
     }
 
     @Override

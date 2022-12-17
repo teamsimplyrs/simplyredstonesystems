@@ -162,11 +162,7 @@ public class LogicGateNOT extends Block
     protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
         boolean input = pState.getValue(INPUT);
 
-        if (!input) {
-            return true;
-        } else {
-            return false;
-        }
+        return !input;
     }
 
     @Override

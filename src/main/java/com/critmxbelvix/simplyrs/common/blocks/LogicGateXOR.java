@@ -46,11 +46,7 @@ public class LogicGateXOR extends GateBlock {
         boolean input3 = pState.getValue(INPUT_3);
         long count = Stream.of(input1, input2, input3).filter(b -> b).count();
 
-        if (count%2!=0) {
-            return true;
-        } else {
-            return false;
-        }
+        return count % 2 != 0;
     }
 
     @Override
