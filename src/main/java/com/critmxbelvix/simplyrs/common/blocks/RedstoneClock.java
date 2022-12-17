@@ -2,7 +2,7 @@ package com.critmxbelvix.simplyrs.common.blocks;
 
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
-import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
+import com.critmxbelvix.simplyrs.common.creativetabs.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

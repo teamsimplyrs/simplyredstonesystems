@@ -1,4 +1,4 @@
-package com.critmxbelvix.simplyrs.common.registers;
+package com.critmxbelvix.simplyrs.common.creativetabs.registers;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;

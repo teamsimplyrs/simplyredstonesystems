@@ -1,6 +1,6 @@
 package com.critmxbelvix.simplyrs.common.blocks.entities;
 
-import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
+import com.critmxbelvix.simplyrs.common.creativetabs.registers.BlockEntityRegister;
 import com.critmxbelvix.simplyrs.client.gui.RedstoneClockMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

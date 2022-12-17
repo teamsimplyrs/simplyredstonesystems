@@ -1,6 +1,6 @@
 package com.critmxbelvix.simplyrs.common;
 
-import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
+import com.critmxbelvix.simplyrs.common.creativetabs.registers.BlockRegister;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 
