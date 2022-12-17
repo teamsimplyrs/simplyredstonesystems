@@ -1,5 +1,4 @@
 {
-	"credit": "Made with Blockbench",
 	"texture_size": [48, 32],
 	"textures": {
 		"6": "simplyrs:block/stiched_texture"
@@ -345,7 +344,12 @@
 			"origin": [8, 8, 8],
 			"color": 0,
 			"children": [
-				17,
+				{
+					"name": "Block",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": [17]
+				},
 				{
 					"name": "energy band 1",
 					"origin": [0, 0, 0],
