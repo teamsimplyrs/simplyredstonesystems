@@ -1,8 +1,8 @@
 {
   "credit": "Made with Blockbench",
   "parent": "builtin/entity",
-  "texture": {
-    "particle": "minecraft:/block/smooth_stone"
+  "textures": {
+    "particle": "simplyrs:block/copper_block"
   },
   "texture_size": [
     48,
