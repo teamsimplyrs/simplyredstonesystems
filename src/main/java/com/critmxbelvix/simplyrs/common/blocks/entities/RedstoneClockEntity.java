@@ -27,11 +27,14 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
 
-public class RedstoneClockEntity extends BlockEntity implements MenuProvider {
+public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IAnimatable {
     private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -124,5 +127,15 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider {
 
     private static boolean hasNotReachedStackLimit(RedstoneClockEntity entity) {
         return entity.itemHandler.getStackInSlot(3).getCount() < entity.itemHandler.getStackInSlot(3).getMaxStackSize();
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return null;
     }
 }

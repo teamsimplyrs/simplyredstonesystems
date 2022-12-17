@@ -23,6 +23,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 import java.util.stream.Collectors;
 
@@ -44,6 +45,7 @@ public class SimplyRedstoneSystems
         eventBus.addListener(this::enqueueIMC);
         eventBus.addListener(this::processIMC);
         eventBus.addListener(this::clientsetup);
+        GeckoLib.initialize();
         MinecraftForge.EVENT_BUS.register(this);
     }
     private void commonsetup(final FMLCommonSetupEvent event)
