@@ -9,7 +9,7 @@
 		"7": "simplyrs:block/white_negativesign",
 		"8": "simplyrs:block/bright_red_light",
 		"9": "simplyrs:block/redstone_torch_off",
-		"11": "simplyrs:block/bright_yellow_light",
+		"10": "simplyrs:block/dark_yellow_light",
 		"particle": "simplyrs:block/smooth_stone"
 	},
 	"elements": [
@@ -233,12 +233,12 @@
 			"from": [7, 3.75, 3],
 			"to": [9, 5.75, 5],
 			"faces": {
-				"north": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#11"},
-				"east": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#11"},
-				"south": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#11"},
-				"west": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#11"},
-				"up": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#11"},
-				"down": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#11"}
+				"north": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#10"},
+				"east": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#10"},
+				"south": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#10"},
+				"west": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#10"},
+				"up": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#10"},
+				"down": {"uv": [7.25, 7.25, 8.75, 8.75], "texture": "#10"}
 			}
 		},
 		{
