@@ -27,11 +27,11 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
+import software.bernie.geckolib3.core.IAnimatable;
 import javax.annotation.Nonnull;
 import java.util.Random;
 
-public class RedstoneClockEntity extends BlockEntity implements MenuProvider {
+public class RedstoneClockEntity extends BlockEntity implements MenuProvider,IAnimatable {
     private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
         @Override
         protected void onContentsChanged(int slot) {
