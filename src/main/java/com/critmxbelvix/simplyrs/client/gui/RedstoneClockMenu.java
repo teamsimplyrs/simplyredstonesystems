@@ -18,12 +18,15 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier<Map<Integer,Slot>> {
 
     private final RedstoneClockEntity blockEntity;
+    public final static HashMap<String, Object> guiState = new HashMap<>();
+
     private boolean bound = false;
     private IItemHandler internal;
     private final Level level;
