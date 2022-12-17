@@ -81,6 +81,10 @@ public class RedstoneClock extends BaseEntityBlock {
         return SHAPE;
     }
 
+    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
+        return canSupportRigidBlock(pLevel, pPos.below());
+    }
+
     // BlockStates
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
@@ -91,10 +95,11 @@ public class RedstoneClock extends BaseEntityBlock {
     {
         BlockState blockstate = super.getStateForPlacement(pContext);
         Direction direction = pContext.getHorizontalDirection();
+        pContext.getLevel().scheduleTick(pContext.getClickedPos(),blockstate.getBlock(),1);
         return this.defaultBlockState()
                 .setValue(FACING,direction)
-                .setValue(INPUT,isInput(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(direction.getOpposite()))
-                );
+                .setValue(INPUT,isInput(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(direction.getOpposite())))
+                .setValue(POWERED,false);
     }
 
     public BlockState rotate(BlockState pState, Rotation pRotation){
