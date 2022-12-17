@@ -1,6 +1,7 @@
-package com.critmxbelvix.simplyrs.common.screen;
+package com.critmxbelvix.simplyrs.client.screen;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
+import com.critmxbelvix.simplyrs.client.gui.RedstoneClockMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.Button;

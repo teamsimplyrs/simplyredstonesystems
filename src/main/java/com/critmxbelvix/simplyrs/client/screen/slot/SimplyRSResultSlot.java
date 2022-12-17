@@ -1,11 +1,11 @@
-package com.critmxbelvix.simplyrs.common.screen.slot;
+package com.critmxbelvix.simplyrs.client.screen.slot;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class ModResultSlot extends SlotItemHandler {
-    public ModResultSlot(IItemHandler itemHandler, int index, int x, int y) {
+public class SimplyRSResultSlot extends SlotItemHandler {
+    public SimplyRSResultSlot(IItemHandler itemHandler, int index, int x, int y) {
         super(itemHandler, index, x, y);
     }
 

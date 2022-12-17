@@ -1,8 +1,9 @@
-package com.critmxbelvix.simplyrs.common.screen;
+package com.critmxbelvix.simplyrs.client.gui;
 
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
-import com.critmxbelvix.simplyrs.common.screen.slot.ModResultSlot;
+import com.critmxbelvix.simplyrs.client.screen.slot.SimplyRSResultSlot;
+import com.critmxbelvix.simplyrs.common.registers.MenuTypeRegister;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -13,22 +14,32 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class RedstoneClockMenu extends AbstractContainerMenu {
+import java.util.Map;
+import java.util.function.Supplier;
+
+public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier<Map<Integer,Slot>> {
 
     private final RedstoneClockEntity blockEntity;
+    private boolean bound = false;
+    private IItemHandler internal;
     private final Level level;
+    public final Player player;
 
     public RedstoneClockMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId,inv,inv.player.level.getBlockEntity(extraData.readBlockPos()));
     }
 
     public RedstoneClockMenu(int pContainerId, Inventory inv, BlockEntity entity) {
-        super(ModMenuTypes.REDSTONE_CLOCK_MENU.get(), pContainerId);
+        super(MenuTypeRegister.REDSTONE_CLOCK_MENU.get(), pContainerId);
         checkContainerSize(inv, 4);
         blockEntity = ((RedstoneClockEntity) entity);
         this.level = inv.player.level;
+        this.player = inv.player;
+        this.internal = new ItemStackHandler(0);
 
         //addPlayerInventory(inv);
         //addPlayerHotbar(inv);
@@ -37,7 +48,7 @@ public class RedstoneClockMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 0, 34, 40));
             this.addSlot(new SlotItemHandler(handler, 1, 57, 18));
             this.addSlot(new SlotItemHandler(handler, 2, 103, 18));
-            this.addSlot(new ModResultSlot(handler, 3, 80, 60));
+            this.addSlot(new SimplyRSResultSlot(handler, 3, 80, 60));
         });
     }
 
@@ -111,5 +122,10 @@ public class RedstoneClockMenu extends AbstractContainerMenu {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
         }
+    }
+
+    @Override
+    public Map<Integer, Slot> get() {
+        return null;
     }
 }

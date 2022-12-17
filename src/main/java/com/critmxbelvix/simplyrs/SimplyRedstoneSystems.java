@@ -4,8 +4,8 @@ import com.critmxbelvix.simplyrs.common.ClientSetupClass;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import com.critmxbelvix.simplyrs.common.registers.ItemRegister;
-import com.critmxbelvix.simplyrs.common.screen.ModMenuTypes;
-import com.critmxbelvix.simplyrs.common.screen.RedstoneClockScreen;
+import com.critmxbelvix.simplyrs.common.registers.MenuTypeRegister;
+import com.critmxbelvix.simplyrs.client.screen.RedstoneClockScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -39,7 +39,7 @@ public class SimplyRedstoneSystems
         ItemRegister.register(eventBus);
         BlockRegister.register(eventBus);
         BlockEntityRegister.register(eventBus);
-        ModMenuTypes.register(eventBus);
+        MenuTypeRegister.register(eventBus);
 
         eventBus.addListener(this::commonsetup);
         eventBus.addListener(this::enqueueIMC);
@@ -58,7 +58,7 @@ public class SimplyRedstoneSystems
     public void clientsetup(final FMLClientSetupEvent event)
     {
         ClientSetupClass.renderAllTranslucent();
-        MenuScreens.register(ModMenuTypes.REDSTONE_CLOCK_MENU.get(), RedstoneClockScreen::new);
+        MenuScreens.register(MenuTypeRegister.REDSTONE_CLOCK_MENU.get(), RedstoneClockScreen::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
