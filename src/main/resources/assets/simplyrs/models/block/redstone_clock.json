@@ -1,7 +1,7 @@
 {
 	"texture_size": [48, 32],
 	"textures": {
-		"6": "simplyrs:block/stiched_texture"
+		"6": "simplyrs:block/redstone_clock_texture.png"
 	},
 	"elements": [
 		{
