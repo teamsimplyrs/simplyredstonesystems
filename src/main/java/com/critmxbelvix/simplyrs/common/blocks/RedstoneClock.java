@@ -84,19 +84,16 @@ public class RedstoneClock extends BaseEntityBlock {
     // BlockStates
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
-        pBuilder.add(FACING);
+        pBuilder.add(FACING,INPUT,POWERED);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext)
     {
         BlockState blockstate = super.getStateForPlacement(pContext);
-        Direction north = pContext.getHorizontalDirection();
-        Direction east = north.getClockWise();
-        Direction west = north.getCounterClockWise();
-        Direction south = north.getOpposite();
+        Direction direction = pContext.getHorizontalDirection();
         return this.defaultBlockState()
-                .setValue(FACING,north)
-                .setValue(INPUT,isInput(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(south))
+                .setValue(FACING,direction)
+                .setValue(INPUT,isInput(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(direction.getOpposite()))
                 );
     }
 
