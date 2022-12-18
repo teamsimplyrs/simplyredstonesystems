@@ -48,12 +48,12 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
 
         // Add widgets and precomputed values
 
-        this.addRenderableWidget(new ImageButton(getMidX()+20,getMidY(),17,17,0,166,17,TEXTURE,256,256,Button::onPress){
+        this.addRenderableWidget(new ImageButton(getMidX()+12,getMidY()+2,17,17,0,166,17,TEXTURE,256,256,Button::onPress){
             public void onPress() {
                 LOGGER.info("Image button pressed");
             }
         });
-        this.addRenderableWidget(new ImageButton(getMidX()-38,getMidY(),17,17,17,166,17,TEXTURE,256,256,Button::onPress){
+        this.addRenderableWidget(new ImageButton(getMidX()-37,getMidY()+2,17,17,17,166,17,TEXTURE,256,256,Button::onPress){
             public void onPress() {
                 LOGGER.info("Image button pressed");
             }
@@ -115,7 +115,7 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
     @Override
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
         this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
-        this.font.draw(pPoseStack, "Clock Tick Delay", 30, 60, -16777216);
+        this.font.draw(pPoseStack, "Clock Tick Delay", 78, 45, -16777216);
 
     }
 

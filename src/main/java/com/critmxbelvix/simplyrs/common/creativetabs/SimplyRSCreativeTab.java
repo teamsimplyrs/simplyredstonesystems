@@ -1,6 +1,6 @@
 package com.critmxbelvix.simplyrs.common.creativetabs;
 
-import com.critmxbelvix.simplyrs.common.creativetabs.registers.BlockRegister;
+import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;

@@ -1,9 +1,9 @@
 package com.critmxbelvix.simplyrs.client.gui;
 
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
-import com.critmxbelvix.simplyrs.common.creativetabs.registers.BlockRegister;
+import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import com.critmxbelvix.simplyrs.client.screen.slot.SimplyRSResultSlot;
-import com.critmxbelvix.simplyrs.common.creativetabs.registers.MenuTypeRegister;
+import com.critmxbelvix.simplyrs.common.registers.MenuTypeRegister;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
