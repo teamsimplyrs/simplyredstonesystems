@@ -51,6 +51,7 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
     };
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    public int delay;
 
     public RedstoneClockEntity(BlockPos pPos, BlockState pBlockState) {
         super(BlockEntityRegister.REDSTONE_CLOCK_ENTITY.get(), pPos, pBlockState);
@@ -89,9 +90,11 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
         lazyItemHandler.invalidate();
     }
 
+
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
+        tag.putInt("delay",this.delay);
         super.saveAdditional(tag);
     }
 
@@ -99,6 +102,7 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
     public void load(CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
+        this.delay = nbt.getInt("delay");
     }
 
     public void drops() {

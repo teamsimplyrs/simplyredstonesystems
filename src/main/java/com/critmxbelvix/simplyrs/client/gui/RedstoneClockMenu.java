@@ -1,8 +1,8 @@
 package com.critmxbelvix.simplyrs.client.gui;
 
+import com.critmxbelvix.simplyrs.client.screen.slot.SimplyRSResultSlot;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
-import com.critmxbelvix.simplyrs.client.screen.slot.SimplyRSResultSlot;
 import com.critmxbelvix.simplyrs.common.registers.MenuTypeRegister;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -125,6 +125,22 @@ public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
         }
+    }
+
+
+    @Override
+    public boolean clickMenuButton(Player pPlayer, int pId) {
+        if(pId==1){
+            this.blockEntity.delay++;
+            this.blockEntity.setChanged();
+            return true;
+        }
+        else if(pId==0){
+            this.blockEntity.delay--;
+            this.blockEntity.setChanged();
+            return true;
+        }
+        else return false;
     }
 
     @Override

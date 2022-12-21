@@ -39,6 +39,7 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         this.inventoryLabelX = 1000;
         this.inventoryLabelY = 1000;
         this.player = pMenu.player;
+
     }
 
     @Override
@@ -50,12 +51,12 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
 
         this.addRenderableWidget(new ImageButton(getMidX()+12,getMidY()+2,17,17,0,166,17,TEXTURE,256,256,Button::onPress){
             public void onPress() {
-                LOGGER.info("Image button pressed");
+                incrementButton();
             }
         });
         this.addRenderableWidget(new ImageButton(getMidX()-37,getMidY()+2,17,17,17,166,17,TEXTURE,256,256,Button::onPress){
             public void onPress() {
-                LOGGER.info("Image button pressed");
+                decrementButton();
             }
         });
         tickDelayCount = new EditBox(this.font, getMidX()-36, getMidY()-20, 64, 20, new TextComponent("1")) {
@@ -92,6 +93,14 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
             return true;
         }
         return tickDelayCount.isFocused() ? tickDelayCount.keyPressed(key, b, c) : super.keyPressed(key,b,c);
+    }
+
+    private void incrementButton(){
+        this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId,1);
+    }
+
+    private void decrementButton(){
+        this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId,0);
     }
 
     @Override
