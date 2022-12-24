@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " XX",
+    "X#X",
+    "zzz"
+  ],
+  "key":
+  {
+    "X": {"item": "minecraft:redstone"},
+    "#": {"item": "minecraft:gold_ingot"},
+    "z": {"item": "minecraft:stone_slab"}
+  },
+  "result":
+  {
+    "item": "simplyrs:logiccore_xor",
+    "count": 3
+  }
+}

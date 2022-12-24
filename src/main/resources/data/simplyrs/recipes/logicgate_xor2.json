@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " I_",
+    "IOI"
+  ],
+  "key":
+  {
+    "I": {"item": "minecraft:redstone_torch"},
+    "_": {"item": "minecraft:blue_dye"},
+    "O": {"item": "simplyrs:logiccore_xor"}
+  },
+  "result":
+  {
+    "item": "simplyrs:logicgate_xor2"
+  }
+}
