@@ -13,6 +13,11 @@
   "block.simplyrs.logicgate_xnor2": "Logic Gate: XNOR (2-input)",
   "block.simplyrs.logicgate_not": "Logic Gate: NOT (Inverter)",
   "block.simplyrs.redstone_clock": "Redstone Clock",
-  "itemGroup.simplyrscreativetab": "Simply Redstone Systems"
+  "item.simplyrs.logiccore_or": "Logic Core: OR",
+  "item.simplyrs.logiccore_and": "Logic Core: AND",
+  "item.simplyrs.logiccore_xor": "Logic Core: XOR",
+  "item.simplyrs.logiccore_not": "Logic Core: NOT",
+  "itemGroup.simplyrscreativetab": "Simply Redstone Systems",
+  "itemGroup.simplyrscraftingresourcestab": "Simply Redstone Systems: Crafting"
 
 }
