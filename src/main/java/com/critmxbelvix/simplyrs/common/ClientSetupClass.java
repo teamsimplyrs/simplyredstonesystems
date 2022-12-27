@@ -3,6 +3,7 @@ package com.critmxbelvix.simplyrs.common;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.level.block.Block;
 
 public class ClientSetupClass {
 
@@ -22,6 +23,7 @@ public class ClientSetupClass {
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XOR2.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XNOR2.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_CLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_CROSSBRIDGE.get(), RenderType.translucent());
     }
 
 

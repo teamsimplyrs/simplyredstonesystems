@@ -1,0 +1,14 @@
+{
+  "variants":
+  {
+    "input_N=false, input_E=false, input_W=false, input_S=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge"},
+    "input_N=true, input_E=false, input_W=false, input_S=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_N"},
+    "input_N=false, input_E=true, input_W=false, input_S=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_E"},
+    "input_N=false, input_E=false, input_W=true, input_S=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_W"},
+    "input_N=false, input_E=false, input_W=false, input_S=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_S"},
+    "input_N=true, input_E=true, input_W=false, input_S=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NE"},
+    "input_N=true, input_E=false, input_W=true, input_S=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NW"},
+    "input_N=false, input_E=true, input_W=false, input_S=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SE"},
+    "input_N=false, input_E=false, input_W=true, input_S=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SW"}
+  }
+}
