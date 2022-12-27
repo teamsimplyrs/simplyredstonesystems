@@ -118,11 +118,19 @@ public class BlockRegister {
                     LogicGateNOT.m_getTab()
             );
 
-    //Clock Block --> Registry
+    //Redstone Clock --> Registry
     public static final RegistryObject<Block> REDSTONE_CLOCK = registerBlockWithoutBlockItem
             (
                     RedstoneClock.m_getName(),
                     ()-> new RedstoneClock(RedstoneClock.m_getProperties().noOcclusion())
+            );
+
+    //Redstone Crossbridge --> Registry
+    public static final RegistryObject<Block> REDSTONE_CROSSBRIDGE = registerBlock
+            (
+                    RedstoneCrossbridge.m_getName(),
+                    ()-> new RedstoneCrossbridge(RedstoneCrossbridge.m_getProperties().noOcclusion()),
+                    RedstoneCrossbridge.m_getTab()
             );
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {

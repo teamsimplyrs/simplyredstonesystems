@@ -13,6 +13,7 @@
   "block.simplyrs.logicgate_xnor2": "Logic Gate: XNOR (2-input)",
   "block.simplyrs.logicgate_not": "Logic Gate: NOT (Inverter)",
   "block.simplyrs.redstone_clock": "Redstone Clock",
+  "block.simplyrs.redstone_crossbridge": "Redstone Crossbridge",
   "item.simplyrs.logiccore_or": "Logic Core: OR",
   "item.simplyrs.logiccore_and": "Logic Core: AND",
   "item.simplyrs.logiccore_xor": "Logic Core: XOR",
