@@ -1,7 +1,8 @@
 package com.critmxbelvix.simplyrs.common.blocks.entities;
 
-import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import com.critmxbelvix.simplyrs.client.gui.RedstoneClockMenu;
+import com.critmxbelvix.simplyrs.common.blocks.RedstoneClock;
+import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -13,10 +14,6 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,6 +22,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -38,10 +37,13 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import javax.annotation.Nonnull;
-import java.util.Random;
 
 public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IAnimatable {
     private AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private static final Logger LOGGER = LogManager.getLogger();
+    public int delay;
+    public int duration;
+    private int ticksSinceNextPulse;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
         @Override
@@ -51,10 +53,12 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
     };
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-    public int delay;
 
     public RedstoneClockEntity(BlockPos pPos, BlockState pBlockState) {
         super(BlockEntityRegister.REDSTONE_CLOCK_ENTITY.get(), pPos, pBlockState);
+        this.delay=1;
+        this.ticksSinceNextPulse=0;
+        this.duration = 10;
     }
 
     @Override
@@ -115,30 +119,23 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, RedstoneClockEntity pBlockEntity) {
-        if(hasRecipe(pBlockEntity) && hasNotReachedStackLimit(pBlockEntity)) {
-            craftItem(pBlockEntity);
+        pBlockEntity.ticksSinceNextPulse++;
+        boolean powered;
+        boolean prevPowered = pState.getValue(RedstoneClock.POWERED);
+        if (pBlockEntity.ticksSinceNextPulse < pBlockEntity.delay) {
+            powered = false;
         }
-    }
+        else if (pBlockEntity.ticksSinceNextPulse < pBlockEntity.delay + pBlockEntity.duration) {
+            powered = true;
+        }
+        else {
+            pBlockEntity.ticksSinceNextPulse = 0;
+            powered = false;
+        }
+        if (prevPowered != powered) {
+            pLevel.setBlockAndUpdate(pPos, pState.setValue(RedstoneClock.POWERED, powered));
+        }
 
-    private static void craftItem(RedstoneClockEntity entity) {
-        entity.itemHandler.extractItem(0, 1, false);
-        entity.itemHandler.extractItem(1, 1, false);
-        entity.itemHandler.getStackInSlot(2).hurt(1, new Random(), null);
-
-        entity.itemHandler.setStackInSlot(3, new ItemStack(Items.NETHERITE_INGOT,
-                entity.itemHandler.getStackInSlot(3).getCount() + 1));
-    }
-
-    private static boolean hasRecipe(RedstoneClockEntity entity) {
-        boolean hasItemInWaterSlot = PotionUtils.getPotion(entity.itemHandler.getStackInSlot(0)) == Potions.WATER;
-        boolean hasItemInFirstSlot = entity.itemHandler.getStackInSlot(1).getItem() == Items.DIAMOND;
-        boolean hasItemInSecondSlot = entity.itemHandler.getStackInSlot(2).getItem() == Items.DIAMOND_PICKAXE;
-
-        return hasItemInWaterSlot && hasItemInFirstSlot && hasItemInSecondSlot;
-    }
-
-    private static boolean hasNotReachedStackLimit(RedstoneClockEntity entity) {
-        return entity.itemHandler.getStackInSlot(3).getCount() < entity.itemHandler.getStackInSlot(3).getMaxStackSize();
     }
 
     /* Geckolib */

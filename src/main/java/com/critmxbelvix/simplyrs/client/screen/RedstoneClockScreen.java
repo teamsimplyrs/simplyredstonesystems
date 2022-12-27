@@ -115,7 +115,6 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         RenderSystem.enableBlend();
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - 247) / 2;
-        LOGGER.info(MID_X+" "+MID_Y);
         int y = (height - 165) / 2;
         this.blit(pPoseStack, x, y, 0, 0, 248, 166);
         RenderSystem.disableBlend();

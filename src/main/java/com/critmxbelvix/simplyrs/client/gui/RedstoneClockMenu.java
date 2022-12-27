@@ -135,7 +135,7 @@ public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier
             this.blockEntity.setChanged();
             return true;
         }
-        else if(pId==0){
+        else if(pId==0 && this.blockEntity.delay!=1){
             this.blockEntity.delay--;
             this.blockEntity.setChanged();
             return true;

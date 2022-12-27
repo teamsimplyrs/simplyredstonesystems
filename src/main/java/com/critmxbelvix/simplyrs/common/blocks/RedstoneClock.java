@@ -245,13 +245,13 @@ public class RedstoneClock extends BaseEntityBlock {
         }
     }
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
-        boolean flag = pState.getValue(POWERED);
-        boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
-        if (flag && !flag1) {
-            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.FALSE), 2);
-        } else if(flag1){
-            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.TRUE), 2);
-        }
-        pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
+//        boolean flag = pState.getValue(POWERED);
+//        boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
+//        if (flag && !flag1) {
+//            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.FALSE), 2);
+//        } else if(flag1){
+//            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.TRUE), 2);
+//        }
+//        pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
     }
 }
