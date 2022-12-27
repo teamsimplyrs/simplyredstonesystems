@@ -107,7 +107,8 @@ public class RedstoneCrossbridge extends Block {
                 .setValue(INPUT_N,isInputNorth(pContext.getLevel(),pContext.getClickedPos().relative(north),blockstate))
                 .setValue(INPUT_E,isInputEast(pContext.getLevel(),pContext.getClickedPos().relative(east),blockstate))
                 .setValue(INPUT_W,isInputWest(pContext.getLevel(),pContext.getClickedPos().relative(west),blockstate))
-                .setValue(INPUT_W,isInputSouth(pContext.getLevel(),pContext.getClickedPos().relative(south),blockstate));
+                .setValue(INPUT_W,isInputSouth(pContext.getLevel(),pContext.getClickedPos().relative(south),blockstate))
+                .setValue(POWERED,false);
     }
     public BlockState rotate(BlockState pState, Rotation pRotation){
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
@@ -118,7 +119,7 @@ public class RedstoneCrossbridge extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
-        pBuilder.add(INPUT_N,INPUT_E,INPUT_W,INPUT_S);
+        pBuilder.add(FACING,INPUT_N,INPUT_E,INPUT_W,INPUT_S,POWERED);
     }
 
     // Redstone
