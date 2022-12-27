@@ -72,7 +72,8 @@ public abstract class Gate2Block extends Block
         return this.defaultBlockState()
                 .setValue(FACING,north)
                 .setValue(INPUT_1,isInputOne(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(west)))
-                .setValue(INPUT_2,isInputTwo(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(east)));
+                .setValue(INPUT_2,isInputTwo(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(east)))
+                .setValue(POWERED,false);
     }
     public BlockState rotate(BlockState pState, Rotation pRotation){
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));

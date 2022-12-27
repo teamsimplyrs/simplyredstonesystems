@@ -80,7 +80,8 @@ public class LogicGateNOT extends Block
 
         return this.defaultBlockState()
                 .setValue(FACING,north)
-                .setValue(INPUT,isInput(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(south)));
+                .setValue(INPUT,isInput(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(south)))
+                .setValue(POWERED,false);
     }
     public BlockState rotate(BlockState pState, Rotation pRotation){
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));

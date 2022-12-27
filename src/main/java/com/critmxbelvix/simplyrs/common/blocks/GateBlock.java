@@ -70,7 +70,8 @@ public abstract class GateBlock extends Block{
                 .setValue(FACING,pContext.getHorizontalDirection())
                 .setValue(INPUT_1,isInputOne(pContext.getLevel(),pContext.getClickedPos().relative(direction1),blockstate))
                 .setValue(INPUT_2,isInputTwo(pContext.getLevel(),pContext.getClickedPos().relative(direction2),blockstate))
-                .setValue(INPUT_3,isInputThree(pContext.getLevel(),pContext.getClickedPos().relative(direction3),blockstate));
+                .setValue(INPUT_3,isInputThree(pContext.getLevel(),pContext.getClickedPos().relative(direction3),blockstate))
+                .setValue(POWERED,false);
     }
 
     public BlockState rotate(BlockState pState, Rotation pRotation){
