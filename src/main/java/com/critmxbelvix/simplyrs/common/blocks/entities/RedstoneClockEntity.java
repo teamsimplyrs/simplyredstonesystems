@@ -99,6 +99,7 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
         tag.putInt("delay",this.delay);
+        tag.putInt("duration",this.duration);
         super.saveAdditional(tag);
     }
 
@@ -107,6 +108,7 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
         this.delay = nbt.getInt("delay");
+        this.duration = nbt.getInt("duration");
     }
 
     public void drops() {
