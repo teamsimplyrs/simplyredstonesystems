@@ -58,8 +58,8 @@ public class RedstoneCrossbridge extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty INPUT_N = BooleanProperty.create("input_n");
     public static final BooleanProperty INPUT_E = BooleanProperty.create("input_e");
-    public static final BooleanProperty INPUT_S = BooleanProperty.create("input_s");
     public static final BooleanProperty INPUT_W = BooleanProperty.create("input_w");
+    public static final BooleanProperty INPUT_S = BooleanProperty.create("input_s");
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public RedstoneCrossbridge(Properties pProperties) {
         super(pProperties);
