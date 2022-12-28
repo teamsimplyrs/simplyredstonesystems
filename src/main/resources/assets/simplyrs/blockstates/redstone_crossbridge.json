@@ -1,14 +1,44 @@
 {
   "variants":
   {
-    "input_n=false, input_e=false, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge"},
-    "input_n=true, input_e=false, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_N"},
-    "input_n=false, input_e=true, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_E"},
-    "input_n=false, input_e=false, input_w=true, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_W"},
-    "input_n=false, input_e=false, input_w=false, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_S"},
-    "input_n=true, input_e=true, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NE"},
-    "input_n=true, input_e=false, input_w=true, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NW"},
-    "input_n=false, input_e=true, input_w=false, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SE"},
-    "input_n=false, input_e=false, input_w=true, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SW"}
+    "facing=north,input_n=false, input_e=false, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge"},
+    "facing=north,input_n=true, input_e=false, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_N"},
+    "facing=north,input_n=false, input_e=true, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_E"},
+    "facing=north,input_n=false, input_e=false, input_w=true, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_W"},
+    "facing=north,input_n=false, input_e=false, input_w=false, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_S"},
+    "facing=north,input_n=true, input_e=true, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NE"},
+    "facing=north,input_n=true, input_e=false, input_w=true, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NW"},
+    "facing=north,input_n=false, input_e=true, input_w=false, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SE"},
+    "facing=north,input_n=false, input_e=false, input_w=true, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SW"},
+
+    "facing=east,input_n=false, input_e=false, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge","y": 90},
+    "facing=east,input_n=true, input_e=false, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_N","y": 90 },
+    "facing=east,input_n=false, input_e=true, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_E","y": 90 },
+    "facing=east,input_n=false, input_e=false, input_w=true, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_W","y": 90 },
+    "facing=east,input_n=false, input_e=false, input_w=false, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_S","y": 90 },
+    "facing=east,input_n=true, input_e=true, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NE","y": 90 },
+    "facing=east,input_n=true, input_e=false, input_w=true, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NW","y": 90 },
+    "facing=east,input_n=false, input_e=true, input_w=false, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SE","y": 90 },
+    "facing=east,input_n=false, input_e=false, input_w=true, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SW","y": 90 },
+
+    "facing=south,input_n=false, input_e=false, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge","y": 180},
+    "facing=south,input_n=true, input_e=false, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_N","y": 180 },
+    "facing=south,input_n=false, input_e=true, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_E","y": 180 },
+    "facing=south,input_n=false, input_e=false, input_w=true, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_W","y": 180 },
+    "facing=south,input_n=false, input_e=false, input_w=false, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_S","y": 180 },
+    "facing=south,input_n=true, input_e=true, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NE","y": 180 },
+    "facing=south,input_n=true, input_e=false, input_w=true, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NW","y": 180 },
+    "facing=south,input_n=false, input_e=true, input_w=false, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SE","y": 180 },
+    "facing=south,input_n=false, input_e=false, input_w=true, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SW","y": 180 },
+
+    "facing=west,input_n=false, input_e=false, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge","y": 270},
+    "facing=west,input_n=true, input_e=false, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_N","y": 270 },
+    "facing=west,input_n=false, input_e=true, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_E","y": 270 },
+    "facing=west,input_n=false, input_e=false, input_w=true, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_W","y": 270 },
+    "facing=west,input_n=false, input_e=false, input_w=false, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_S","y": 270 },
+    "facing=west,input_n=true, input_e=true, input_w=false, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NE","y": 270 },
+    "facing=west,input_n=true, input_e=false, input_w=true, input_s=false": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_NW","y": 270 },
+    "facing=west,input_n=false, input_e=true, input_w=false, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SE","y": 270 },
+    "facing=west,input_n=false, input_e=false, input_w=true, input_s=true": {"model": "simplyrs:block/redstone_crossbridge/redstone_crossbridge_SW","y": 270 }
   }
 }

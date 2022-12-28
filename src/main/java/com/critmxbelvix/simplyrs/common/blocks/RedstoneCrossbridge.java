@@ -104,6 +104,7 @@ public class RedstoneCrossbridge extends Block {
         Direction east = north.getClockWise();
 
         return this.defaultBlockState()
+                .setValue(FACING,pContext.getHorizontalDirection())
                 .setValue(INPUT_N,isInputNorth(pContext.getLevel(),pContext.getClickedPos().relative(north),blockstate))
                 .setValue(INPUT_E,isInputEast(pContext.getLevel(),pContext.getClickedPos().relative(east),blockstate))
                 .setValue(INPUT_W,isInputWest(pContext.getLevel(),pContext.getClickedPos().relative(west),blockstate))

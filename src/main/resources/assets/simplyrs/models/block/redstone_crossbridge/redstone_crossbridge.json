@@ -5,7 +5,7 @@
 		"1": "simplyrs:block/stonecutter_bottom",
 		"2": "simplyrs:block/smooth_stone",
 		"3": "simplyrs:block/gold_block",
-		"particle": "simplyrs:block/red_concrete"
+		"particle": "simplyrs:block/stonecutter_bottom"
 	},
 	"elements": [
 		{
