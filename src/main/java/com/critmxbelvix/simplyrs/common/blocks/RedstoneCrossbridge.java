@@ -3,7 +3,6 @@ package com.critmxbelvix.simplyrs.common.blocks;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -11,13 +10,14 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RedStoneWireBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -107,7 +107,7 @@ public class RedstoneCrossbridge extends Block {
                 .setValue(INPUT_N,isInputNorth(pContext.getLevel(),pContext.getClickedPos().relative(north),blockstate))
                 .setValue(INPUT_E,isInputEast(pContext.getLevel(),pContext.getClickedPos().relative(east),blockstate))
                 .setValue(INPUT_W,isInputWest(pContext.getLevel(),pContext.getClickedPos().relative(west),blockstate))
-                .setValue(INPUT_W,isInputSouth(pContext.getLevel(),pContext.getClickedPos().relative(south),blockstate))
+                .setValue(INPUT_S,isInputSouth(pContext.getLevel(),pContext.getClickedPos().relative(south),blockstate))
                 .setValue(POWERED,false);
     }
 
