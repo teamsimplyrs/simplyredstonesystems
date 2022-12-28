@@ -81,7 +81,7 @@ public class LogicGateNOT extends Block
         return this.defaultBlockState()
                 .setValue(FACING,north)
                 .setValue(INPUT,isInput(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(south)))
-                .setValue(POWERED,false);
+                .setValue(POWERED,shouldTurnOn(pContext.getLevel(),pContext.getClickedPos(),blockstate));
     }
     public BlockState rotate(BlockState pState, Rotation pRotation){
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
@@ -161,7 +161,7 @@ public class LogicGateNOT extends Block
     }
 
     protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
-        boolean input = pState.getValue(INPUT);
+        boolean input = isInput(pState,pLevel,pPos);
 
         return !input;
     }

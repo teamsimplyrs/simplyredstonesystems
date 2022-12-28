@@ -4,6 +4,7 @@ import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,11 +22,28 @@ public class LogicGateNAND2 extends Gate2Block{
     public static CreativeModeTab m_getTab() { return tab; }
     public static Properties m_getProperties() { return gate_nand2_properties; }
 
+    public BlockState getStateForPlacement(BlockPlaceContext pContext)
+    {
+        BlockState blockstate = super.getStateForPlacement(pContext);
+        Direction north = pContext.getHorizontalDirection();
+        Direction east = north.getClockWise();
+        Direction west = north.getCounterClockWise();
+
+        return this.defaultBlockState()
+                .setValue(FACING,north)
+                .setValue(INPUT_1,isInputOne(pContext.getLevel(),pContext.getClickedPos().relative(west),blockstate))
+                .setValue(INPUT_2,isInputTwo(pContext.getLevel(),pContext.getClickedPos().relative(east),blockstate))
+                .setValue(POWERED,shouldTurnOn(pContext.getLevel(),pContext.getClickedPos(),blockstate));
+    }
+
     /* Redstone */
 
     protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
-        boolean input1 = pState.getValue(INPUT_1);
-        boolean input2 = pState.getValue(INPUT_2);
+        Direction north = pState.getValue(FACING);
+        Direction east = north.getClockWise();
+        Direction west = north.getCounterClockWise();
+        boolean input1 = isInputOne(pLevel,pPos.relative(west),pState);
+        boolean input2 = isInputTwo(pLevel,pPos.relative(east),pState);
 
         return !(input1 && input2);
     }

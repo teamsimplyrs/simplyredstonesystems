@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -62,19 +61,6 @@ public abstract class Gate2Block extends Block
 
     // Placement Blockstates
 
-    public BlockState getStateForPlacement(BlockPlaceContext pContext)
-    {
-        BlockState blockstate = super.getStateForPlacement(pContext);
-        Direction north = pContext.getHorizontalDirection();
-        Direction east = north.getClockWise();
-        Direction west = north.getCounterClockWise();
-
-        return this.defaultBlockState()
-                .setValue(FACING,north)
-                .setValue(INPUT_1,isInputOne(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(west)))
-                .setValue(INPUT_2,isInputTwo(blockstate,pContext.getLevel(),pContext.getClickedPos().relative(east)))
-                .setValue(POWERED,false);
-    }
     public BlockState rotate(BlockState pState, Rotation pRotation){
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
@@ -92,7 +78,7 @@ public abstract class Gate2Block extends Block
         return true;
     }
 
-    public boolean isInputOne(BlockState pState, LevelReader pLevel, BlockPos pPos)
+    public boolean isInputOne(LevelReader pLevel, BlockPos pPos, BlockState pState)
     {
         Direction faceWest= pState.getValue(FACING).getClockWise();
 
@@ -100,7 +86,7 @@ public abstract class Gate2Block extends Block
         return getInputSignalAt(pLevel,pPos,faceWest) > 0;
     }
 
-    public boolean isInputTwo(BlockState pState, LevelReader pLevel, BlockPos pPos)
+    public boolean isInputTwo(LevelReader pLevel, BlockPos pPos, BlockState pState)
     {
         Direction faceEast = pState.getValue(FACING).getCounterClockWise();
 

@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -58,22 +57,6 @@ public abstract class GateBlock extends Block{
     }
 
     /* FACING */
-
-    public BlockState getStateForPlacement(BlockPlaceContext pContext){
-        BlockState blockstate = super.getStateForPlacement(pContext);
-        Direction direction = pContext.getHorizontalDirection();
-        Direction direction1 = direction.getCounterClockWise();
-        Direction direction2 = direction.getOpposite();
-        Direction direction3 = direction.getClockWise();
-
-        return this.defaultBlockState()
-                .setValue(FACING,pContext.getHorizontalDirection())
-                .setValue(INPUT_1,isInputOne(pContext.getLevel(),pContext.getClickedPos().relative(direction1),blockstate))
-                .setValue(INPUT_2,isInputTwo(pContext.getLevel(),pContext.getClickedPos().relative(direction2),blockstate))
-                .setValue(INPUT_3,isInputThree(pContext.getLevel(),pContext.getClickedPos().relative(direction3),blockstate))
-                .setValue(POWERED,false);
-    }
-
     public BlockState rotate(BlockState pState, Rotation pRotation){
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
@@ -120,7 +103,6 @@ public abstract class GateBlock extends Block{
 
         if (this.isSideInput(blockstate)) {
             if (blockstate.is(Blocks.REDSTONE_BLOCK)) {
-                LOGGER.info("BLOCK");
                 return 15;
             } else {
                 return blockstate.is(Blocks.REDSTONE_WIRE) ? blockstate.getValue(RedStoneWireBlock.POWER) : blockstate.getSignal(pLevel, pPos, pSide);
