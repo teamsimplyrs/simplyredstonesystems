@@ -70,6 +70,7 @@ public class LogicGateNOT extends Block
 
     // Placement Blockstates
 
+    //Sets blockstates when block is placed
     public BlockState getStateForPlacement(BlockPlaceContext pContext)
     {
         BlockState blockstate = super.getStateForPlacement(pContext);
@@ -141,7 +142,11 @@ public class LogicGateNOT extends Block
         pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
     }
 
+    /* neighborChanged is called by a block's neighboring blocks whenever the neighboring block undergoes a blockstate
+        change. pPos is the position of the gate block and pFromPos is the position of the block that calls this function.
 
+        Used to update the blockstates of the gate block when nearby blocks update.
+    */
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if(!pState.canSurvive(pLevel,pPos)){
@@ -174,6 +179,9 @@ public class LogicGateNOT extends Block
         return pBlockState.getSignal(pBlockAccess, pPos, pSide);
     }
 
+    /* getSignal is called by a neighboring block(usually redstone wire) to see what it's power value should be set
+    as. For gate value, it's set to be the highest possible value of 15.
+     */
     @Override
     public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
         if (!pBlockState.getValue(POWERED)) {

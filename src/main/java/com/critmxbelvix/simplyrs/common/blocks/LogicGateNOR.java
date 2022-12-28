@@ -37,6 +37,7 @@ public class LogicGateNOR extends GateBlock {
         return gate_nor_properties;
     }
 
+    //Sets blockstates when block is placed
     public BlockState getStateForPlacement(BlockPlaceContext pContext){
         BlockState blockstate = super.getStateForPlacement(pContext);
         Direction direction = pContext.getHorizontalDirection();
@@ -70,6 +71,9 @@ public class LogicGateNOR extends GateBlock {
         return pBlockState.getSignal(pBlockAccess, pPos, pSide);
     }
 
+    /* getSignal is called by a neighboring block(usually redstone wire) to see what it's power value should be set
+    as. For gate value, it's set to be the highest possible value of 15.
+     */
     @Override
     public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
         if (!pBlockState.getValue(POWERED)) {

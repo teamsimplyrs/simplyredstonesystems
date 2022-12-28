@@ -31,6 +31,9 @@ public abstract class Gate2Block extends Block
 {
     private static final VoxelShape SHAPE = Block.box(1,0,1,15,1,15);
 
+    /* Unlike vanilla minecraft's FACING property, this mod's facing property is set in the direction which the player
+     is looking.
+    */
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public static final BooleanProperty INPUT_1 = BooleanProperty.create("input_1");
@@ -54,6 +57,7 @@ public abstract class Gate2Block extends Block
         return SHAPE;
     }
 
+    //Used to prevent placing the gate blocks on each other
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos)
     {
         return canSupportRigidBlock(pLevel,pPos.below());
@@ -68,6 +72,8 @@ public abstract class Gate2Block extends Block
     public BlockState mirror(BlockState pState, Mirror pMirror){
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
+
+    //Remember to add blockstates here when you create new ones
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
         pBuilder.add(FACING,INPUT_1,INPUT_2,POWERED);
     }
@@ -77,6 +83,8 @@ public abstract class Gate2Block extends Block
     public boolean isSignalSource(BlockState pState) {
         return true;
     }
+
+    // Returns true for each input side relative to the FACING blockstate
 
     public boolean isInputOne(LevelReader pLevel, BlockPos pPos, BlockState pState)
     {
@@ -94,6 +102,7 @@ public abstract class Gate2Block extends Block
         return getInputSignalAt(pLevel,pPos,faceEast) > 0;
     }
 
+    //Returns the redstone strength of the gate's neighboring block in the direction specified by pSide
     protected int getInputSignalAt(LevelReader pLevel, BlockPos pPos, Direction pSide) {
         BlockState blockstate = pLevel.getBlockState(pPos);
 
@@ -116,6 +125,8 @@ public abstract class Gate2Block extends Block
         return 15;
     }
 
+    //Function called whenever the scheduleTick function is used. Used to handle the POWERED blockstate's values. Updates
+    //the block in the gate's output direction.
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
         boolean flag = pState.getValue(POWERED);
         boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
@@ -127,8 +138,14 @@ public abstract class Gate2Block extends Block
         pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
     }
 
+    //Abstract function implemented in the respective gates
     protected abstract boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState);
 
+    /* neighborChanged is called by a block's neighboring blocks whenever the neighboring block undergoes a blockstate
+    change. pPos is the position of the gate block and pFromPos is the position of the block that calls this function.
+
+    Used to update the blockstates of the gate block when nearby blocks update.
+     */
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if(!pState.canSurvive(pLevel,pPos)){

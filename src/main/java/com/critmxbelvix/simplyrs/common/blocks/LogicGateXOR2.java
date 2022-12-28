@@ -24,6 +24,7 @@ public class LogicGateXOR2 extends Gate2Block{
     public static CreativeModeTab m_getTab() { return tab; }
     public static Properties m_getProperties() { return gate_xor2_properties; }
 
+    //Sets blockstates when block is placed
     public BlockState getStateForPlacement(BlockPlaceContext pContext)
     {
         BlockState blockstate = super.getStateForPlacement(pContext);
@@ -56,6 +57,9 @@ public class LogicGateXOR2 extends Gate2Block{
         return pBlockState.getSignal(pBlockAccess, pPos, pSide);
     }
 
+    /* getSignal is called by a neighboring block(usually redstone wire) to see what it's power value should be set
+    as. For gate value, it's set to be the highest possible value of 15.
+     */
     @Override
     public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
         if (!pBlockState.getValue(POWERED)) {

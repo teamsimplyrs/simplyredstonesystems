@@ -5,7 +5,6 @@ import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -41,7 +40,6 @@ import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Random;
 
 import static java.util.Collections.singletonList;
 
@@ -50,6 +48,9 @@ public class RedstoneClock extends BaseEntityBlock {
     final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
     private static final BlockBehaviour.Properties clock_properties = BlockBehaviour.Properties.of(Material.METAL).strength(0.3f).dynamicShape();
 
+    /* Unlike vanilla minecraft's FACING property, this mod's facing property is set in the direction which the player
+     is looking.
+    */
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty OUTPUT_EAST = BooleanProperty.create("output_east");
     public static final BooleanProperty OUTPUT_WEST = BooleanProperty.create("output_west");
@@ -81,16 +82,19 @@ public class RedstoneClock extends BaseEntityBlock {
         return SHAPE;
     }
 
+    //Used to prevent placing the gate blocks on each other
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         return canSupportRigidBlock(pLevel, pPos.below());
     }
 
     // BlockStates
 
+    //Remember to add blockstates here when you create new ones
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
         pBuilder.add(FACING,INPUT,POWERED);
     }
 
+    //Sets blockstates when block is placed
     public BlockState getStateForPlacement(BlockPlaceContext pContext)
     {
         BlockState blockstate = super.getStateForPlacement(pContext);
@@ -214,12 +218,16 @@ public class RedstoneClock extends BaseEntityBlock {
     public int getDirectSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
         return pBlockState.getSignal(pBlockAccess, pPos, pSide);
     }
+
+    /* getSignal is called by a neighboring block(usually redstone wire) to see what it's power value should be set
+    as. For gate value, it's set to be the highest possible value of 15.
+     */
     @Override
     public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
         if (!pBlockState.getValue(POWERED)) {
             return 0;
         } else {
-            return pBlockState.getValue(FACING).getOpposite() == pSide ? this.getOutputSignal(pBlockAccess, pPos, pBlockState) : 0;
+            return pBlockState.getValue(FACING) != pSide ? this.getOutputSignal(pBlockAccess, pPos, pBlockState) : 0;
         }
     }
     @Override
@@ -227,6 +235,11 @@ public class RedstoneClock extends BaseEntityBlock {
         return true;
     }
 
+    /* neighborChanged is called by a block's neighboring blocks whenever the neighboring block undergoes a blockstate
+    change. pPos is the position of the gate block and pFromPos is the position of the block that calls this function.
+
+    Used to update the blockstates of the gate block when nearby blocks update.
+     */
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if(!pState.canSurvive(pLevel,pPos)){
@@ -243,15 +256,5 @@ public class RedstoneClock extends BaseEntityBlock {
             pLevel.setBlockAndUpdate(pPos, blockstate);
             pLevel.scheduleTick(pPos, this, 1, TickPriority.VERY_HIGH);
         }
-    }
-    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
-//        boolean flag = pState.getValue(POWERED);
-//        boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
-//        if (flag && !flag1) {
-//            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.FALSE), 2);
-//        } else if(flag1){
-//            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.TRUE), 2);
-//        }
-//        pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
     }
 }
