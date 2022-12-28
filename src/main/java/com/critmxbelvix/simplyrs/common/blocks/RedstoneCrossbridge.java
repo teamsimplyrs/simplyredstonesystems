@@ -3,6 +3,7 @@ package com.critmxbelvix.simplyrs.common.blocks;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -55,7 +56,6 @@ public class RedstoneCrossbridge extends Block {
             Block.box(15.75, 0, 7, 16, 2, 9)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty INPUT_N = BooleanProperty.create("input_n");
     public static final BooleanProperty INPUT_E = BooleanProperty.create("input_e");
     public static final BooleanProperty INPUT_W = BooleanProperty.create("input_w");
@@ -98,51 +98,44 @@ public class RedstoneCrossbridge extends Block {
     public BlockState getStateForPlacement(BlockPlaceContext pContext)
     {
         BlockState blockstate = super.getStateForPlacement(pContext);
-        Direction north = pContext.getHorizontalDirection();
+        Direction north = Direction.NORTH;
         Direction west = north.getCounterClockWise();
         Direction south = north.getOpposite();
         Direction east = north.getClockWise();
 
         return this.defaultBlockState()
-                .setValue(FACING,pContext.getHorizontalDirection())
                 .setValue(INPUT_N,isInputNorth(pContext.getLevel(),pContext.getClickedPos().relative(north),blockstate))
                 .setValue(INPUT_E,isInputEast(pContext.getLevel(),pContext.getClickedPos().relative(east),blockstate))
                 .setValue(INPUT_W,isInputWest(pContext.getLevel(),pContext.getClickedPos().relative(west),blockstate))
                 .setValue(INPUT_W,isInputSouth(pContext.getLevel(),pContext.getClickedPos().relative(south),blockstate))
                 .setValue(POWERED,false);
     }
-    public BlockState rotate(BlockState pState, Rotation pRotation){
-        return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
-    }
 
-    public BlockState mirror(BlockState pState, Mirror pMirror){
-        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
-    }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
-        pBuilder.add(FACING,INPUT_N,INPUT_E,INPUT_W,INPUT_S,POWERED);
+        pBuilder.add(INPUT_N,INPUT_E,INPUT_W,INPUT_S,POWERED);
     }
 
     // Redstone
 
     public boolean isInputNorth(LevelReader pLevel, BlockPos pPos, BlockState pState){
-        Direction north = pState.getValue(FACING);
+        Direction north = Direction.NORTH;
         return getInputSignalAt(pLevel, pPos, north) > 0;
     }
 
     public boolean isInputEast(LevelReader pLevel, BlockPos pPos, BlockState pState){
-        Direction east = pState.getValue(FACING).getClockWise();
+        Direction east = Direction.EAST;
         return getInputSignalAt(pLevel, pPos, east) > 0;
     }
 
     public boolean isInputWest(LevelReader pLevel, BlockPos pPos, BlockState pState){
-        Direction west = pState.getValue(FACING).getCounterClockWise();
+        Direction west = Direction.WEST;
         return getInputSignalAt(pLevel, pPos, west) > 0;
     }
 
 
     public boolean isInputSouth(LevelReader pLevel, BlockPos pPos, BlockState pState){
-        Direction south = pState.getValue(FACING).getOpposite();
+        Direction south = Direction.SOUTH;
         return getInputSignalAt(pLevel, pPos, south) > 0;
     }
     protected int getInputSignalAt(LevelReader pLevel, BlockPos pPos, Direction pSide) {
@@ -174,7 +167,6 @@ public class RedstoneCrossbridge extends Block {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (!pIsMoving && !pState.is(pNewState.getBlock())) {
             super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-            pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this, pPos);
         }
     }
 
@@ -186,7 +178,6 @@ public class RedstoneCrossbridge extends Block {
         } else if(flag1){
             pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(true)), 2);
         }
-        pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
     }
 
     protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState)
@@ -209,7 +200,7 @@ public class RedstoneCrossbridge extends Block {
             pLevel.removeBlock(pPos, false);
         }
         else {
-            Direction north = pLevel.getBlockState(pPos).getValue(FACING);
+            Direction north = Direction.NORTH;
             Direction west = north.getCounterClockWise();
             Direction south = north.getOpposite();
             Direction east = north.getClockWise();
@@ -231,11 +222,7 @@ public class RedstoneCrossbridge extends Block {
 
     @Override
     public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
-        if (!pBlockState.getValue(POWERED)) {
-            return 0;
-        } else {
-            return pBlockState.getValue(FACING).getOpposite() == pSide ? this.getOutputSignal(pBlockAccess, pPos, pBlockState) : 0;
-        }
+       return 15;
     }
 
     // Block Drops
