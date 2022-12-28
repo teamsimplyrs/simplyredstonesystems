@@ -161,7 +161,10 @@ public class LogicGateNOT extends Block
     }
 
     protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
-        boolean input = isInput(pState,pLevel,pPos);
+        Direction north = pState.getValue(FACING);
+        Direction south = north.getOpposite();
+
+        boolean input = isInput(pState,pLevel,pPos.relative(south));
 
         return !input;
     }
