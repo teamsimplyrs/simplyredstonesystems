@@ -1,6 +1,5 @@
 package com.critmxbelvix.simplyrs.client.gui;
 
-import com.critmxbelvix.simplyrs.client.screen.slot.SimplyRSResultSlot;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import com.critmxbelvix.simplyrs.common.registers.MenuTypeRegister;
@@ -9,14 +8,13 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.SlotItemHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,13 +22,14 @@ import java.util.function.Supplier;
 
 public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier<Map<Integer,Slot>> {
 
-    private final RedstoneClockEntity blockEntity;
+    public RedstoneClockEntity blockEntity;
     public final static HashMap<String, Object> guiState = new HashMap<>();
 
     private boolean bound = false;
     private IItemHandler internal;
     private final Level level;
     public final Player player;
+    public final DataSlot slot;
 
     public RedstoneClockMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId,inv,inv.player.level.getBlockEntity(extraData.readBlockPos()));
@@ -44,15 +43,18 @@ public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier
         this.player = inv.player;
         this.internal = new ItemStackHandler(0);
 
-        //addPlayerInventory(inv);
-        //addPlayerHotbar(inv);
+        slot = new DataSlot() {
+            @Override
+            public int get() {
+                return RedstoneClockMenu.this.blockEntity.delay;
+            }
 
-        this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 34, 40));
-            this.addSlot(new SlotItemHandler(handler, 1, 57, 18));
-            this.addSlot(new SlotItemHandler(handler, 2, 103, 18));
-            this.addSlot(new SimplyRSResultSlot(handler, 3, 80, 60));
-        });
+            @Override
+            public void set(int pValue) {
+                RedstoneClockMenu.this.blockEntity.delay = pValue;
+            }
+        };
+        this.addDataSlot(slot);
     }
 
 

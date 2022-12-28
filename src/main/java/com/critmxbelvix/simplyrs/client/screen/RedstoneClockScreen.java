@@ -39,14 +39,12 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         this.inventoryLabelX = 1000;
         this.inventoryLabelY = 1000;
         this.player = pMenu.player;
-
     }
 
     @Override
     protected void init() {
         super.init();
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-
         // Add widgets and precomputed values
 
         this.addRenderableWidget(new ImageButton(getMidX()+12,getMidY()+2,17,17,0,166,17,TEXTURE,256,256,Button::onPress){
@@ -61,7 +59,8 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         });
         tickDelayCount = new EditBox(this.font, getMidX()-36, getMidY()-20, 64, 20, new TextComponent("1")) {
             {
-                setSuggestion("1");
+                setValue(Integer.toString(RedstoneClockScreen.this.menu.slot.get()));
+                LOGGER.info(Integer.toString(RedstoneClockScreen.this.menu.blockEntity.delay));
             }
             @Override
             public void insertText(String textInput) {
@@ -106,6 +105,10 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
     @Override
     public void containerTick() {
         super.containerTick();
+        int currentValue = Integer.parseInt(tickDelayCount.getValue());
+        if(currentValue != RedstoneClockScreen.this.menu.slot.get()) {
+            tickDelayCount.setValue(Integer.toString(RedstoneClockScreen.this.menu.slot.get()));
+        }
         tickDelayCount.tick();
     }
     @Override
