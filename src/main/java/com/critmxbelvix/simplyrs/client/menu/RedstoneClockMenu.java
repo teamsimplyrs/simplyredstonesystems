@@ -1,4 +1,4 @@
-package com.critmxbelvix.simplyrs.client.gui;
+package com.critmxbelvix.simplyrs.client.menu;
 
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
@@ -83,46 +83,6 @@ public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 pPlayer, BlockRegister.REDSTONE_CLOCK.get());
-    }
-
-    private void addPlayerInventory(Inventory playerInventory) {
-        for (int i = 0; i < 3; ++i) {
-            for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));
-            }
-        }
-    }
-
-    private void addPlayerHotbar(Inventory playerInventory) {
-        for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
-        }
-    }
-
-
-    @Override
-    public boolean clickMenuButton(Player pPlayer, int pId) {
-        if(pId==0){
-            this.blockEntity.delay++;
-            this.blockEntity.setChanged();
-            return true;
-        }
-        else if(pId==1 && this.blockEntity.delay!=1){
-            this.blockEntity.delay--;
-            this.blockEntity.setChanged();
-            return true;
-        }
-        else if(pId==2){
-            this.blockEntity.duration++;
-            this.blockEntity.setChanged();
-            return true;
-        }
-        else if(pId==3 && this.blockEntity.duration!=1){
-            this.blockEntity.duration--;
-            this.blockEntity.setChanged();
-            return true;
-        }
-        else return false;
     }
 
     @Override

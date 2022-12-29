@@ -1,7 +1,7 @@
 package com.critmxbelvix.simplyrs.common.registers;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
-import com.critmxbelvix.simplyrs.client.gui.RedstoneClockMenu;
+import com.critmxbelvix.simplyrs.client.menu.RedstoneClockMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;

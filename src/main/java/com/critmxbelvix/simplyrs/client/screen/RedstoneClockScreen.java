@@ -1,13 +1,13 @@
 package com.critmxbelvix.simplyrs.client.screen;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
-import com.critmxbelvix.simplyrs.client.gui.RedstoneClockMenu;
+import com.critmxbelvix.simplyrs.client.button.DecrementButton;
+import com.critmxbelvix.simplyrs.client.button.IncrementButton;
+import com.critmxbelvix.simplyrs.client.menu.RedstoneClockMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -48,16 +48,9 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
         // Add widgets and precomputed values
 
-        this.addRenderableWidget(new ImageButton(getMidX()+30,getMidY()-48,17,17,0,166,17,TEXTURE,256,256,Button::onPress){
-            public void onPress() {
-                incrementDelayButton();
-            }
-        });
-        this.addRenderableWidget(new ImageButton(getMidX()-55,getMidY()-48,17,17,17,166,17,TEXTURE,256,256,Button::onPress){
-            public void onPress() {
-                decrementDelayButton();
-            }
-        });
+        this.addRenderableWidget(new IncrementButton(getMidX()+30,getMidY()-48,this.menu.blockEntity.getBlockPos(),0));
+        this.addRenderableWidget(new DecrementButton(getMidX()-55,getMidY()-48,this.menu.blockEntity.getBlockPos(),0));
+
         tickDelayCount = new EditBox(this.font, getMidX()-36, getMidY()-50, 64, 20, new TextComponent("1")) {
             {
                 setValue(Integer.toString(RedstoneClockScreen.this.menu.delaySlot.get()));
@@ -81,16 +74,10 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
                     setSuggestion(null);
             }
         };
-        this.addRenderableWidget(new ImageButton(getMidX()+30,getMidY(),17,17,0,166,17,TEXTURE,256,256,Button::onPress){
-            public void onPress() {
-                incrementDurationButton();
-            }
-        });
-        this.addRenderableWidget(new ImageButton(getMidX()-55,getMidY(),17,17,17,166,17,TEXTURE,256,256,Button::onPress){
-            public void onPress() {
-                decrementDurationButton();
-            }
-        });
+
+        this.addRenderableWidget(new IncrementButton(getMidX()+30,getMidY(),this.menu.blockEntity.getBlockPos(),1));
+        this.addRenderableWidget(new DecrementButton(getMidX()-55,getMidY(),this.menu.blockEntity.getBlockPos(),1));
+
         tickDurationCount = new EditBox(this.font, getMidX()-36, getMidY()-2, 64, 20, new TextComponent("1")) {
             {
                 setValue(Integer.toString(RedstoneClockScreen.this.menu.durationSlot.get()));
@@ -130,21 +117,6 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         return tickDelayCount.isFocused() ? tickDelayCount.keyPressed(key, b, c) : super.keyPressed(key,b,c);
     }
 
-    private void incrementDelayButton(){
-        this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId,0);
-    }
-
-    private void decrementDelayButton(){
-        this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId,1);
-    }
-    private void incrementDurationButton(){
-        this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId,2);
-    }
-
-    private void decrementDurationButton(){
-        this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId,3);
-    }
-
     @Override
     public void containerTick() {
         super.containerTick();
@@ -176,7 +148,6 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
         this.font.draw(pPoseStack, "Clock Tick Delay", 78, 20, -16777216);
         this.font.draw(pPoseStack, "Clock Tick Duration", 78, 65, -16777216);
-
     }
 
     @Override

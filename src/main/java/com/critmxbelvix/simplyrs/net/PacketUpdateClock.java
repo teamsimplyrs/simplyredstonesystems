@@ -1,6 +1,5 @@
 package com.critmxbelvix.simplyrs.net;
 
-import com.critmxbelvix.simplyrs.client.screen.RedstoneClockScreen;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -14,12 +13,15 @@ import java.util.function.Supplier;
 
 public class PacketUpdateClock extends PacketBase{
     private BlockPos pos;
-    private int increase;
+    private int change;
+    //Delay is 0, Duration is 1
+    private int type;
 
-    public PacketUpdateClock(RedstoneClockScreen screen, BlockPos pos, int increase) {
+    public PacketUpdateClock(BlockPos pos, int change, int type) {
         super();
         this.pos = pos;
-        this.increase = increase;
+        this.change = change;
+        this.type = type;
     }
 
     public PacketUpdateClock() {}
@@ -31,7 +33,22 @@ public class PacketUpdateClock extends PacketBase{
             BlockEntity be = world.getBlockEntity(message.pos);
             if (be instanceof RedstoneClockEntity) {
                 RedstoneClockEntity clockBE = (RedstoneClockEntity) be;
-                clockBE.delay += message.increase;
+                if(message.type==0) {
+                    if(clockBE.delay+message.change < 1){
+                        clockBE.delay=1;
+                    }
+                    else{
+                        clockBE.delay += message.change;
+                    }
+                }
+                else if(message.type==1){
+                    if(clockBE.duration+message.change < 1){
+                        clockBE.duration=1;
+                    }
+                    else{
+                        clockBE.duration += message.change;
+                    }
+                }
                 clockBE.setChanged();
             }
         });
@@ -42,7 +59,8 @@ public class PacketUpdateClock extends PacketBase{
         PacketUpdateClock p = new PacketUpdateClock();
         CompoundTag tags = buf.readNbt();
         p.pos = new BlockPos(tags.getInt("x"), tags.getInt("y"), tags.getInt("z"));
-        p.increase = buf.readInt();
+        p.change = buf.readInt();
+        p.type = buf.readInt();
         return p;
     }
 
@@ -52,6 +70,7 @@ public class PacketUpdateClock extends PacketBase{
         tags.putInt("y", msg.pos.getY());
         tags.putInt("z", msg.pos.getZ());
         buf.writeNbt(tags);
-        buf.writeInt(msg.increase);
+        buf.writeInt(msg.change);
+        buf.writeInt(msg.type);
     }
 }

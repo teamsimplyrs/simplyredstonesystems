@@ -1,10 +1,7 @@
 package com.critmxbelvix.simplyrs;
 
 import com.critmxbelvix.simplyrs.common.ClientSetupClass;
-import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
-import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
-import com.critmxbelvix.simplyrs.common.registers.ItemRegister;
-import com.critmxbelvix.simplyrs.common.registers.MenuTypeRegister;
+import com.critmxbelvix.simplyrs.common.registers.*;
 import com.critmxbelvix.simplyrs.client.screen.RedstoneClockScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.level.block.Block;
@@ -40,6 +37,7 @@ public class SimplyRedstoneSystems
         BlockRegister.register(eventBus);
         BlockEntityRegister.register(eventBus);
         MenuTypeRegister.register(eventBus);
+        PacketRegister.setup();
 
         eventBus.addListener(this::commonsetup);
         eventBus.addListener(this::enqueueIMC);
