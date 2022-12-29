@@ -26,6 +26,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.ticks.TickPriority;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Random;
@@ -34,7 +36,7 @@ import java.util.stream.Stream;
 import static java.util.Collections.singletonList;
 
 public class RedstoneCrossbridge extends Block {
-
+    private static final Logger LOGGER = LogManager.getLogger();
     final static String name = "redstone_crossbridge";
     final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
     final static Properties crossbridge_properties = Properties.of(Material.STONE).strength(0.3f).dynamicShape();
@@ -207,54 +209,55 @@ public class RedstoneCrossbridge extends Block {
             Direction west = north.getCounterClockWise();
             Direction south = north.getOpposite();
             Direction east = north.getClockWise();
-            BlockState blockstate = pLevel.getBlockState(pPos);
-            int N = getInputSignalAt(pLevel,pPos,Direction.NORTH);
-            int E = getInputSignalAt(pLevel,pPos,Direction.EAST);
-            int W = getInputSignalAt(pLevel,pPos,Direction.WEST);
-            int S = getInputSignalAt(pLevel,pPos,Direction.SOUTH);
+            BlockState blockstate;
+            boolean N = isInputNorth(pLevel,pPos.relative(north),pState);
+            boolean E = isInputEast(pLevel,pPos.relative(east),pState);
+            boolean W = isInputWest(pLevel,pPos.relative(west),pState);
+            boolean S = isInputSouth(pLevel,pPos.relative(south),pState);
+            LOGGER.info(N + " " + E + " " + W + " " + S);
 
-            if (N > 0 && E == 0 && W == 0 && S == 0)
+            if (N && !E && !W && !S)
             {
-                blockstate
+                blockstate = pLevel.getBlockState(pPos)
                         .setValue(INPUT_N,true).setValue(INPUT_E,false).setValue(INPUT_W,false).setValue(INPUT_S,false);
-            } else if (N == 0 && E > 0 && W == 0 && S == 0)
+            } else if (!N && E && !W && !S)
             {
-                blockstate
+                blockstate = pLevel.getBlockState(pPos)
                         .setValue(INPUT_N,false).setValue(INPUT_E,true).setValue(INPUT_W,false).setValue(INPUT_S,false);
-            } else if (N == 0 && E == 0 && W > 0 && S == 0)
+            } else if (!N && !E && W && !S)
             {
-                blockstate
+                blockstate = pLevel.getBlockState(pPos)
                         .setValue(INPUT_N,false).setValue(INPUT_E,false).setValue(INPUT_W,true).setValue(INPUT_S,false);
-            } else if (N==0 && E == 0 && W == 0 && S > 0)
+            } else if (!N && !E && !W && S)
             {
-                blockstate
+                blockstate = pLevel.getBlockState(pPos)
                         .setValue(INPUT_N,false).setValue(INPUT_E,false).setValue(INPUT_W,false).setValue(INPUT_S,true);
-            } else if (N > 0 && E > 0 && W == 0 && S == 0)
+            } else if (N && E && !W && !S)
             {
-                blockstate
+                blockstate = pLevel.getBlockState(pPos)
                         .setValue(INPUT_N,true).setValue(INPUT_E,true).setValue(INPUT_W,false).setValue(INPUT_S,false);
-            } else if (N > 0 && E == 0 && W > 0 && S == 0)
+            } else if (N && !E && W && !S)
             {
-                blockstate
+                blockstate = pLevel.getBlockState(pPos)
                         .setValue(INPUT_N,true).setValue(INPUT_E,false).setValue(INPUT_W,true).setValue(INPUT_S,false);
-            } else if (N == 0 && E > 0 && W == 0 && S > 0)
+            } else if (!N && E && !W && S)
             {
-                blockstate
+                blockstate = pLevel.getBlockState(pPos)
                         .setValue(INPUT_N,false).setValue(INPUT_E,true).setValue(INPUT_W,false).setValue(INPUT_S,true);
-            } else if(N == 0 && E == 0 && W > 0 && S > 0)
+            } else if(!N && !E && W && S)
             {
-                blockstate
+                blockstate = pLevel.getBlockState(pPos)
                         .setValue(INPUT_N,true).setValue(INPUT_E,false).setValue(INPUT_W,true).setValue(INPUT_S,true);
             } else
             {
-                blockstate
-                        .setValue(INPUT_N,false).setValue(INPUT_E,false).setValue(INPUT_W,false).setValue(INPUT_S,true);
+                blockstate = pLevel.getBlockState(pPos)
+                        .setValue(INPUT_N,false).setValue(INPUT_E,false).setValue(INPUT_W,false).setValue(INPUT_S,false);
             }
-            blockstate
-                    .setValue(INPUT_N, pLevel.getSignal(pPos.relative(north), north) > 0)
-                    .setValue(INPUT_E, pLevel.getSignal(pPos.relative(east), east) > 0)
-                    .setValue(INPUT_W, pLevel.getSignal(pPos.relative(west), west) > 0)
-                    .setValue(INPUT_S, pLevel.getSignal(pPos.relative(south), south) > 0);
+//            blockstate
+//                    .setValue(INPUT_N, pLevel.getSignal(pPos.relative(north), north) > 0)
+//                    .setValue(INPUT_E, pLevel.getSignal(pPos.relative(east), east) > 0)
+//                    .setValue(INPUT_W, pLevel.getSignal(pPos.relative(west), west) > 0)
+//                    .setValue(INPUT_S, pLevel.getSignal(pPos.relative(south), south) > 0);
             pLevel.setBlockAndUpdate(pPos, blockstate);
             pLevel.scheduleTick(pPos, this, 1, TickPriority.VERY_HIGH);
         }
