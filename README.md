@@ -10,6 +10,7 @@ A Minecraft Mod that introduces many little utilities for redstone like gates, c
 <ul>
 <li> All 3-input basic logic gates ⭕</li>
 <li> All 2-input basic logic gates ⭕</li>
+<li> Redstone Crossbridge (Allows intersectional crossing of redstone signals without making a mess) ⭕ </li>
 <li> Redstone Clock ⭕ </li>
 <li> Flip-Flops ❌</li>
 <li> Encoders, Decoders ❌ </li>
