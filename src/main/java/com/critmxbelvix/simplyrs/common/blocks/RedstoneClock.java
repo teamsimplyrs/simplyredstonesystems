@@ -52,8 +52,6 @@ public class RedstoneClock extends BaseEntityBlock {
      is looking.
     */
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty OUTPUT_EAST = BooleanProperty.create("output_east");
-    public static final BooleanProperty OUTPUT_WEST = BooleanProperty.create("output_west");
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty INPUT = BooleanProperty.create("input");
     private static final Logger LOGGER = LogManager.getLogger();
@@ -177,7 +175,7 @@ public class RedstoneClock extends BaseEntityBlock {
     }
 
     //Redstone
-    public boolean isInput(BlockState pState, LevelReader pLevel, BlockPos pPos)
+    public boolean isInput(BlockState pState, Level pLevel, BlockPos pPos)
     {
         Direction faceSouth= pState.getValue(FACING).getOpposite();
 
@@ -211,7 +209,7 @@ public class RedstoneClock extends BaseEntityBlock {
         return 15;
     }
 
-    protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
+    public static boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
         return pState.getValue(INPUT);
     }
     @Override

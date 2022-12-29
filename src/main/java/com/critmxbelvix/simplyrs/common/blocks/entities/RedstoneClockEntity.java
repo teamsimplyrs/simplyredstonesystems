@@ -124,18 +124,22 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
         pBlockEntity.ticksSinceNextPulse++;
         boolean powered;
         boolean prevPowered = pState.getValue(RedstoneClock.POWERED);
-        if (pBlockEntity.ticksSinceNextPulse < pBlockEntity.delay) {
-            powered = false;
+        if (RedstoneClock.shouldTurnOn(pLevel,pPos,pState)) {
+            if (pBlockEntity.ticksSinceNextPulse < pBlockEntity.delay) {
+                powered = false;
+            } else if (pBlockEntity.ticksSinceNextPulse < pBlockEntity.delay + pBlockEntity.duration) {
+                powered = true;
+            } else {
+                pBlockEntity.ticksSinceNextPulse = 0;
+                powered = false;
+            }
+            if (prevPowered != powered) {
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(RedstoneClock.POWERED, powered));
+            }
         }
-        else if (pBlockEntity.ticksSinceNextPulse < pBlockEntity.delay + pBlockEntity.duration) {
-            powered = true;
-        }
-        else {
-            pBlockEntity.ticksSinceNextPulse = 0;
-            powered = false;
-        }
-        if (prevPowered != powered) {
-            pLevel.setBlockAndUpdate(pPos, pState.setValue(RedstoneClock.POWERED, powered));
+        if (pState.getValue(RedstoneClock.POWERED) && !RedstoneClock.shouldTurnOn(pLevel,pPos,pState))
+        {
+            pLevel.setBlockAndUpdate(pPos,pState.setValue(RedstoneClock.POWERED, false));
         }
 
     }
