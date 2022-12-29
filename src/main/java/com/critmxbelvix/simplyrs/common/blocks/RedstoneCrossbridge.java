@@ -118,27 +118,27 @@ public class RedstoneCrossbridge extends Block {
 
     // Redstone
 
-    public boolean isInputNorth(LevelReader pLevel, BlockPos pPos, BlockState pState){
+    public boolean isInputNorth(Level pLevel, BlockPos pPos, BlockState pState){
         Direction north = Direction.NORTH;
         return getInputSignalAt(pLevel, pPos, north) > 0;
     }
 
-    public boolean isInputEast(LevelReader pLevel, BlockPos pPos, BlockState pState){
+    public boolean isInputEast(Level pLevel, BlockPos pPos, BlockState pState){
         Direction east = Direction.EAST;
         return getInputSignalAt(pLevel, pPos, east) > 0;
     }
 
-    public boolean isInputWest(LevelReader pLevel, BlockPos pPos, BlockState pState){
+    public boolean isInputWest(Level pLevel, BlockPos pPos, BlockState pState){
         Direction west = Direction.WEST;
         return getInputSignalAt(pLevel, pPos, west) > 0;
     }
 
 
-    public boolean isInputSouth(LevelReader pLevel, BlockPos pPos, BlockState pState){
+    public boolean isInputSouth(Level pLevel, BlockPos pPos, BlockState pState){
         Direction south = Direction.SOUTH;
         return getInputSignalAt(pLevel, pPos, south) > 0;
     }
-    protected int getInputSignalAt(LevelReader pLevel, BlockPos pPos, Direction pSide) {
+    protected int getInputSignalAt(Level pLevel, BlockPos pPos, Direction pSide) {
         BlockState blockstate = pLevel.getBlockState(pPos);
 
         if (this.isSideInput(blockstate)) {
@@ -151,6 +151,9 @@ public class RedstoneCrossbridge extends Block {
             return 0;
         }
     }
+
+    // Overloaded getInputSignalAt using blockstate instead:
+
 
     protected boolean isSideInput(BlockState pState) {
         return pState.isSignalSource();
@@ -204,8 +207,50 @@ public class RedstoneCrossbridge extends Block {
             Direction west = north.getCounterClockWise();
             Direction south = north.getOpposite();
             Direction east = north.getClockWise();
+            BlockState blockstate = pLevel.getBlockState(pPos);
+            int N = getInputSignalAt(pLevel,pPos,Direction.NORTH);
+            int E = getInputSignalAt(pLevel,pPos,Direction.EAST);
+            int W = getInputSignalAt(pLevel,pPos,Direction.WEST);
+            int S = getInputSignalAt(pLevel,pPos,Direction.SOUTH);
 
-            BlockState blockstate = pLevel.getBlockState(pPos)
+            if (N > 0 && E == 0 && W == 0 && S == 0)
+            {
+                blockstate
+                        .setValue(INPUT_N,true).setValue(INPUT_E,false).setValue(INPUT_W,false).setValue(INPUT_S,false);
+            } else if (N == 0 && E > 0 && W == 0 && S == 0)
+            {
+                blockstate
+                        .setValue(INPUT_N,false).setValue(INPUT_E,true).setValue(INPUT_W,false).setValue(INPUT_S,false);
+            } else if (N == 0 && E == 0 && W > 0 && S == 0)
+            {
+                blockstate
+                        .setValue(INPUT_N,false).setValue(INPUT_E,false).setValue(INPUT_W,true).setValue(INPUT_S,false);
+            } else if (N==0 && E == 0 && W == 0 && S > 0)
+            {
+                blockstate
+                        .setValue(INPUT_N,false).setValue(INPUT_E,false).setValue(INPUT_W,false).setValue(INPUT_S,true);
+            } else if (N > 0 && E > 0 && W == 0 && S == 0)
+            {
+                blockstate
+                        .setValue(INPUT_N,true).setValue(INPUT_E,true).setValue(INPUT_W,false).setValue(INPUT_S,false);
+            } else if (N > 0 && E == 0 && W > 0 && S == 0)
+            {
+                blockstate
+                        .setValue(INPUT_N,true).setValue(INPUT_E,false).setValue(INPUT_W,true).setValue(INPUT_S,false);
+            } else if (N == 0 && E > 0 && W == 0 && S > 0)
+            {
+                blockstate
+                        .setValue(INPUT_N,false).setValue(INPUT_E,true).setValue(INPUT_W,false).setValue(INPUT_S,true);
+            } else if(N == 0 && E == 0 && W > 0 && S > 0)
+            {
+                blockstate
+                        .setValue(INPUT_N,true).setValue(INPUT_E,false).setValue(INPUT_W,true).setValue(INPUT_S,true);
+            } else
+            {
+                blockstate
+                        .setValue(INPUT_N,false).setValue(INPUT_E,false).setValue(INPUT_W,false).setValue(INPUT_S,true);
+            }
+            blockstate
                     .setValue(INPUT_N, pLevel.getSignal(pPos.relative(north), north) > 0)
                     .setValue(INPUT_E, pLevel.getSignal(pPos.relative(east), east) > 0)
                     .setValue(INPUT_W, pLevel.getSignal(pPos.relative(west), west) > 0)
@@ -222,7 +267,12 @@ public class RedstoneCrossbridge extends Block {
 
     @Override
     public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
-       return 15;
+
+        if (!pBlockState.getValue(POWERED)) {
+            return 0;
+        } else {
+            return 15;
+            }
     }
 
     // Block Drops
