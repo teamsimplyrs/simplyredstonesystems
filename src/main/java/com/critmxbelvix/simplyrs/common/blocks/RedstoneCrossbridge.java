@@ -140,7 +140,7 @@ public class RedstoneCrossbridge extends Block {
         Direction south = Direction.SOUTH;
         return getInputSignalAt(pLevel, pPos, south) > 0;
     }
-    protected int getInputSignalAt(Level pLevel, BlockPos pPos, Direction pSide) {
+    protected int getInputSignalAt(BlockGetter pLevel, BlockPos pPos, Direction pSide) {
         BlockState blockstate = pLevel.getBlockState(pPos);
 
         if (this.isSideInput(blockstate)) {
@@ -154,6 +154,11 @@ public class RedstoneCrossbridge extends Block {
         }
     }
 
+    protected int getOutputSignal(BlockGetter pLevel, BlockPos pPos, BlockState pState, Direction pSide) {
+        //return 15;
+        return getInputSignalAt(pLevel,pPos,pSide.getOpposite()) - 1;
+    }
+
     // Overloaded getInputSignalAt using blockstate instead:
 
 
@@ -163,9 +168,7 @@ public class RedstoneCrossbridge extends Block {
     public boolean isSignalSource(BlockState pState) {
         return true;
     }
-    protected int getOutputSignal(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
-        return 15;
-    }
+
 
 
     @Override
@@ -182,6 +185,7 @@ public class RedstoneCrossbridge extends Block {
             pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(false)), 2);
         } else if(flag1){
             pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(true)), 2);
+
         }
     }
 
@@ -274,7 +278,7 @@ public class RedstoneCrossbridge extends Block {
         if (!pBlockState.getValue(POWERED)) {
             return 0;
         } else {
-            return 15;
+            return this.getOutputSignal(pBlockAccess, pPos, pBlockState,pSide);
             }
     }
 
