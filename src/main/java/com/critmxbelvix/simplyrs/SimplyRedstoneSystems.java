@@ -24,7 +24,7 @@ import software.bernie.geckolib3.GeckoLib;
 
 import java.util.stream.Collectors;
 
-@Mod(SimplyRedstoneSystems.MOD_ID) // shlok's file
+@Mod(SimplyRedstoneSystems.MOD_ID)
 public class SimplyRedstoneSystems
 {
     public static final String MOD_ID = "simplyrs";
