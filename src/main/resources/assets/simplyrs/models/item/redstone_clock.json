@@ -1,3 +1,6 @@
 {
-	"parent": "simplyrs:block/redstone_clock"
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "simplyrs:item/redstone_clock"
+	}
 }

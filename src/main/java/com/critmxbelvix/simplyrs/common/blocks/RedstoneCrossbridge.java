@@ -210,8 +210,6 @@ public class RedstoneCrossbridge extends Block {
         return getInputSignalAt(pLevel,pPos,pSide.getOpposite()) - 1;
     }
 
-    // Overloaded getInputSignalAt using blockstate instead:
-
 
     protected boolean isSideInput(BlockState pState) {
         return pState.isSignalSource();

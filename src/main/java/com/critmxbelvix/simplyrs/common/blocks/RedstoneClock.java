@@ -40,6 +40,7 @@ import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.Collections.singletonList;
 
@@ -55,7 +56,22 @@ public class RedstoneClock extends BaseEntityBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty INPUT = BooleanProperty.create("input");
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final VoxelShape SHAPE = Shapes.join(Block.box(1, 0, 1, 15, 2, 15), Block.box(4, 6, 5, 12, 14, 11), BooleanOp.OR);
+    private static final VoxelShape SHAPE = Stream.of(
+            Block.box(1, 0, 9, 7, 2, 15),
+            Block.box(1, 0, 1, 7, 2, 7),
+            Block.box(9, 0, 1, 15, 2, 7),
+            Block.box(9, 0, 9, 15, 2, 15),
+            Block.box(7, 0, 7, 9, 2, 9),
+            Block.box(7, 0, 1, 9, 1, 15),
+            Block.box(1, 0, 7, 15, 1, 9),
+            Block.box(7, 0, 15, 9, 0.5, 16),
+            Block.box(7, 0, 0, 9, 0.5, 1),
+            Block.box(15, 0, 7, 16, 0.5, 9),
+            Block.box(0, 0, 7, 1, 0.5, 9),
+            Block.box(7.25, 2, 7.25, 8.75, 3, 8.75),
+            Block.box(7.5, 3, 7.5, 8.5, 4, 8.5),
+            Block.box(5, 5, 5, 11, 11, 11)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     public RedstoneClock(BlockBehaviour.Properties m_properties) {
         super(m_properties);
