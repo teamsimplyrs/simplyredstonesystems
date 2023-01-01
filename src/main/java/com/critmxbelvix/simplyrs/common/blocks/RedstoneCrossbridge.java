@@ -101,16 +101,55 @@ public class RedstoneCrossbridge extends Block {
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext)
     {
-        BlockState blockstate = super.getStateForPlacement(pContext);
+        Level pLevel = pContext.getLevel();
+        BlockPos pPos = pContext.getClickedPos();
+        int X = setInputDirectionX(pLevel,pPos);
+        int Z = setInputDirectionZ(pLevel,pPos);
+        int signalStrengthNorth = getInputSignalAt(pLevel, pPos.relative(Direction.NORTH),Direction.NORTH);
+        int signalStrengthSouth = getInputSignalAt(pLevel, pPos.relative(Direction.SOUTH),Direction.SOUTH);
+        int signalStrengthEast = getInputSignalAt(pLevel, pPos.relative(Direction.EAST),Direction.EAST);
+        int signalStrengthWest = getInputSignalAt(pLevel, pPos.relative(Direction.WEST),Direction.WEST);
+        LOGGER.info(X + " " + Z);
 
-        return this.defaultBlockState()
-                .setValue(POWERED,false)
-                .setValue(X_INPUT,false)
-                .setValue(Z_INPUT, false)
-                .setValue(X_AXIS,Direction.EAST)
-                .setValue(Z_AXIS,Direction.NORTH)
-                .setValue(X_STRENGTH,0)
-                .setValue(Z_STRENGTH,0);
+        if(X==2 && Z==2){
+            return this.defaultBlockState()
+                    .setValue(X_INPUT,false).setValue(Z_INPUT,false).setValue(POWERED,false).setValue(X_STRENGTH,0).setValue(Z_STRENGTH,0);
+        }
+        else if(X==0 && Z==2){
+            return this.defaultBlockState()
+                    .setValue(X_INPUT,true).setValue(X_AXIS,Direction.EAST).setValue(Z_INPUT,false).setValue(POWERED,true).setValue(X_STRENGTH,signalStrengthEast).setValue(Z_STRENGTH,0);
+        }
+        else if(X==1 && Z==2){
+            return this.defaultBlockState()
+                    .setValue(X_INPUT,true).setValue(X_AXIS,Direction.WEST).setValue(Z_INPUT,false).setValue(POWERED,true).setValue(X_STRENGTH,signalStrengthWest).setValue(Z_STRENGTH,0);
+        }
+        else if(X==2 && Z==0){
+            return this.defaultBlockState()
+                    .setValue(Z_INPUT,true).setValue(Z_AXIS,Direction.NORTH).setValue(X_INPUT,false).setValue(POWERED,true).setValue(X_STRENGTH,0).setValue(Z_STRENGTH,signalStrengthNorth);
+        }
+        else if(X==2 && Z==1){
+            return this.defaultBlockState()
+                    .setValue(Z_INPUT,true).setValue(Z_AXIS,Direction.SOUTH).setValue(X_INPUT,false).setValue(POWERED,true).setValue(X_STRENGTH,0).setValue(Z_STRENGTH,signalStrengthSouth);
+        }
+        else if(X==0 && Z==0){
+            return this.defaultBlockState()
+                    .setValue(X_INPUT,true).setValue(Z_INPUT,true).setValue(X_AXIS,Direction.EAST).setValue(Z_AXIS,Direction.NORTH).setValue(POWERED,true).setValue(X_STRENGTH,signalStrengthEast).setValue(Z_STRENGTH,signalStrengthNorth);
+        }
+        else if(X==0 && Z==1){
+            return this.defaultBlockState()
+                    .setValue(X_INPUT,true).setValue(Z_INPUT,true).setValue(X_AXIS,Direction.EAST).setValue(Z_AXIS,Direction.SOUTH).setValue(POWERED,true).setValue(X_STRENGTH,signalStrengthEast).setValue(Z_STRENGTH,signalStrengthSouth);
+        }
+        else if(X==1 && Z==0){
+            return this.defaultBlockState()
+                    .setValue(X_INPUT,true).setValue(Z_INPUT,true).setValue(X_AXIS,Direction.WEST).setValue(Z_AXIS,Direction.NORTH).setValue(POWERED,true).setValue(X_STRENGTH,signalStrengthWest).setValue(Z_STRENGTH,signalStrengthNorth);
+        }
+        else if(X==1 && Z==1){
+            return this.defaultBlockState()
+                    .setValue(X_INPUT,true).setValue(Z_INPUT,true).setValue(X_AXIS,Direction.WEST).setValue(Z_AXIS,Direction.SOUTH).setValue(POWERED,true).setValue(X_STRENGTH,signalStrengthWest).setValue(Z_STRENGTH,signalStrengthSouth);
+        }else{
+            return this.defaultBlockState()
+                    .setValue(X_INPUT,false).setValue(Z_INPUT,false);
+        }
     }
 
 
@@ -120,7 +159,7 @@ public class RedstoneCrossbridge extends Block {
 
     // Redstone
 
-    private int setInputDirectionX(Level pLevel, BlockPos pPos, BlockState pState){
+    private int setInputDirectionX(Level pLevel, BlockPos pPos){
         int signalStrengthEast = getInputSignalAt(pLevel, pPos.relative(Direction.EAST),Direction.EAST);
         int signalStrengthWest = getInputSignalAt(pLevel, pPos.relative(Direction.WEST),Direction.WEST);
         if(signalStrengthEast==0 && signalStrengthWest==0){
@@ -136,7 +175,7 @@ public class RedstoneCrossbridge extends Block {
         return 2;
     }
 
-    private int setInputDirectionZ(Level pLevel, BlockPos pPos, BlockState pState){
+    private int setInputDirectionZ(Level pLevel, BlockPos pPos){
         int signalStrengthNorth = getInputSignalAt(pLevel, pPos.relative(Direction.NORTH),Direction.NORTH);
         int signalStrengthSouth = getInputSignalAt(pLevel, pPos.relative(Direction.SOUTH),Direction.SOUTH);
         if(signalStrengthNorth==0 && signalStrengthSouth==0){
@@ -215,8 +254,8 @@ public class RedstoneCrossbridge extends Block {
         }
         else {
             BlockState blockstate;
-            int X = setInputDirectionX(pLevel,pPos,pState);
-            int Z = setInputDirectionZ(pLevel,pPos,pState);
+            int X = setInputDirectionX(pLevel,pPos);
+            int Z = setInputDirectionZ(pLevel,pPos);
             int signalStrengthNorth = getInputSignalAt(pLevel, pPos.relative(Direction.NORTH),Direction.NORTH);
             int signalStrengthSouth = getInputSignalAt(pLevel, pPos.relative(Direction.SOUTH),Direction.SOUTH);
             int signalStrengthEast = getInputSignalAt(pLevel, pPos.relative(Direction.EAST),Direction.EAST);

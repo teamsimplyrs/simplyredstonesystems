@@ -48,10 +48,10 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
         // Add widgets and precomputed values
 
-        this.addRenderableWidget(new IncrementButton(getMidX()+30,getMidY()-48,this.menu.blockEntity.getBlockPos(),0));
-        this.addRenderableWidget(new DecrementButton(getMidX()-55,getMidY()-48,this.menu.blockEntity.getBlockPos(),0));
+        this.addRenderableWidget(new IncrementButton(getMidX()+30,getMidY()-28,this.menu.blockEntity.getBlockPos(),0));
+        this.addRenderableWidget(new DecrementButton(getMidX()-55,getMidY()-28,this.menu.blockEntity.getBlockPos(),0));
 
-        tickDelayCount = new EditBox(this.font, getMidX()-36, getMidY()-50, 64, 20, new TextComponent("1")) {
+        tickDelayCount = new EditBox(this.font, getMidX()-36, getMidY()-30, 64, 20, new TextComponent("1")) {
             {
                 setValue(Integer.toString(RedstoneClockScreen.this.menu.delaySlot.get()));
                 LOGGER.info(Integer.toString(RedstoneClockScreen.this.menu.blockEntity.delay));
@@ -75,10 +75,10 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
             }
         };
 
-        this.addRenderableWidget(new IncrementButton(getMidX()+30,getMidY(),this.menu.blockEntity.getBlockPos(),1));
-        this.addRenderableWidget(new DecrementButton(getMidX()-55,getMidY(),this.menu.blockEntity.getBlockPos(),1));
+        this.addRenderableWidget(new IncrementButton(getMidX()+30,getMidY()+20,this.menu.blockEntity.getBlockPos(),1));
+        this.addRenderableWidget(new DecrementButton(getMidX()-55,getMidY()+20,this.menu.blockEntity.getBlockPos(),1));
 
-        tickDurationCount = new EditBox(this.font, getMidX()-36, getMidY()-2, 64, 20, new TextComponent("1")) {
+        tickDurationCount = new EditBox(this.font, getMidX()-36, getMidY()+18, 64, 20, new TextComponent("1")) {
             {
                 setValue(Integer.toString(RedstoneClockScreen.this.menu.durationSlot.get()));
                 LOGGER.info(Integer.toString(RedstoneClockScreen.this.menu.blockEntity.duration));
@@ -146,8 +146,8 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
     @Override
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
         this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
-        this.font.draw(pPoseStack, "Clock Tick Delay", 78, 20, -16777216);
-        this.font.draw(pPoseStack, "Clock Tick Duration", 78, 65, -16777216);
+        this.font.draw(pPoseStack, "Clock Tick Delay", 78, 40, -16777216);
+        this.font.draw(pPoseStack, "Clock Tick Duration", 78, 85, -16777216);
     }
 
     @Override
