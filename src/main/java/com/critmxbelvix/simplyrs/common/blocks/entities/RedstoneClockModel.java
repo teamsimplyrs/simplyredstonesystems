@@ -8,16 +8,16 @@ public class RedstoneClockModel extends AnimatedGeoModel<RedstoneClockEntity> {
 
     @Override
     public ResourceLocation getModelLocation(RedstoneClockEntity object) {
-        return new ResourceLocation(SimplyRedstoneSystems.MOD_ID, "geo/redstone_clock.geo.json");
+        return new ResourceLocation(SimplyRedstoneSystems.MOD_ID, "geo/redstone_clock_new.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureLocation(RedstoneClockEntity object) {
-        return new ResourceLocation(SimplyRedstoneSystems.MOD_ID, "textures/block/redstone_clock_texture.png");
+        return new ResourceLocation(SimplyRedstoneSystems.MOD_ID, "textures/block/clock_stitched_texture.png");
     }
 
     @Override
     public ResourceLocation getAnimationFileLocation(RedstoneClockEntity animatable) {
-        return new ResourceLocation(SimplyRedstoneSystems.MOD_ID, "animations/redstone_clock_anim.animation.json");
+        return new ResourceLocation(SimplyRedstoneSystems.MOD_ID, "animations/redstone_clock_new.animation.json");
     }
 }

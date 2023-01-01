@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "simplyrs:block/redstone_clock" }
+    "facing=north": { "model": "simplyrs:block/redstone_clock" },
+    "facing=east": { "model": "simplyrs:block/redstone_clock","y": 90 },
+    "facing=south": { "model": "simplyrs:block/redstone_clock","y": 180 },
+    "facing=west":  { "model": "simplyrs:block/redstone_clock","y": 270 }
   }
 }
