@@ -2,12 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "pattern":
   [
-    " I_",
+    "nI_",
     "IOI",
     " I "
   ],
   "key":
   {
+    "n": {"item": "simplyrs:logiccore_not"},
     "I": {"item": "minecraft:redstone_torch"},
     "_": {"item": "minecraft:yellow_dye"},
     "O": {"item": "simplyrs:logiccore_or"}
