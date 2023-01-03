@@ -108,7 +108,6 @@ public abstract class Gate2Block extends Block
 
         if (this.isSideInput(blockstate)) {
             if (blockstate.is(Blocks.REDSTONE_BLOCK)) {
-                LOGGER.info("BLOCK");
                 return 15;
             } else {
                 return blockstate.is(Blocks.REDSTONE_WIRE) ? blockstate.getValue(RedStoneWireBlock.POWER) : blockstate.getSignal(pLevel,pPos,pSide);
