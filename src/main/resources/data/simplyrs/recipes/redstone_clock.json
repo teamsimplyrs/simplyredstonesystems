@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "OCO",
+    "X^X",
+    "_G_"
+  ],
+  "key":
+  {
+    "C": {"item": "minecraft:clock"},
+    "_": {"item": "minecraft:stone_slab"},
+    "O": {"item": "minecraft:glass"},
+    "X": {"item": "minecraft:redstone"},
+    "G": {"item": "minecraft:gold_ingot"},
+    "^": {"item": "minecraft:quartz"}
+  },
+  "result":
+  {
+    "item": "simplyrs:redstone_clock"
+  }
+}
