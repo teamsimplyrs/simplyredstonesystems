@@ -1,0 +1,34 @@
+{
+  "name": "Logic Gate: NOT",
+  "icon": "simplyrs:logicgate_not",
+  "category": "simplyrs:logic_basics_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The NOT Gate is a signal inverter. If the input is True, the output is False and if the input is False, the output is True. So in Redstone terms, if it is not powered, it is ON by default and if given power, it turns OFF."
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "Circuit symbol for NOT Gate and its Truth Table (0 = OFF, 1 = ON)",
+      "images": [
+        "simplyrs:textures/gui/book_contents/gate_not.png",
+        "simplyrs:textures/gui/book_contents/table_not.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "In-game NOT Gate, in OFF and ON states",
+      "images": [
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_not_off.png",
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_not_on.png"
+      ]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:logicgate_not"
+    }
+  ]
+}

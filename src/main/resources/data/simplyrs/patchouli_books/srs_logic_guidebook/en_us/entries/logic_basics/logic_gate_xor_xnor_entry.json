@@ -1,0 +1,64 @@
+{
+  "name": "Logic Gates: XOR, XNOR",
+  "icon": "simplyrs:logicgate_xor",
+  "category": "simplyrs:logic_basics_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The XOR Gate (also known as Exclusive OR Gate) gives an output if the inputs differ from each other (in other words, if only one of two inputs is True). In case of 3 or more input sides, the XOR gives an output only if it has an odd number of True inputs. So in Redstone terms, if only 1 input side is powered, then the output is powered. In case of 3 or more input sides, if odd number of sides are powered, then output is powered."
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "Circuit symbol for XOR Gate and its Truth Table for 2 inputs (0 = OFF, 1 = ON)",
+      "images": [
+        "simplyrs:textures/gui/book_contents/gate_xor.png",
+        "simplyrs:textures/gui/book_contents/table_xor.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "In-game XOR Gate, in OFF and ON states",
+      "images": [
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_xor_off.png",
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_xor_off2.png",
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_xor_on.png"
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The XNOR (NOT-XOR) Gate is an inverted XOR gate. Its output is True by default, and it outputs False if both inputs differ from each other (in other words, if only one of two inputs is True). In case of 3 or more inputs sides, the gate gives an output of False if it has an odd number of True inputs. So in Redstone terms, if there is an odd number of ON powered input sides, it turns OFF."
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "Circuit symbol for XNOR Gate and its Truth Table (0 = OFF, 1 = ON)",
+      "images": [
+        "simplyrs:textures/gui/book_contents/gate_xnor.png",
+        "simplyrs:textures/gui/book_contents/table_xnor.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "In-game XNOR Gate, in OFF and ON states",
+      "images": [
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_xnor_off.png",
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_xnor_on.png",
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_xnor_on2.png"
+      ]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:logicgate_xor",
+      "recipe2": "simplyrs:logicgate_xor2"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:logicgate_xnor",
+      "recipe2": "simplyrs:logicgate_xnor2"
+    }
+  ]
+}

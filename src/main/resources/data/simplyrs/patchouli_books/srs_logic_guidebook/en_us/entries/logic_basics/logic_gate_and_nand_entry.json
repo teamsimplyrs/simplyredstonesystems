@@ -1,0 +1,62 @@
+{
+  "name": "Logic Gates: AND, NAND",
+  "icon": "simplyrs:logicgate_and",
+  "category": "simplyrs:logic_basics_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text":"The AND Gate gives an output if all inputs are True. So in Redstone terms, if all input sides are powered, then the output is powered."
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "Circuit symbol for AND Gate and its Truth Table for 2 inputs (0 = OFF, 1 = ON)",
+      "images": [
+        "simplyrs:textures/gui/book_contents/gate_and.png",
+        "simplyrs:textures/gui/book_contents/table_and.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "In-game AND Gate, in OFF and ON states",
+      "images": [
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_and_off.png",
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_and_on.png"
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text":"The NAND (NOT-AND) Gate is an inverted AND gate. Its output is True by default, and it outputs False if at least 1 input is True. So in Redstone terms, the gate powers ON if there are no inputs, and if there is power on at least 1 input side, it turns OFF."
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "Circuit symbol for NAND Gate and its Truth Table (0 = OFF, 1 = ON)",
+      "images": [
+        "simplyrs:textures/gui/book_contents/gate_nand.png",
+        "simplyrs:textures/gui/book_contents/table_nand.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "In-game NAND Gate, in OFF and ON states",
+      "images": [
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_nand_off.png",
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_nand_on.png"
+      ]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:logicgate_and",
+      "recipe2": "simplyrs:logicgate_and2"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:logicgate_nand",
+      "recipe2": "simplyrs:logicgate_nand2"
+    }
+  ]
+}

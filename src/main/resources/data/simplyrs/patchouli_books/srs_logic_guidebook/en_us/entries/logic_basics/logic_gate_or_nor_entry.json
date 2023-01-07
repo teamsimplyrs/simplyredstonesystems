@@ -1,0 +1,62 @@
+{
+  "name": "Logic Gates: OR, NOR",
+  "icon": "simplyrs:logicgate_or",
+  "category": "simplyrs:logic_basics_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The OR Gate gives an output if at least 1 input is True. So in Redstone terms, if at least 1 input side is powered, then the output is powered."
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "Circuit symbol for OR Gate and its Truth Table for 2 inputs (0 = OFF, 1 = ON)",
+      "images": [
+        "simplyrs:textures/gui/book_contents/gate_or.png",
+        "simplyrs:textures/gui/book_contents/table_or.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "In-game OR Gate, in OFF and ON states",
+      "images": [
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_or_off.png",
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_or_on.png"
+      ]
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The NOR (NOT-OR) Gate is an inverted OR gate. Its output is True by default, and it outputs False only if all inputs are True. So in Redstone terms, the gate powers ON if there are no inputs, and if there is power on all input sides, it turns OFF."
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "Circuit symbol for NOR Gate and its Truth Table (0 = OFF, 1 = ON)",
+      "images": [
+        "simplyrs:textures/gui/book_contents/gate_nor.png",
+        "simplyrs:textures/gui/book_contents/table_nor.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "text": "In-game NOR Gate, in OFF and ON states",
+      "images": [
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_nor_off.png",
+        "simplyrs:textures/gui/book_contents/ingame_gates/ingame_nor_on.png"
+      ]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:logicgate_or",
+      "recipe2": "simplyrs:logicgate_or2"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:logicgate_nor",
+      "recipe2": "simplyrs:logicgate_nor2"
+    }
+  ]
+}

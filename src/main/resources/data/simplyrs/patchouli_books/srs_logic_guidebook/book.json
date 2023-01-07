@@ -1,0 +1,7 @@
+{
+  "name": "§4SRS §6Logic §4Guidebook",
+  "landing_text": "Welcome to the official guidebook for §4Simply §6Redstone §4Systems§0. This book will guide you through everything you need to get started with Redstone logic.",
+  "version": 1,
+  "book_texture": "simplyrs:textures/gui/srs_logic_guidebook_gui.png",
+  "creative_tab": "simplyrscreativetab"
+}

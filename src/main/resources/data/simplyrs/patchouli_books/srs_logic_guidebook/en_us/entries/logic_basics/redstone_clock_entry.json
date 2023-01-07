@@ -1,0 +1,16 @@
+{
+  "name": "Redstone Clock",
+  "icon": "simplyrs:redstone_clock",
+  "category": "simplyrs:logic_basics_category",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Redstone Clock is a circuit component that emits a redstone pulse every given number of ticks, and the pulse lasts for a given number of ticks. The pulse delay or the time (measured in ticks) between each pulse, as well as the tick duration of each pulse, can be modified in the block's GUI, which can be accessed by right clicking the Clock."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:redstone_clock"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Logic Gates",
+  "icon": "simplyrs:logicgate_or",
+  "category": "simplyrs:logic_basics_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Logic Gates are circuit components that decide whether to give an output or not based on the inputs and the conditions provided by the boolean logic operation. The 7 types of gates are AND, OR, XOR, NOT, NAND, NOR, XNOR. Each gate provides a different set of outputs for each input combination and can be used in different scenarios."
+    },
+    {
+      "type": "patchouli:relations",
+      "entries": [
+        "simplyrs:logic_basics/logic_gate_not_entry",
+        "simplyrs:logic_basics/logic_gate_or_nor_entry",
+        "simplyrs:logic_basics/logic_gate_and_nand_entry",
+        "simplyrs:logic_basics/logic_gate_xor_xnor_entry"
+      ]
+    }
+  ]
+}

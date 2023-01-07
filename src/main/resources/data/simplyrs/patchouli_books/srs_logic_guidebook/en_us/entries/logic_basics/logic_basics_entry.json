@@ -1,0 +1,24 @@
+{
+    "name": "Intro to Logic Basics",
+    "icon": "minecraft:redstone",
+    "category": "simplyrs:logic_basics_category",
+    "priority": "true",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Digital Logic is a system of solving problems based on 'Yes/No', 'True/False', 'On/Off' or '0/1' states. In Redstone, we use the On/Off states of the redstone signals. Boolean operations can be performed using logic gates; namely OR (+), AND (x), XOR (⊕), and their inverse; NOR, NAND, XNOR, and NOT (signal inversion). For more information on Logic Gates, please read the dedicated chapter."
+        },
+        {
+            "type": "patchouli:text",
+            "title": "Clocks",
+            "text": "Sometimes, a device known as a Clock is used in circuitry. The purpose of a Clock is to output pulses of alternating signals at specified time intervals. In Redstone as well, a redstone clock is used to alternate between ON and OFF for a given number of ticks between every pulse. Note that in Minecraft, 20 ticks equal 1 second in real-time."
+        },
+        {
+            "type": "patchouli:relations",
+            "entries": [
+                "simplyrs:logic_basics/logic_gates_entry",
+                "simplyrs:logic_basics/redstone_clock_entry"
+            ]
+        }
+    ]
+}

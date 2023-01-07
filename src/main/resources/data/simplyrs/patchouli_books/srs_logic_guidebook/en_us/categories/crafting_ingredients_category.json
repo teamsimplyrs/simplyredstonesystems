@@ -1,0 +1,6 @@
+{
+  "name": "Crafting Ingredients",
+  "description": "Items used as crafting ingredients, and other important crafting recipes. For easier access to recipes, we recommend using the JEI mod.",
+  "icon": "simplyrs:logiccore_or",
+  "sortnum": 5
+}
