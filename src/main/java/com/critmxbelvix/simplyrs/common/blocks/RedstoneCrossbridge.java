@@ -319,14 +319,14 @@ public class RedstoneCrossbridge extends Block {
             return 0;
         }
         else{
-            if(x_dir==pSide){
+            if(x_dir==pSide && pBlockState.getValue(X_STRENGTH)!=0){
                 return pBlockState.getValue(X_STRENGTH)-1;
             }
-            else if(z_dir==pSide){
+            else if(z_dir==pSide && pBlockState.getValue(Z_STRENGTH)!=0){
                 return pBlockState.getValue(Z_STRENGTH)-1;
             }
         }
-        return 1;
+        return 0;
     }
 
     // Block Drops
