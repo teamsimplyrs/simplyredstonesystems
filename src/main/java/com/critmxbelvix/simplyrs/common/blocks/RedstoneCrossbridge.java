@@ -76,15 +76,15 @@ public class RedstoneCrossbridge extends Block {
         );
     }
 
-    public static String m_getName()
+    public static String mGetName()
     {
         return name;
     }
-    public static CreativeModeTab m_getTab()
+    public static CreativeModeTab mGetTab()
     {
         return tab;
     }
-    public static Properties m_getProperties()
+    public static Properties mGetProperties()
     {
         return crossbridge_properties;
     }
