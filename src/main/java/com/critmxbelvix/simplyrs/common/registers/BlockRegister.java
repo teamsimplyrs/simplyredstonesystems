@@ -133,6 +133,14 @@ public class BlockRegister {
                     RedstoneCrossbridge.m_getTab()
             );
 
+    //Redstone Arithmetic Unit --> Registry
+    public static final RegistryObject<Block> REDSTONE_ARITHMETIC_UNIT = registerBlock
+            (
+                    ArithmeticUnit.m_getName(),
+                    ()-> new ArithmeticUnit(ArithmeticUnit.m_getProperties().noOcclusion()),
+                    ArithmeticUnit.m_getTab()
+            );
+
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }
