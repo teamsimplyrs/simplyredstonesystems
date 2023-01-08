@@ -1,0 +1,11 @@
+{
+  "name": "Redstone Cable",
+  "icon": "minecraft:structure_void",
+  "category": "simplyrs:misc_utils_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "§oComing soon to a CurseForge page near you!"
+    }
+  ]
+}

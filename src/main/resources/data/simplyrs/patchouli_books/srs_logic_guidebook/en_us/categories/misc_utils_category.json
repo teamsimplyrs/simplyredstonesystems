@@ -1,0 +1,6 @@
+{
+  "name": "Misc. Utilities",
+  "description": "Simple redstone (or redstone-helping) utility items that help make redstone contraptions more compact, efficient and simple to design.",
+  "icon": "simplyrs:redstone_crossbridge",
+  "sortnum": 3
+}

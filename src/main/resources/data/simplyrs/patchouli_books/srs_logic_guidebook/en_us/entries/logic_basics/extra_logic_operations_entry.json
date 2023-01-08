@@ -1,0 +1,48 @@
+{
+  "name": "Extra Operations",
+  "icon": "minecraft:redstone_torch",
+  "category": "simplyrs:logic_basics_category",
+  "priority": "true",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "There are lots of rules, laws, operations and concepts related to logic and boolean operations in circuit designs, each with their own purpose. Here are some that we think you might find useful. Some pre-existing boolean logic knowledge is recommended, though."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "De Morgan's Law",
+      "text": "This is a transformation law which states that:$(br)1) Inverting the output of an AND operation is the same as applying an OR operation on the inputs inverted.$(br)2) Inverting the output of an OR operation is the same as applying an AND operation on the inputs inverted."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "simplyrs:textures/gui/book_contents/demorgans_laws.png"
+      ]
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Commutative Law",
+      "images": [
+        "simplyrs:textures/gui/book_contents/commutative_law.png"
+      ],
+      "text": "This law states that changing the order of the inputs doesn't change the output. "
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Associative Law",
+      "images": [
+        "simplyrs:textures/gui/book_contents/associative_law.png"
+      ],
+      "text": "This law states that the order in which operations are performed doesn't affect the output."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Distributive Law",
+      "images": [
+        "simplyrs:textures/gui/book_contents/distributive_law.png"
+      ],
+      "text": "This law states inputs can be treated like brackets of math operations (like addition, multiplication, etc.)"
+    }
+  ]
+}

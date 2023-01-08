@@ -1,0 +1,22 @@
+{
+  "name": "Redstone Crossbridge",
+  "icon": "simplyrs:redstone_crossbridge",
+  "category": "simplyrs:misc_utils_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Redstone Crossbridge is a simple block that allows you to cross two different redstone power lines across the same blockspace without intermixing of the power values of both lines. It takes power from one side, and outputs it on the opposite side (and the power value of the line reduces by 1, just like how regular redstone wires would work)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:redstone_crossbridge",
+      "text": "In case there are 2 different input signals on opposite sides of the block, the input side with greater power value is considered input and the opposite side the output."
+    },
+    {
+      "type":"patchouli:image",
+      "images": [
+        "simplyrs:textures/gui/book_contents/crossbridge_demo.png"
+      ]
+    }
+  ]
+}

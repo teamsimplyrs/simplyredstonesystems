@@ -1,5 +1,6 @@
 {
   "name": "Logic Basics",
-  "description": "Digital Logic and boolean operations!",
-  "icon": "minecraft:redstone"
+  "description": "Digital Logic and boolean operations! Note: Many elements of this mod use colored sides or parts. A red-colored part generally means input side, a blue-colored part generally means output side, and a yellow-colored part generally means inverted output side. ",
+  "icon": "minecraft:redstone",
+  "sortnum": 0
 }

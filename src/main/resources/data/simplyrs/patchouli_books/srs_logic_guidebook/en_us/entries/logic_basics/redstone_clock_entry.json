@@ -10,7 +10,8 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "simplyrs:redstone_clock"
+      "recipe": "simplyrs:redstone_clock",
+      "text": "The Clock is toggled off by default with no redstone power, and is functional when it is given a signal on its input side."
     }
   ]
 }
