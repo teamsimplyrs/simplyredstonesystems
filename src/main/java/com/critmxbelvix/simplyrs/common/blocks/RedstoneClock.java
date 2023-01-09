@@ -77,7 +77,7 @@ public class RedstoneClock extends BaseEntityBlock {
         super(m_properties);
     }
 
-    public static String m_getName()
+    public static String mGetName()
     {
         return name;
     }
@@ -85,7 +85,7 @@ public class RedstoneClock extends BaseEntityBlock {
     {
         return tab;
     }
-    public static BlockBehaviour.Properties m_getProperties()
+    public static BlockBehaviour.Properties mGetProperties()
     {
         return clock_properties;
     }

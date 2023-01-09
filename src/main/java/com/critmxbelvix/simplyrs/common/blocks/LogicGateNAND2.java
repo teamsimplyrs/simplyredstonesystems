@@ -18,9 +18,9 @@ public class LogicGateNAND2 extends Gate2Block{
     public LogicGateNAND2(Properties m_Properties) {
         super(m_Properties);
     }
-    public static String m_getName() { return name; }
-    public static CreativeModeTab m_getTab() { return tab; }
-    public static Properties m_getProperties() { return gate_nand2_properties; }
+    public static String mGetName() { return name; }
+    public static CreativeModeTab mGetTab() { return tab; }
+    public static Properties mGetProperties() { return gate_nand2_properties; }
 
     //Sets blockstates when block is placed
     public BlockState getStateForPlacement(BlockPlaceContext pContext)

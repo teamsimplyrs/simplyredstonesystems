@@ -53,9 +53,9 @@ public class LogicGateNOT extends Block
         );
     }
 
-    public static String m_getName() { return name; }
-    public static CreativeModeTab m_getTab() { return tab; }
-    public static Properties m_getProperties() { return gate_not_properties; }
+    public static String mGetName() { return name; }
+    public static CreativeModeTab mGetTab() { return tab; }
+    public static Properties mGetProperties() { return gate_not_properties; }
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
