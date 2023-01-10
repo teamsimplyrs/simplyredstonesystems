@@ -1,16 +1,16 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"0": "simplyrs:block/gold_block",
-		"1": "simplyrs:block/red_concrete_powder",
-		"2": "simplyrs:block/smooth_stone",
-		"4": "simplyrs:block/stonecutter_bottom",
-		"5": "simplyrs:block/torch",
+		"0": "minecraft:block/gold_block",
+		"1": "minecraft:block/red_concrete_powder",
+		"2": "minecraft:block/smooth_stone",
+		"4": "minecraft:block/stonecutter_bottom",
+		"5": "minecraft:block/torch",
 		"7": "simplyrs:block/white_negativesign",
-		"9": "simplyrs:block/redstone_torch_off",
+		"9": "minecraft:block/redstone_torch_off",
 		"10": "simplyrs:block/bright_red_light",
 		"12": "simplyrs:block/dark_yellow_light",
-		"particle": "simplyrs:block/smooth_stone"
+		"particle": "minecraft:block/smooth_stone"
 	},
 	"elements": [
 		{

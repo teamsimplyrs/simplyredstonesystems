@@ -1,11 +1,11 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"0": "simplyrs:block/red_concrete",
-		"1": "simplyrs:block/stonecutter_bottom",
-		"2": "simplyrs:block/smooth_stone",
-		"3": "simplyrs:block/gold_block",
-		"particle": "simplyrs:block/stonecutter_bottom"
+		"0": "minecraft:block/red_concrete",
+		"1": "minecraft:block/stonecutter_bottom",
+		"2": "minecraft:block/smooth_stone",
+		"3": "minecraft:block/gold_block",
+		"particle": "minecraft:block/stonecutter_bottom"
 	},
 	"elements": [
 		{
