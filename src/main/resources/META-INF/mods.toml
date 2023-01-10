@@ -9,7 +9,7 @@ modLoader="javafml" #mandatory
 loaderVersion="[38,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 # The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
 # Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
-license="All rights reserved"
+license="MIT License"
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
@@ -19,7 +19,7 @@ modId="simplyrs" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 # ${file.jarVersion} will substitute the value of the Implementation-Version as read from the mod's JAR file metadata
 # see the associated build.gradle script for how to populate this completely automatically during a build
-version="0.0.1a" #mandatory
+version="0.1.0b" #mandatory
  # A display name for the mod
 displayName="Simply Redstone Systems" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
@@ -34,8 +34,8 @@ credits="CriTMx & Belvix" #optional
 authors="CriTMx & Belvix" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Simply Redstone Systems introduces simple redstone utilities such as one-block logic gates, flip-flops,
-multiplexers and such to help make redstone contraptions and device systems simple, compact and clean.
+Simply Redstone Systems introduces simple redstone utilities such as one-block logic gates, flip-flops, clocks, arithmetic units, cables,
+multiplexers and such to help make redstone contraptions and device systems efficient, compact and clean.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.simplyrs]] #optional
