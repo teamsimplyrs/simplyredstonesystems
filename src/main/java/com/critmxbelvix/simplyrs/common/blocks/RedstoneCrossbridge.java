@@ -109,7 +109,6 @@ public class RedstoneCrossbridge extends Block {
         int signalStrengthSouth = getInputSignalAt(pLevel, pPos.relative(Direction.SOUTH),Direction.SOUTH);
         int signalStrengthEast = getInputSignalAt(pLevel, pPos.relative(Direction.EAST),Direction.EAST);
         int signalStrengthWest = getInputSignalAt(pLevel, pPos.relative(Direction.WEST),Direction.WEST);
-        LOGGER.info(X + " " + Z);
 
         if(X==2 && Z==2){
             return this.defaultBlockState()
@@ -258,7 +257,6 @@ public class RedstoneCrossbridge extends Block {
             int signalStrengthSouth = getInputSignalAt(pLevel, pPos.relative(Direction.SOUTH),Direction.SOUTH);
             int signalStrengthEast = getInputSignalAt(pLevel, pPos.relative(Direction.EAST),Direction.EAST);
             int signalStrengthWest = getInputSignalAt(pLevel, pPos.relative(Direction.WEST),Direction.WEST);
-            LOGGER.info(X + " " + Z);
 
             if(X==2 && Z==2){
                 blockstate = pLevel.getBlockState(pPos)

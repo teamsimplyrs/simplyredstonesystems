@@ -1,0 +1,10 @@
+{ 
+"variants":
+{ 
+  "mode=add":{ "model":"simplyrs:block/arithmetic_unit/arithmetic_unit_add" },
+  "mode=subtract":{ "model":"simplyrs:block/arithmetic_unit/arithmetic_unit_subtract" },
+  "mode=multiply":{ "model":"simplyrs:block/arithmetic_unit/arithmetic_unit_divide" },
+  "mode=divide":{ "model":"simplyrs:block/arithmetic_unit/arithmetic_unit_multiply" }
+}
+}
+

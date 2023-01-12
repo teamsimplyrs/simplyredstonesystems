@@ -14,12 +14,12 @@
   "block.simplyrs.logicgate_not": "Logic Gate: NOT (Inverter)",
   "block.simplyrs.redstone_clock": "Redstone Clock",
   "block.simplyrs.redstone_crossbridge": "Redstone Crossbridge",
+  "block.simplyrs.redstone_arithmetic_unit": "Redstone Arithmetic Unit",
   "item.simplyrs.logiccore_or": "Logic Core: OR",
   "item.simplyrs.logiccore_and": "Logic Core: AND",
   "item.simplyrs.logiccore_xor": "Logic Core: XOR",
   "item.simplyrs.logiccore_not": "Logic Core: NOT",
+  "item.simplyrs.redstone_wrench": "Redstone Wrench",
   "itemGroup.simplyrscreativetab": "Simply Redstone Systems",
-  "itemGroup.simplyrscraftingresourcestab": "Simply Redstone Systems: Crafting",
-  "simplyrs.gui.increment_button": "Hold shift to increase by 5, control to increase by 10"
-
+  "itemGroup.simplyrscraftingresourcestab": "Simply Redstone Systems: Crafting"
 }

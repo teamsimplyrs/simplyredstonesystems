@@ -3,6 +3,7 @@ package com.critmxbelvix.simplyrs.common.registers;
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import com.critmxbelvix.simplyrs.common.items.RedstoneClockItem;
+import com.critmxbelvix.simplyrs.common.items.RedstoneWrench;
 import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreAND;
 import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreNOT;
 import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreOR;
@@ -43,6 +44,11 @@ public class ItemRegister {
     public static final RegistryObject<Item> LOGICCORE_NOT = ITEMS.register(
             LogicCoreNOT.m_getName(),
             ()-> new LogicCoreNOT(LogicCoreNOT.m_getProperties())
+    );
+
+    public static final RegistryObject<Item> REDSTONE_WRENCH = ITEMS.register(
+            RedstoneWrench.m_getName(),
+            ()-> new RedstoneWrench(RedstoneWrench.m_getProperties())
     );
 
 
