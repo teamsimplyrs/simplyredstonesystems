@@ -24,6 +24,7 @@ public class ClientSetupClass {
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.LOGICGATE_XNOR2.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_CLOCK.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_CROSSBRIDGE.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_ARITHMETIC_UNIT.get(), RenderType.translucent());
     }
 
 

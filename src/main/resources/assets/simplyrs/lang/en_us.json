@@ -5,21 +5,26 @@
   "block.simplyrs.logicgate_nand": "Logic Gate: NAND",
   "block.simplyrs.logicgate_xor": "Logic Gate: XOR",
   "block.simplyrs.logicgate_xnor": "Logic Gate: XNOR",
+  "block.simplyrs.logicgate_not": "Logic Gate: NOT (Inverter)",
+
   "block.simplyrs.logicgate_nand2": "Logic Gate: NAND (2-input)",
   "block.simplyrs.logicgate_and2": "Logic Gate: AND (2-input)",
   "block.simplyrs.logicgate_or2": "Logic Gate: OR (2-input)",
   "block.simplyrs.logicgate_nor2": "Logic Gate: NOR (2-input)",
   "block.simplyrs.logicgate_xor2": "Logic Gate: XOR (2-input)",
   "block.simplyrs.logicgate_xnor2": "Logic Gate: XNOR (2-input)",
-  "block.simplyrs.logicgate_not": "Logic Gate: NOT (Inverter)",
+
   "block.simplyrs.redstone_clock": "Redstone Clock",
   "block.simplyrs.redstone_crossbridge": "Redstone Crossbridge",
   "block.simplyrs.redstone_arithmetic_unit": "Redstone Arithmetic Unit",
+
   "item.simplyrs.logiccore_or": "Logic Core: OR",
   "item.simplyrs.logiccore_and": "Logic Core: AND",
   "item.simplyrs.logiccore_xor": "Logic Core: XOR",
   "item.simplyrs.logiccore_not": "Logic Core: NOT",
+
   "item.simplyrs.redstone_wrench": "Redstone Wrench",
+  
   "itemGroup.simplyrscreativetab": "Simply Redstone Systems",
   "itemGroup.simplyrscraftingresourcestab": "Simply Redstone Systems: Crafting"
 }

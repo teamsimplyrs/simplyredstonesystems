@@ -136,9 +136,9 @@ public class BlockRegister {
     //Redstone Arithmetic Unit --> Registry
     public static final RegistryObject<Block> REDSTONE_ARITHMETIC_UNIT = registerBlock
             (
-                    ArithmeticUnit.m_getName(),
-                    ()-> new ArithmeticUnit(ArithmeticUnit.m_getProperties().noOcclusion()),
-                    ArithmeticUnit.m_getTab()
+                    RedstoneArithmeticUnit.m_getName(),
+                    ()-> new RedstoneArithmeticUnit(RedstoneArithmeticUnit.m_getProperties().noOcclusion()),
+                    RedstoneArithmeticUnit.m_getTab()
             );
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {

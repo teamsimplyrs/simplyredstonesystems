@@ -1,10 +1,25 @@
 { 
-"variants":
-{ 
-  "mode=add":{ "model":"simplyrs:block/arithmetic_unit/arithmetic_unit_add" },
-  "mode=subtract":{ "model":"simplyrs:block/arithmetic_unit/arithmetic_unit_subtract" },
-  "mode=multiply":{ "model":"simplyrs:block/arithmetic_unit/arithmetic_unit_divide" },
-  "mode=divide":{ "model":"simplyrs:block/arithmetic_unit/arithmetic_unit_multiply" }
-}
+  "variants":
+  {
+      "facing=north,mode=add":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_add" },
+      "facing=north,mode=subtract":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_sub" },
+      "facing=north,mode=multiply":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_mul" },
+      "facing=north,mode=divide":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_div" },
+
+      "facing=east,mode=add":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_add","y": 90 },
+      "facing=east,mode=subtract":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_sub","y": 90 },
+      "facing=east,mode=multiply":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_mul","y": 90 },
+      "facing=east,mode=divide":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_div","y": 90 },
+
+      "facing=south,mode=add":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_add","y": 180 },
+      "facing=south,mode=subtract":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_sub","y": 180 },
+      "facing=south,mode=multiply":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_mul","y": 180 },
+      "facing=south,mode=divide":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_div","y": 180 },
+
+      "facing=west,mode=add":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_add","y": 270 },
+      "facing=west,mode=subtract":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_sub","y": 270 },
+      "facing=west,mode=multiply":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_mul","y": 270 },
+      "facing=west,mode=divide":{ "model":"simplyrs:block/redstone_arithmetic_unit/redstone_arithmetic_unit_div","y": 270 }
+  }
 }
 
