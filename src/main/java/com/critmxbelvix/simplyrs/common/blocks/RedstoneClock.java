@@ -1,6 +1,7 @@
 package com.critmxbelvix.simplyrs.common.blocks;
 
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
+import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.SRSVoxelShapes;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
@@ -56,23 +57,6 @@ public class RedstoneClock extends BaseEntityBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty INPUT = BooleanProperty.create("input");
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final VoxelShape SHAPE = Stream.of(
-            Block.box(1, 0, 9, 7, 2, 15),
-            Block.box(1, 0, 1, 7, 2, 7),
-            Block.box(9, 0, 1, 15, 2, 7),
-            Block.box(9, 0, 9, 15, 2, 15),
-            Block.box(7, 0, 7, 9, 2, 9),
-            Block.box(7, 0, 1, 9, 1, 15),
-            Block.box(1, 0, 7, 15, 1, 9),
-            Block.box(7, 0, 15, 9, 0.5, 16),
-            Block.box(7, 0, 0, 9, 0.5, 1),
-            Block.box(15, 0, 7, 16, 0.5, 9),
-            Block.box(0, 0, 7, 1, 0.5, 9),
-            Block.box(7.25, 2, 7.25, 8.75, 3, 8.75),
-            Block.box(7.5, 3, 7.5, 8.5, 4, 8.5),
-            Block.box(5, 5, 5, 11, 11, 11)
-    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-
     public RedstoneClock(BlockBehaviour.Properties m_properties) {
         super(m_properties);
     }
@@ -93,7 +77,7 @@ public class RedstoneClock extends BaseEntityBlock {
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext)
     {
-        return SHAPE;
+        return SRSVoxelShapes.CLOCK_SHAPE;
     }
 
     //Used to prevent placing the gate blocks on each other

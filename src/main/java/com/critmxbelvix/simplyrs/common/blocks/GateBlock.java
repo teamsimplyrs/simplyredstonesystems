@@ -1,5 +1,6 @@
 package com.critmxbelvix.simplyrs.common.blocks;
 
+import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.SRSVoxelShapes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -28,7 +29,6 @@ import java.util.Random;
 import static java.util.Collections.singletonList;
 
 public abstract class GateBlock extends Block{
-    private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 1, 15);
 
     /* Unlike vanilla minecraft's FACING property, this mod's facing property is set in the direction which the player
      is looking.
@@ -52,7 +52,7 @@ public abstract class GateBlock extends Block{
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
+        return SRSVoxelShapes.GATE_SHAPE;
     }
 
     //Used to prevent placing the gate blocks on each other

@@ -1,5 +1,6 @@
 package com.critmxbelvix.simplyrs.common.blocks;
 
+import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.SRSVoxelShapes;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -42,24 +43,6 @@ public class RedstoneCrossbridge extends Block {
     final static String name = "redstone_crossbridge";
     final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
     final static Properties crossbridge_properties = Properties.of(Material.STONE).strength(0.3f).dynamicShape();
-
-    private static final VoxelShape SHAPE = Stream.of(
-            Block.box(0.25, 0, 0.25, 15.75, 1, 15.75),
-            Block.box(0.5, 1, 0.5, 15.5, 3, 15.5),
-            Block.box(7, 2, 0, 7.25, 4, 7),
-            Block.box(8.75, 2, 0, 9, 4, 7),
-            Block.box(0, 2, 7, 7.25, 4, 7.25),
-            Block.box(0, 2, 8.75, 7.25, 4, 9),
-            Block.box(7, 2, 9, 7.25, 4, 16),
-            Block.box(8.75, 2, 9, 9, 4, 16),
-            Block.box(8.75, 2, 8.75, 16, 4, 9),
-            Block.box(8.75, 2, 7, 16, 4, 7.25),
-            Block.box(0, 0, 7, 0.25, 2, 9),
-            Block.box(7, 0, 0, 9, 2, 0.25),
-            Block.box(7, 0, 15.75, 9, 2, 16),
-            Block.box(15.75, 0, 7, 16, 2, 9)
-    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-
     public static final BooleanProperty X_INPUT = BooleanProperty.create("x_input");
     public static final BooleanProperty Z_INPUT = BooleanProperty.create("z_input");
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
@@ -91,7 +74,7 @@ public class RedstoneCrossbridge extends Block {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
+        return SRSVoxelShapes.CROSSBRIDGE_SHAPE;
     }
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         return canSupportRigidBlock(pLevel, pPos.below());
