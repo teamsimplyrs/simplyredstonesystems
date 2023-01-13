@@ -10,10 +10,10 @@
   {
     "C": {"item": "minecraft:clock"},
     "_": {"item": "minecraft:stone_slab"},
-    "O": {"item": "minecraft:glass"},
-    "X": {"item": "minecraft:redstone"},
-    "G": {"item": "minecraft:gold_ingot"},
-    "^": {"item": "minecraft:quartz"}
+    "O": {"tag": "forge:glass"},
+    "X": {"tag": "forge:dusts/redstone"},
+    "G": {"tag": "forge:ingots/gold"},
+    "^": {"tag": "forge:gems/quartz"}
   },
   "result":
   {

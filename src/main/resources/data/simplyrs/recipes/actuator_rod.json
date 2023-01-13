@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "o",
+    "|",
+    "#"
+  ],
+  "key":
+  {
+    "o": {"tag": "forge:nuggets/gold"},
+    "|": {"tag": "forge:rods/stone"},
+    "#": {"tag": "forge:ingots/gold"}
+  },
+  "result":
+  {
+    "item": "simplyrs:actuator_rod",
+    "count": 1
+  }
+}

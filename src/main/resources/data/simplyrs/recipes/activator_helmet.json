@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "XXX",
+    "X|X"
+  ],
+  "key":
+  {
+    "X": {"item": "simplyrs:piezoredstone_ingot"},
+    "|": {"item": "simplyrs:actuator_rod"}
+  },
+  "result":
+  {
+    "item": "simplyrs:activator_helmet",
+    "count": 1
+  }
+}

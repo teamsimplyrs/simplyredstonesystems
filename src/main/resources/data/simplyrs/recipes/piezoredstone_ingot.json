@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " Q ",
+    "X#X",
+    " Q "
+  ],
+  "key":
+  {
+    "X": {"tag": "forge:dusts/redstone"},
+    "#": {"tag": "forge:ingots/gold"},
+    "Q": {"tag": "forge:gems/quartz"}
+  },
+  "result":
+  {
+    "item": "simplyrs:piezoredstone_ingot",
+    "count": 1
+  }
+}
