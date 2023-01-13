@@ -7,11 +7,9 @@ import com.critmxbelvix.simplyrs.client.menu.RedstoneClockMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -28,8 +26,6 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
     private static final Logger LOGGER = LogManager.getLogger();
     private final int MID_X = (width - 247)/2;
     private final int MID_Y = (height - 165) / 2;
-    EditBox tickDelayCount;
-    EditBox tickDurationCount;
 
     public RedstoneClockScreen(RedstoneClockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -51,38 +47,8 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         this.addRenderableWidget(new IncrementButton(getMidX()+34,getMidY()-28,this.menu.blockEntity.getBlockPos(),0));
         this.addRenderableWidget(new DecrementButton(getMidX()-51,getMidY()-28,this.menu.blockEntity.getBlockPos(),0));
 
-        tickDelayCount = new EditBox(this.font, getMidX()-36, getMidY()-30, 64, 20, new TextComponent("1")) {
-            {
-                this.setEditable(false);
-                setValue(Integer.toString(RedstoneClockScreen.this.menu.delaySlot.get()));
-            }
-
-            @Override
-            public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
-                return false;
-            }
-        };
-
         this.addRenderableWidget(new IncrementButton(getMidX()+34,getMidY()+20,this.menu.blockEntity.getBlockPos(),1));
         this.addRenderableWidget(new DecrementButton(getMidX()-51,getMidY()+20,this.menu.blockEntity.getBlockPos(),1));
-
-        tickDurationCount = new EditBox(this.font, getMidX()-36, getMidY()+18, 64, 20, new TextComponent("1")) {
-            {
-                this.setEditable(false);
-                this.setTextColorUneditable(14737632);
-                setValue(Integer.toString(RedstoneClockScreen.this.menu.durationSlot.get()));
-            }
-
-            @Override
-            public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
-                return false;
-            }
-        };
-        guiState.put("text:tickDelayCount", tickDelayCount);
-        tickDelayCount.setMaxLength(4);
-        tickDurationCount.setMaxLength(4);
-        this.addWidget(this.tickDelayCount);
-        this.addWidget(this.tickDurationCount);
     }
 
     @Override
@@ -91,7 +57,7 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
             this.minecraft.player.closeContainer();
             return true;
         }
-        return tickDelayCount.isFocused() ? tickDelayCount.keyPressed(key, b, c) : super.keyPressed(key,b,c);
+        return false;
     }
 
     @Override
