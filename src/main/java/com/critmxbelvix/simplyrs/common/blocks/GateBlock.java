@@ -104,8 +104,6 @@ public abstract class GateBlock extends Block{
     //Returns the redstone strength of the gate's neighboring block in the direction specified by pSide
     protected int getInputSignalAt(LevelReader pLevel, BlockPos pPos, Direction pSide) {
         BlockState blockstate = pLevel.getBlockState(pPos);
-        LOGGER.info(pLevel.getBlockState(pPos).getBlock());
-        LOGGER.info(blockstate.isSignalSource());
 
         if (this.isSideInput(blockstate)) {
             if (blockstate.is(Blocks.REDSTONE_BLOCK)) {

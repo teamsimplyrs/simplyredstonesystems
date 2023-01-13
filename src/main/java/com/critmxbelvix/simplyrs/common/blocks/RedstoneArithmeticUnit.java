@@ -135,7 +135,6 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
                 case DIVIDE -> ArithmeticModes.ADD;
             };
             pLevel.setBlockAndUpdate(pPos,pState.setValue(MODE,newMode));
-            LOGGER.info("Used");
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
@@ -188,8 +187,6 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
 
     protected int getInputSignalAt(BlockGetter pLevel, BlockPos pPos, Direction pSide) {
         BlockState blockstate = pLevel.getBlockState(pPos);
-        LOGGER.info(pLevel.getBlockState(pPos).getBlock());
-        LOGGER.info(blockstate.isSignalSource());
 
         if (this.isSideInput(blockstate)) {
             if (blockstate.is(Blocks.REDSTONE_BLOCK)) {
@@ -198,7 +195,6 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
                 return blockstate.is(Blocks.REDSTONE_WIRE) ? blockstate.getValue(RedStoneWireBlock.POWER) : blockstate.getSignal(pLevel, pPos, pSide);
             }
         } else {
-            LOGGER.info("useless");
             return 0;
         }
     }
@@ -242,7 +238,6 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
             int a = getInputSignalAt(pLevel,pPos.relative(direction.getCounterClockWise()),direction.getCounterClockWise());
             int b = getInputSignalAt(pLevel,pPos.relative(direction.getOpposite()),direction.getOpposite());
             int c = getInputSignalAt(pLevel,pPos.relative(direction.getClockWise()),direction.getClockWise());
-            LOGGER.info(pPos + " " + a + " " + b + " " + c);
 
             int strength = switch (mode) {
                 case ADD -> Math.min((a + b + c), 15);
