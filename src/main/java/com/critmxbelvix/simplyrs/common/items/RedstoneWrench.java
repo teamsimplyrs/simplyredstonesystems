@@ -10,23 +10,23 @@ public class RedstoneWrench extends Item{
     private static final Logger LOGGER = LogManager.getLogger();
 
     final static String name = "redstone_wrench";
-    final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_CRAFTS_TAB;
+    final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
     final static Item.Properties properties = new Properties().tab(tab);
 
     public RedstoneWrench(Properties pProperties) {
         super(pProperties);
     }
 
-    public static String m_getName()
+    public static String mGetName()
     {
         return name;
     }
 
-    public static CreativeModeTab m_getTab()
+    public static CreativeModeTab mGetTab()
     {
         return tab;
     }
-    public static Properties m_getProperties()
+    public static Properties mGetProperties()
     {
         return properties;
     }
