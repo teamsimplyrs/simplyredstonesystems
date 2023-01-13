@@ -22,6 +22,9 @@
   "item.simplyrs.logiccore_and": "Logic Core: AND",
   "item.simplyrs.logiccore_xor": "Logic Core: XOR",
   "item.simplyrs.logiccore_not": "Logic Core: NOT",
+  "item.simplyrs.piezoredstone_ingot": "Piezo-Redstone Ingot",
+  "item.simplyrs.actuator_rod": "Actuator Rod",
+  "item.simplyrs.stone_rod": "Stone Rod",
 
   "item.simplyrs.redstone_wrench": "Redstone Wrench",
 
@@ -30,6 +33,11 @@
   "item.simplyrs.activator_pickaxe": "[WIP] Activator Pickaxe",
   "item.simplyrs.activator_shovel": "[WIP] Activator Shovel",
   "item.simplyrs.activator_sword": "[WIP] Activator Sword",
+  "item.simplyrs.activator_helmet": "[WIP] Activator Helmet",
+  "item.simplyrs.activator_chestplate": "[WIP] Activator Chestplate",
+  "item.simplyrs.activator_leggings": "[WIP] Activator Leggings",
+  "item.simplyrs.activator_boots": "[WIP] Activator Boots",
+
   
   "itemGroup.simplyrscreativetab": "Simply Redstone Systems",
   "itemGroup.simplyrscraftingresourcestab": "Simply Redstone Systems: Crafting",
