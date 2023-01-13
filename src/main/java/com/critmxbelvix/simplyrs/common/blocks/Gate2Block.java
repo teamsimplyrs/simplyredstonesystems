@@ -89,7 +89,6 @@ public abstract class Gate2Block extends Block
     {
         Direction faceWest= pState.getValue(FACING).getCounterClockWise();
 
-        LOGGER.info(getInputSignalAt(pLevel,pPos,faceWest));
         return getInputSignalAt(pLevel,pPos,faceWest) > 0;
     }
 
@@ -97,7 +96,6 @@ public abstract class Gate2Block extends Block
     {
         Direction faceEast = pState.getValue(FACING).getClockWise();
 
-        LOGGER.info(getInputSignalAt(pLevel,pPos,faceEast));
         return getInputSignalAt(pLevel,pPos,faceEast) > 0;
     }
 
@@ -128,7 +126,6 @@ public abstract class Gate2Block extends Block
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
         boolean flag = pState.getValue(POWERED);
         boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
-        LOGGER.info("two gate "+flag1);
         if (flag && !flag1) {
             pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(false)), 2);
         } else if(flag1){

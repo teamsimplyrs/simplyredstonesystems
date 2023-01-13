@@ -43,7 +43,6 @@ public class LogicGateOR extends GateBlock {
         Direction direction1 = direction.getCounterClockWise();
         Direction direction2 = direction.getOpposite();
         Direction direction3 = direction.getClockWise();
-        LOGGER.info(shouldTurnOn(pContext.getLevel(),pContext.getClickedPos(),blockstate)+ " " + pContext.getClickedPos());
         return this.defaultBlockState()
                 .setValue(FACING,pContext.getHorizontalDirection())
                 .setValue(INPUT_1,isInputOne(pContext.getLevel(),pContext.getClickedPos().relative(direction1),blockstate))
@@ -62,7 +61,6 @@ public class LogicGateOR extends GateBlock {
         boolean input1 = isInputOne(pLevel,pPos.relative(direction1),pState);
         boolean input2 = isInputTwo(pLevel,pPos.relative(direction2),pState);
         boolean input3 = isInputThree(pLevel,pPos.relative(direction3),pState);
-        LOGGER.info(input1 || input2 || input3);
         return input1 || input2 || input3;
     }
 

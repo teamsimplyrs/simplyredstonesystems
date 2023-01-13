@@ -1,5 +1,6 @@
 package com.critmxbelvix.simplyrs.common.blocks;
 
+import com.critmxbelvix.simplyrs.common.blocks.entities.ArithmeticBlockEntity;
 import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.SRSVoxelShapes;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import com.critmxbelvix.simplyrs.common.items.RedstoneWrench;
@@ -33,13 +34,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.ticks.TickPriority;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Random;
 
 import static java.util.Collections.singletonList;
 
-public class RedstoneArithmeticUnit extends Block {
+public class RedstoneArithmeticUnit extends Block implements EntityBlock {
     private static final Logger LOGGER = LogManager.getLogger();
     final static String name = "redstone_arithmetic_unit";
     final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
@@ -138,6 +140,12 @@ public class RedstoneArithmeticUnit extends Block {
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new ArithmeticBlockEntity(pPos,pState);
+    }
+
     enum ArithmeticModes implements StringRepresentable {
         ADD("add"),
         SUBTRACT("subtract"),
@@ -180,6 +188,8 @@ public class RedstoneArithmeticUnit extends Block {
 
     protected int getInputSignalAt(BlockGetter pLevel, BlockPos pPos, Direction pSide) {
         BlockState blockstate = pLevel.getBlockState(pPos);
+        LOGGER.info(pLevel.getBlockState(pPos).getBlock());
+        LOGGER.info(blockstate.isSignalSource());
 
         if (this.isSideInput(blockstate)) {
             if (blockstate.is(Blocks.REDSTONE_BLOCK)) {
@@ -188,6 +198,7 @@ public class RedstoneArithmeticUnit extends Block {
                 return blockstate.is(Blocks.REDSTONE_WIRE) ? blockstate.getValue(RedStoneWireBlock.POWER) : blockstate.getSignal(pLevel, pPos, pSide);
             }
         } else {
+            LOGGER.info("useless");
             return 0;
         }
     }
@@ -197,21 +208,8 @@ public class RedstoneArithmeticUnit extends Block {
     }
 
     protected int getOutputSignal(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
-        ArithmeticModes mode = pState.getValue(MODE);
-        Direction direction = pState.getValue(FACING);
-        int a = getInputSignalAt(pLevel,pPos,direction.getCounterClockWise());
-        int b = getInputSignalAt(pLevel,pPos,direction.getOpposite());
-        int c = getInputSignalAt(pLevel,pPos,direction.getClockWise());
-
-        return switch (mode) {
-            case ADD -> Math.min((a + b + c), 15);
-
-            case SUBTRACT -> (a - b - c) >= 0 ? (a - b - c) : -(a - b - c);
-
-            case MULTIPLY -> Math.min((a * b * c), 15);
-
-            case DIVIDE -> a!=0 && b!=0 && c!=0 ? a/b/c : 0;
-        };
+        BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+        return blockentity instanceof ArithmeticBlockEntity ? ((ArithmeticBlockEntity)blockentity).getOutputSignal() : 0;
     }
 
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
@@ -239,6 +237,25 @@ public class RedstoneArithmeticUnit extends Block {
             pLevel.removeBlock(pPos, false);
         }
         else {
+            ArithmeticModes mode = pState.getValue(MODE);
+            Direction direction = pState.getValue(FACING);
+            int a = getInputSignalAt(pLevel,pPos.relative(direction.getCounterClockWise()),direction.getCounterClockWise());
+            int b = getInputSignalAt(pLevel,pPos.relative(direction.getOpposite()),direction.getOpposite());
+            int c = getInputSignalAt(pLevel,pPos.relative(direction.getClockWise()),direction.getClockWise());
+            LOGGER.info(pPos + " " + a + " " + b + " " + c);
+
+            int strength = switch (mode) {
+                case ADD -> Math.min((a + b + c), 15);
+
+                case SUBTRACT -> (a - b - c) >= 0 ? (a - b - c) : -(a - b - c);
+
+                case MULTIPLY -> Math.min((a * b * c), 15);
+
+                case DIVIDE -> a!=0 && b!=0 && c!=0 ? a/b/c : 0;
+            };
+
+            ((ArithmeticBlockEntity)pLevel.getBlockEntity(pPos)).setOutputSignal(strength);
+
             BlockState blockstate = pLevel.getBlockState(pPos)
                     .setValue(POWERED,getInputSignalAt(pLevel,pPos,east) > 0 ||
                                     getInputSignalAt(pLevel,pPos,west) > 0 ||

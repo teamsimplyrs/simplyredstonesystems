@@ -87,27 +87,25 @@ public abstract class GateBlock extends Block{
     public boolean isInputOne(LevelReader pLevel, BlockPos pPos, BlockState pState){
         Direction direction = pState.getValue(FACING);
         Direction direction1 = direction.getCounterClockWise();
-        LOGGER.info(getInputSignalAt(pLevel, pPos, direction1));
         return getInputSignalAt(pLevel, pPos, direction1) > 0;
     }
 
     public boolean isInputTwo(LevelReader pLevel, BlockPos pPos, BlockState pState){
         Direction direction = pState.getValue(FACING).getOpposite();
-
-        LOGGER.info(getInputSignalAt(pLevel, pPos, direction));
         return getInputSignalAt(pLevel, pPos, direction) > 0;
     }
 
     public boolean isInputThree(LevelReader pLevel, BlockPos pPos, BlockState pState){
         Direction direction = pState.getValue(FACING);
         Direction direction1 = direction.getClockWise();
-        LOGGER.info(getInputSignalAt(pLevel, pPos, direction1));
         return getInputSignalAt(pLevel, pPos, direction1) > 0;
     }
 
     //Returns the redstone strength of the gate's neighboring block in the direction specified by pSide
     protected int getInputSignalAt(LevelReader pLevel, BlockPos pPos, Direction pSide) {
         BlockState blockstate = pLevel.getBlockState(pPos);
+        LOGGER.info(pLevel.getBlockState(pPos).getBlock());
+        LOGGER.info(blockstate.isSignalSource());
 
         if (this.isSideInput(blockstate)) {
             if (blockstate.is(Blocks.REDSTONE_BLOCK)) {
@@ -142,7 +140,6 @@ public abstract class GateBlock extends Block{
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
         boolean flag = pState.getValue(POWERED);
         boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
-        LOGGER.info("three gate "+flag1);
         if (flag && !flag1) {
             pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(false)), 2);
         } else if(flag1){
