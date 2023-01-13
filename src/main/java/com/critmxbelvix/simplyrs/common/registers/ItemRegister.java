@@ -2,8 +2,11 @@ package com.critmxbelvix.simplyrs.common.registers;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
+import com.critmxbelvix.simplyrs.common.items.ActuatorRod;
 import com.critmxbelvix.simplyrs.common.items.RedstoneClockItem;
 import com.critmxbelvix.simplyrs.common.items.RedstoneWrench;
+import com.critmxbelvix.simplyrs.common.items.StoneRod;
+import com.critmxbelvix.simplyrs.common.items.ingots.PiezoRedstoneIngot;
 import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreAND;
 import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreNOT;
 import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreOR;
@@ -58,23 +61,60 @@ public class ItemRegister {
 
     public static final RegistryObject<Item> ACTIVATOR_AXE = ITEMS.register(
             ActivatorAxe.mGetName(),
-            ()-> new ActivatorAxe(ActivatorAxe.mGetProperties())
+            ()-> new ActivatorAxe()
     );
     public static final RegistryObject<Item> ACTIVATOR_HOE = ITEMS.register(
             ActivatorHoe.mGetName(),
-            ()-> new ActivatorHoe(ActivatorHoe.mGetProperties())
+            ()-> new ActivatorHoe()
     );
     public static final RegistryObject<Item> ACTIVATOR_PICKAXE = ITEMS.register(
             ActivatorPickaxe.mGetName(),
-            ()-> new ActivatorPickaxe(ActivatorPickaxe.mGetProperties())
+            ()-> new ActivatorPickaxe()
     );
     public static final RegistryObject<Item> ACTIVATOR_SHOVEL = ITEMS.register(
             ActivatorShovel.mGetName(),
-            ()-> new ActivatorShovel(ActivatorShovel.mGetProperties())
+            ()-> new ActivatorShovel()
     );
     public static final RegistryObject<Item> ACTIVATOR_SWORD = ITEMS.register(
             ActivatorSword.mGetName(),
-            ()-> new ActivatorSword(ActivatorSword.mGetProperties())
+            ()-> new ActivatorSword()
+    );
+
+    // Activator Armor:
+
+    public static final RegistryObject<Item> ACTIVATOR_HELMET = ITEMS.register(
+            ActivatorArmor.ActivatorHelmet.mGetName(),
+            () -> new ActivatorArmor.ActivatorHelmet()
+    );
+    public static final RegistryObject<Item> ACTIVATOR_CHESPLATE = ITEMS.register(
+            ActivatorArmor.ActivatorChestplate.mGetName(),
+            () -> new ActivatorArmor.ActivatorChestplate()
+    );
+    public static final RegistryObject<Item> ACTIVATOR_LEGGINGS = ITEMS.register(
+            ActivatorArmor.ActivatorLeggings.mGetName(),
+            () -> new ActivatorArmor.ActivatorLeggings()
+    );
+    public static final RegistryObject<Item> ACTIVATOR_BOOTS = ITEMS.register(
+            ActivatorArmor.ActivatorBoots.mGetName(),
+            () -> new ActivatorArmor.ActivatorBoots()
+    );
+
+    // Piezo-Redstone Ingot:
+    public static final RegistryObject<Item> PIEZOREDSTONE_INGOT = ITEMS.register(
+            PiezoRedstoneIngot.mGetName(),
+            ()-> new PiezoRedstoneIngot(PiezoRedstoneIngot.mGetProperties())
+    );
+
+    // Actuator Rod:
+    public static final RegistryObject<Item> ACTUATOR_ROD = ITEMS.register(
+            ActuatorRod.mGetName(),
+            ()-> new ActuatorRod(ActuatorRod.mGetProperties())
+    );
+
+    // Stone Rod:
+    public static final RegistryObject<Item> STONE_ROD = ITEMS.register(
+            StoneRod.mGetName(),
+            ()-> new StoneRod(StoneRod.mGetProperties())
     );
 
 
