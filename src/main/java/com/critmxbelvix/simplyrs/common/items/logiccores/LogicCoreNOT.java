@@ -13,16 +13,16 @@ public class LogicCoreNOT extends Item{
         super(pProperties);
     }
 
-    public static String m_getName()
+    public static String mGetName()
     {
         return name;
     }
 
-    public static CreativeModeTab m_getTab()
+    public static CreativeModeTab mGetTab()
     {
         return tab;
     }
-    public static Item.Properties m_getProperties()
+    public static Item.Properties mGetProperties()
     {
         return core_not_properties;
     }
