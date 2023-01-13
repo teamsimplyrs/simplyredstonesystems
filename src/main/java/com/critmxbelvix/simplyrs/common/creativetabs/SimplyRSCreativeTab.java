@@ -20,4 +20,10 @@ public class SimplyRSCreativeTab
         @Override @NotNull
         public ItemStack makeIcon() { return new ItemStack(ItemRegister.LOGICCORE_OR.get()); }
     };
+
+    public static final CreativeModeTab SRS_ARMORY_TAB = new CreativeModeTab("simplyrsarmorytab") {
+        @Override
+        public ItemStack makeIcon() { return new ItemStack(ItemRegister.ACTIVATOR_SWORD.get()); }
+    };
+
 }
