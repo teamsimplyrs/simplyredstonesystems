@@ -53,25 +53,13 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
 
         tickDelayCount = new EditBox(this.font, getMidX()-36, getMidY()-30, 64, 20, new TextComponent("1")) {
             {
+                this.setEditable(false);
                 setValue(Integer.toString(RedstoneClockScreen.this.menu.delaySlot.get()));
-                LOGGER.info(Integer.toString(RedstoneClockScreen.this.menu.blockEntity.delay));
-            }
-            @Override
-            public void insertText(String textInput) {
-                super.insertText(textInput);
-                if (getValue().isEmpty())
-                    setSuggestion("1");
-                else
-                    setSuggestion(null);
             }
 
             @Override
-            public void moveCursorTo(int pos) {
-                super.moveCursorTo(pos);
-                if (getValue().isEmpty())
-                    setSuggestion("1");
-                else
-                    setSuggestion(null);
+            public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
+                return false;
             }
         };
 
@@ -80,25 +68,14 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
 
         tickDurationCount = new EditBox(this.font, getMidX()-36, getMidY()+18, 64, 20, new TextComponent("1")) {
             {
+                this.setEditable(false);
+                this.setTextColorUneditable(14737632);
                 setValue(Integer.toString(RedstoneClockScreen.this.menu.durationSlot.get()));
-                LOGGER.info(Integer.toString(RedstoneClockScreen.this.menu.blockEntity.duration));
-            }
-            @Override
-            public void insertText(String textInput) {
-                super.insertText(textInput);
-                if (getValue().isEmpty())
-                    setSuggestion("1");
-                else
-                    setSuggestion(null);
             }
 
             @Override
-            public void moveCursorTo(int pos) {
-                super.moveCursorTo(pos);
-                if (getValue().isEmpty())
-                    setSuggestion("1");
-                else
-                    setSuggestion(null);
+            public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
+                return false;
             }
         };
         guiState.put("text:tickDelayCount", tickDelayCount);
