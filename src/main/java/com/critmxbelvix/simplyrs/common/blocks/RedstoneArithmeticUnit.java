@@ -135,6 +135,7 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
                 case DIVIDE -> ArithmeticModes.ADD;
             };
             pLevel.setBlockAndUpdate(pPos,pState.setValue(MODE,newMode));
+            pLevel.updateNeighborsAt(pPos.relative(pState.getValue(FACING)),pState.getBlock());
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
