@@ -7,11 +7,9 @@ import com.critmxbelvix.simplyrs.client.menu.RedstoneClockMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -28,8 +26,6 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
     private static final Logger LOGGER = LogManager.getLogger();
     private final int MID_X = (width - 247)/2;
     private final int MID_Y = (height - 165) / 2;
-    EditBox tickDelayCount;
-    EditBox tickDurationCount;
 
     public RedstoneClockScreen(RedstoneClockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -48,64 +44,11 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
         // Add widgets and precomputed values
 
-        this.addRenderableWidget(new IncrementButton(getMidX()+30,getMidY()-28,this.menu.blockEntity.getBlockPos(),0));
-        this.addRenderableWidget(new DecrementButton(getMidX()-55,getMidY()-28,this.menu.blockEntity.getBlockPos(),0));
+        this.addRenderableWidget(new IncrementButton(getMidX()+34,getMidY()-28,this.menu.blockEntity.getBlockPos(),0));
+        this.addRenderableWidget(new DecrementButton(getMidX()-51,getMidY()-28,this.menu.blockEntity.getBlockPos(),0));
 
-        tickDelayCount = new EditBox(this.font, getMidX()-36, getMidY()-30, 64, 20, new TextComponent("1")) {
-            {
-                setValue(Integer.toString(RedstoneClockScreen.this.menu.delaySlot.get()));
-                LOGGER.info(Integer.toString(RedstoneClockScreen.this.menu.blockEntity.delay));
-            }
-            @Override
-            public void insertText(String textInput) {
-                super.insertText(textInput);
-                if (getValue().isEmpty())
-                    setSuggestion("1");
-                else
-                    setSuggestion(null);
-            }
-
-            @Override
-            public void moveCursorTo(int pos) {
-                super.moveCursorTo(pos);
-                if (getValue().isEmpty())
-                    setSuggestion("1");
-                else
-                    setSuggestion(null);
-            }
-        };
-
-        this.addRenderableWidget(new IncrementButton(getMidX()+30,getMidY()+20,this.menu.blockEntity.getBlockPos(),1));
-        this.addRenderableWidget(new DecrementButton(getMidX()-55,getMidY()+20,this.menu.blockEntity.getBlockPos(),1));
-
-        tickDurationCount = new EditBox(this.font, getMidX()-36, getMidY()+18, 64, 20, new TextComponent("1")) {
-            {
-                setValue(Integer.toString(RedstoneClockScreen.this.menu.durationSlot.get()));
-                LOGGER.info(Integer.toString(RedstoneClockScreen.this.menu.blockEntity.duration));
-            }
-            @Override
-            public void insertText(String textInput) {
-                super.insertText(textInput);
-                if (getValue().isEmpty())
-                    setSuggestion("1");
-                else
-                    setSuggestion(null);
-            }
-
-            @Override
-            public void moveCursorTo(int pos) {
-                super.moveCursorTo(pos);
-                if (getValue().isEmpty())
-                    setSuggestion("1");
-                else
-                    setSuggestion(null);
-            }
-        };
-        guiState.put("text:tickDelayCount", tickDelayCount);
-        tickDelayCount.setMaxLength(4);
-        tickDurationCount.setMaxLength(4);
-        this.addWidget(this.tickDelayCount);
-        this.addWidget(this.tickDurationCount);
+        this.addRenderableWidget(new IncrementButton(getMidX()+34,getMidY()+20,this.menu.blockEntity.getBlockPos(),1));
+        this.addRenderableWidget(new DecrementButton(getMidX()-51,getMidY()+20,this.menu.blockEntity.getBlockPos(),1));
     }
 
     @Override
@@ -114,22 +57,12 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
             this.minecraft.player.closeContainer();
             return true;
         }
-        return tickDelayCount.isFocused() ? tickDelayCount.keyPressed(key, b, c) : super.keyPressed(key,b,c);
+        return false;
     }
 
     @Override
     public void containerTick() {
         super.containerTick();
-        int currentDelayValue = Integer.parseInt(tickDelayCount.getValue());
-        int currentDurationValue = Integer.parseInt(tickDurationCount.getValue());
-        if(currentDelayValue != RedstoneClockScreen.this.menu.delaySlot.get()) {
-            tickDelayCount.setValue(Integer.toString(RedstoneClockScreen.this.menu.delaySlot.get()));
-        }
-        if(currentDurationValue != RedstoneClockScreen.this.menu.durationSlot.get()) {
-            tickDurationCount.setValue(Integer.toString(RedstoneClockScreen.this.menu.durationSlot.get()));
-        }
-        tickDelayCount.tick();
-        tickDurationCount.tick();
     }
     @Override
     protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
@@ -145,19 +78,26 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
 
     @Override
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
+
         this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
         this.font.draw(pPoseStack, "Clock Tick Delay", 78, 40, -16777216);
-        this.font.draw(pPoseStack, "Clock Tick Duration", 78, 85, -16777216);
+        this.font.draw(pPoseStack, "Clock Tick Duration", 75, 85, -16777216);
     }
 
     @Override
     public void render(PoseStack pPoseStack, int mouseX, int mouseY, float delta) {
+        int delay = this.menu.blockEntity.delay;
+        int duration = this.menu.blockEntity.duration;
+        int delayWidth = this.font.width(Integer.toString(delay));
+        int durationWidth = this.font.width(Integer.toString(duration));
+
         renderBackground(pPoseStack);
         super.render(pPoseStack, mouseX, mouseY, delta);
+        fill(pPoseStack,getMidX()-32, getMidY()-30, getMidX()-32 + 64, getMidY()-30 + 20, -16777216);
+        fill(pPoseStack,getMidX()-32, getMidY()+18, getMidX()-32 + 64, getMidY()+18 + 20, -16777216);
+        this.font.draw(pPoseStack, Integer.toString(delay),getMidX()-delayWidth/2,getMidY()-24,14737632);
+        this.font.draw(pPoseStack, Integer.toString(duration),getMidX()-durationWidth/2,getMidY()+25,14737632);
         renderTooltip(pPoseStack, mouseX, mouseY);
-        tickDelayCount.render(pPoseStack, mouseX, mouseY, delta);
-        tickDurationCount.render(pPoseStack,mouseX,mouseY,delta);
-
     }
 
     @Override
