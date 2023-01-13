@@ -24,7 +24,14 @@
   "item.simplyrs.logiccore_not": "Logic Core: NOT",
 
   "item.simplyrs.redstone_wrench": "Redstone Wrench",
+
+  "item.simplyrs.activator_axe": "[WIP] Activator Axe",
+  "item.simplyrs.activator_hoe": "[WIP] Activator Hoe",
+  "item.simplyrs.activator_pickaxe": "[WIP] Activator Pickaxe",
+  "item.simplyrs.activator_shovel": "[WIP] Activator Shovel",
+  "item.simplyrs.activator_sword": "[WIP] Activator Sword",
   
   "itemGroup.simplyrscreativetab": "Simply Redstone Systems",
-  "itemGroup.simplyrscraftingresourcestab": "Simply Redstone Systems: Crafting"
+  "itemGroup.simplyrscraftingresourcestab": "Simply Redstone Systems: Crafting",
+  "itemGroup.simplyrsarmorytab": "Simply Redstone Systems: Armory"
 }
