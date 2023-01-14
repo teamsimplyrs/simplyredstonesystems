@@ -46,7 +46,6 @@ public class LogicGateXNOR extends GateBlock {
         Direction direction1 = direction.getCounterClockWise();
         Direction direction2 = direction.getOpposite();
         Direction direction3 = direction.getClockWise();
-        LOGGER.info(shouldTurnOn(pContext.getLevel(),pContext.getClickedPos(),blockstate)+ " " + pContext.getClickedPos());
         return this.defaultBlockState()
                 .setValue(FACING,pContext.getHorizontalDirection())
                 .setValue(INPUT_1,isInputOne(pContext.getLevel(),pContext.getClickedPos().relative(direction1),blockstate))

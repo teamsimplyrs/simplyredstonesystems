@@ -46,7 +46,6 @@ public class DecrementButton extends ImageButton {
             change=-10;
         }
         PacketRegister.INSTANCE.sendToServer(new PacketUpdateClock(blockpos,change,type));
-        LOGGER.info("Decrement button pressed");
     }
 
     @Override

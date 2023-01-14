@@ -179,7 +179,6 @@ public class RedstoneClock extends BaseEntityBlock {
     {
         Direction faceSouth= pState.getValue(FACING).getOpposite();
 
-        LOGGER.info(getInputSignalAt(pLevel,pPos,faceSouth));
         return getInputSignalAt(pLevel,pPos,faceSouth) > 0;
     }
 
@@ -188,7 +187,6 @@ public class RedstoneClock extends BaseEntityBlock {
 
         if (this.isSideInput(blockstate)) {
             if (blockstate.is(Blocks.REDSTONE_BLOCK)) {
-                LOGGER.info("BLOCK");
                 return 15;
             } else {
                 return blockstate.is(Blocks.REDSTONE_WIRE) ? blockstate.getValue(RedStoneWireBlock.POWER) : blockstate.getSignal(pLevel,pPos,pSide);

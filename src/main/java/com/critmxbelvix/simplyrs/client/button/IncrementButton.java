@@ -46,7 +46,6 @@ public class IncrementButton extends ImageButton {
             change=10;
         }
         PacketRegister.INSTANCE.sendToServer(new PacketUpdateClock(blockpos,change,type));
-        LOGGER.info("Increment button pressed");
     }
 
     @Override
