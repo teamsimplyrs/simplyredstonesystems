@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Material;
@@ -48,7 +47,6 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
     final static Properties arithmetic_unit_properties = Properties.of(Material.STONE).strength(0.3f).dynamicShape();
     public static final EnumProperty<ArithmeticModes> MODE = EnumProperty.create("mode", ArithmeticModes.class, ArithmeticModes.values());
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public RedstoneArithmeticUnit(Properties pProperties) {
         super(pProperties);
@@ -85,18 +83,20 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
     public BlockState getStateForPlacement(BlockPlaceContext pContext)
     {
         BlockState blockstate = super.getStateForPlacement(pContext);
+        Level pLevel = pContext.getLevel();
+        BlockPos pPos = pContext.getClickedPos();
         Direction direction = pContext.getHorizontalDirection();
         pContext.getLevel().scheduleTick(pContext.getClickedPos(),blockstate.getBlock(),1);
+        pLevel.updateNeighborsAt(pPos.relative(direction),blockstate.getBlock());
 
         return this.defaultBlockState()
                 .setValue(FACING, direction)
-                .setValue(MODE, ArithmeticModes.ADD)
-                .setValue(POWERED,shouldTurnOn(pContext.getLevel(),pContext.getClickedPos(),blockstate));
+                .setValue(MODE, ArithmeticModes.ADD);
     }
 
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
-        pBuilder.add(POWERED,FACING, MODE);
+        pBuilder.add(FACING, MODE);
     }
 
     public BlockState rotate(BlockState pState, Rotation pRotation){
@@ -184,8 +184,6 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
         return pBlockState.getSignal(pBlockAccess, pPos, pSide);
     }
 
-    protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) { return true; }
-
     protected int getInputSignalAt(BlockGetter pLevel, BlockPos pPos, Direction pSide) {
         BlockState blockstate = pLevel.getBlockState(pPos);
 
@@ -210,14 +208,6 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
     }
 
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
-        boolean flag = pState.getValue(POWERED);
-        boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
-        if (flag && !flag1) {
-            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(false)), 2);
-        } else if(flag1){
-            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(true)), 2);
-        }
-        pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
     }
 
     @Override
@@ -249,15 +239,10 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
 
                 case DIVIDE -> a!=0 && b!=0 && c!=0 ? a/b/c : 0;
             };
-
-            ((ArithmeticBlockEntity)pLevel.getBlockEntity(pPos)).setOutputSignal(strength);
-
-            BlockState blockstate = pLevel.getBlockState(pPos)
-                    .setValue(POWERED,getInputSignalAt(pLevel,pPos,east) > 0 ||
-                                    getInputSignalAt(pLevel,pPos,west) > 0 ||
-                                    getInputSignalAt(pLevel,pPos,south) > 0
-                    );
-            pLevel.setBlockAndUpdate(pPos, blockstate);
+            BlockEntity be = pLevel.getBlockEntity(pPos);
+            if(be instanceof  ArithmeticBlockEntity) {
+                ((ArithmeticBlockEntity) pLevel.getBlockEntity(pPos)).setOutputSignal(strength);
+            }
             pLevel.scheduleTick(pPos, this, 1, TickPriority.VERY_HIGH);
         }
     }

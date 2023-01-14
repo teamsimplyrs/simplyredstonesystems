@@ -1,15 +1,15 @@
 { 
 "variants":
 { 
-  "powered=false":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge" },
-  "powered=true,x_input=false,z_axis=north,z_input=true":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_s" },
-  "powered=true,z_input=false,x_axis=east,x_input=true":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_w" },
-  "powered=true,z_input=false,x_axis=west,x_input=true":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_e" },
-  "powered=true,x_input=false,z_axis=south,z_input=true":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_n" },
-  "powered=true,x_input=true,z_input=true,z_axis=north,x_axis=east":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_sw" },
-  "powered=true,x_input=true,z_input=true,z_axis=north,x_axis=west":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_se" },
-  "powered=true,x_input=true,z_input=true,z_axis=south,x_axis=east":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_nw" },
-  "powered=true,x_input=true,z_input=true,z_axis=south,x_axis=west":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_ne" }
+  "x_input=false,z_input=false":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge" },
+  "x_input=false,z_axis=north,z_input=true":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_s" },
+  "z_input=false,x_axis=east,x_input=true":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_w" },
+  "z_input=false,x_axis=west,x_input=true":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_e" },
+  "x_input=false,z_axis=south,z_input=true":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_n" },
+  "x_input=true,z_input=true,z_axis=north,x_axis=east":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_sw" },
+  "x_input=true,z_input=true,z_axis=north,x_axis=west":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_se" },
+  "x_input=true,z_input=true,z_axis=south,x_axis=east":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_nw" },
+  "x_input=true,z_input=true,z_axis=south,x_axis=west":{ "model":"simplyrs:block/redstone_crossbridge/redstone_crossbridge_ne" }
 }
 }
 
