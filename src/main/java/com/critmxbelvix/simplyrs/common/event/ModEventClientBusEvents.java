@@ -1,7 +1,8 @@
 package com.critmxbelvix.simplyrs.common.event;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
-import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockRenderer;
+import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClock.RedstoneClockRenderer;
+import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneValve.RedstoneValveRenderer;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -13,5 +14,6 @@ public class ModEventClientBusEvents {
     @SubscribeEvent
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(BlockEntityRegister.REDSTONE_CLOCK_ENTITY.get(), RedstoneClockRenderer::new);
+        event.registerBlockEntityRenderer(BlockEntityRegister.REDSTONE_VALVE_ENTITY.get(), RedstoneValveRenderer::new);
     }
 }

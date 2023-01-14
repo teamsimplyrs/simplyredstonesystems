@@ -1,4 +1,4 @@
-package com.critmxbelvix.simplyrs.common.blocks.entities;
+package com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClock;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import net.minecraft.resources.ResourceLocation;

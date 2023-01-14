@@ -1,6 +1,6 @@
 package com.critmxbelvix.simplyrs.common.blocks;
 
-import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
+import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClock.RedstoneClockEntity;
 import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.SRSVoxelShapes;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;

@@ -1,6 +1,6 @@
 package com.critmxbelvix.simplyrs.client.menu;
 
-import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
+import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClock.RedstoneClockEntity;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import com.critmxbelvix.simplyrs.common.registers.MenuTypeRegister;
 import net.minecraft.network.FriendlyByteBuf;

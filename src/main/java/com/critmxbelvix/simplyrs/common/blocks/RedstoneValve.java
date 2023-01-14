@@ -1,5 +1,6 @@
 package com.critmxbelvix.simplyrs.common.blocks;
 
+import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneValve.RedstoneValveEntity;
 import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.SRSVoxelShapes;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import net.minecraft.core.BlockPos;
@@ -31,13 +32,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.ticks.TickPriority;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Random;
 
 import static java.util.Collections.singletonList;
 
-public class RedstoneValve extends Block {
+public class RedstoneValve extends Block implements EntityBlock {
 
     static final String name = "redstone_valve";
     static final CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
@@ -137,7 +139,7 @@ public class RedstoneValve extends Block {
             pLevel.setBlockAndUpdate(pPos,pState.setValue(OUTPUT_LEVEL,next_level));
             pLevel.updateNeighborsAt(pPos.relative(pState.getValue(FACING)),pState.getBlock());
         }
-
+        ((RedstoneValveEntity)pLevel.getBlockEntity(pPos)).use();
         return InteractionResult.PASS;
     }
 
@@ -188,5 +190,16 @@ public class RedstoneValve extends Block {
     @Override
     public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
         return this.getOutputSignal(pBlockAccess,pPos,pBlockState);
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new RedstoneValveEntity(pPos,pState);
     }
 }

@@ -1,6 +1,6 @@
 package com.critmxbelvix.simplyrs.net;
 
-import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClockEntity;
+import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClock.RedstoneClockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;

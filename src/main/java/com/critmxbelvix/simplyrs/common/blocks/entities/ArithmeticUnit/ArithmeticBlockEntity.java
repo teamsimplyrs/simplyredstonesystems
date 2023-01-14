@@ -1,4 +1,4 @@
-package com.critmxbelvix.simplyrs.common.blocks.entities;
+package com.critmxbelvix.simplyrs.common.blocks.entities.ArithmeticUnit;
 
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
