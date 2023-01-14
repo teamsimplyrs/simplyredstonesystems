@@ -208,6 +208,7 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
     }
 
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
+        pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
     }
 
     @Override

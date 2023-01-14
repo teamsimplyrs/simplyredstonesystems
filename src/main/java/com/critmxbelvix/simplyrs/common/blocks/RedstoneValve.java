@@ -29,6 +29,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.ticks.TickPriority;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Random;
@@ -45,6 +47,7 @@ public class RedstoneValve extends Block {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final IntegerProperty OUTPUT_LEVEL = IntegerProperty.create("output_level",0,15);
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public RedstoneValve(Properties pProperties) {
         super(pProperties);
@@ -123,17 +126,19 @@ public class RedstoneValve extends Block {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit)
     {
-        int next_level;
-        if (!pPlayer.isCrouching())
-        {
-            next_level = pState.getValue(OUTPUT_LEVEL) == 15 ? 0 : pState.getValue(OUTPUT_LEVEL) + 1;
-        } else {
-            next_level = pState.getValue(OUTPUT_LEVEL) == 0 ? 15 : pState.getValue(OUTPUT_LEVEL) - 1;
+        if(pHand.equals(InteractionHand.MAIN_HAND)){
+            int next_level;
+            if (!pPlayer.isCrouching())
+            {
+                next_level = pState.getValue(OUTPUT_LEVEL) == 15 ? 0 : pState.getValue(OUTPUT_LEVEL) + 1;
+            } else {
+                next_level = pState.getValue(OUTPUT_LEVEL) == 0 ? 15 : pState.getValue(OUTPUT_LEVEL) - 1;
+            }
+            pLevel.setBlockAndUpdate(pPos,pState.setValue(OUTPUT_LEVEL,next_level));
+            pLevel.updateNeighborsAt(pPos.relative(pState.getValue(FACING)),pState.getBlock());
         }
-        pLevel.setBlockAndUpdate(pPos,pState.setValue(OUTPUT_LEVEL,next_level));
-        pLevel.updateNeighborsAt(pPos.relative(pState.getValue(FACING)),pState.getBlock());
 
-        return super.use(pState,pLevel,pPos,pPlayer,pHand,pHit);
+        return InteractionResult.PASS;
     }
 
     // Redstone Control
