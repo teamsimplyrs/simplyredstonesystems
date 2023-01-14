@@ -70,6 +70,28 @@ public class SRSVoxelShapes {
     // Gates VoxelShape
     public static final VoxelShape GATE_SHAPE = Block.box(1, 0, 1, 15, 1, 15);
 
-    //
+    // Valve VoxelShape
+    public static final VoxelShape VALVE_SHAPE = Stream.of(
+            Block.box(7, 1, 7, 9, 2.5, 9),
+            Block.box(7, 2.5, 7, 9, 3, 9),
+            Block.box(0.25, 0, 0.25, 15.75, 1, 15.75),
+            Block.box(0.25, 1, 0.25, 7, 2.5, 7),
+            Block.box(9, 1, 0.25, 15.75, 2.5, 7),
+            Block.box(9, 1, 9, 15.75, 2.5, 15.75),
+            Block.box(0.25, 1, 9, 7, 2.5, 15.75),
+            Block.box(7, 0, 0, 9, 2, 0.25),
+            Block.box(7, 0, 15.75, 9, 2, 16),
+            Block.box(15.75, 0, 7, 16, 2, 9),
+            Block.box(0, 0, 7, 0.25, 2, 9),
+            Block.box(7, 1, 0.25, 9, 2, 7),
+            Block.box(7, 1, 9, 9, 2, 15.75),
+            Block.box(9, 1, 7, 15.75, 2, 9),
+            Block.box(0.25, 1, 7, 7, 2, 9),
+            Block.box(6.5, 9, 6.5, 9.5, 9.25, 9.5),
+            Block.box(6.5, 8, 6.5, 7.5, 9, 9.5),
+            Block.box(6.5, 8, 6.5, 9.5, 9, 9.5),
+            Block.box(7.5, 3, 7.5, 8.5, 9, 8.5),
+            Block.box(1, 7.75, 1, 15, 9.25, 15)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
 }

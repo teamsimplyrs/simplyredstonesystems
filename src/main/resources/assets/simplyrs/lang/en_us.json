@@ -17,6 +17,7 @@
   "block.simplyrs.redstone_clock": "Redstone Clock",
   "block.simplyrs.redstone_crossbridge": "Redstone Crossbridge",
   "block.simplyrs.redstone_arithmetic_unit": "Redstone Arithmetic Unit",
+  "block.simplyrs.redstone_valve": "Redstone Valve",
 
   "item.simplyrs.logiccore_or": "Logic Core: OR",
   "item.simplyrs.logiccore_and": "Logic Core: AND",

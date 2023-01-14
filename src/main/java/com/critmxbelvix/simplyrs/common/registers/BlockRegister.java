@@ -141,6 +141,13 @@ public class BlockRegister {
                     RedstoneArithmeticUnit.m_getTab()
             );
 
+    // Redstone Valve
+    public static final RegistryObject<Block> REDSTONE_VALVE = registerBlock(
+            RedstoneValve.mGetName(),
+            ()-> new RedstoneValve(RedstoneValve.mGetProperties().noOcclusion()),
+            RedstoneValve.mGetTab()
+    );
+
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }
