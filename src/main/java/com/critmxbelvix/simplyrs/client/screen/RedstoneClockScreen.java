@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -44,11 +45,11 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
         // Add widgets and precomputed values
 
-        this.addRenderableWidget(new IncrementButton(getMidX()+34,getMidY()-28,this.menu.blockEntity.getBlockPos(),0));
-        this.addRenderableWidget(new DecrementButton(getMidX()-51,getMidY()-28,this.menu.blockEntity.getBlockPos(),0));
+        this.addRenderableWidget(new IncrementButton(getMidX()+34,getMidY()-28,this.menu.blockEntity.getBlockPos(),0,this));
+        this.addRenderableWidget(new DecrementButton(getMidX()-51,getMidY()-28,this.menu.blockEntity.getBlockPos(),0,this));
 
-        this.addRenderableWidget(new IncrementButton(getMidX()+34,getMidY()+20,this.menu.blockEntity.getBlockPos(),1));
-        this.addRenderableWidget(new DecrementButton(getMidX()-51,getMidY()+20,this.menu.blockEntity.getBlockPos(),1));
+        this.addRenderableWidget(new IncrementButton(getMidX()+34,getMidY()+20,this.menu.blockEntity.getBlockPos(),1,this));
+        this.addRenderableWidget(new DecrementButton(getMidX()-51,getMidY()+20,this.menu.blockEntity.getBlockPos(),1,this));
     }
 
     @Override
@@ -78,10 +79,13 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
 
     @Override
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
-
+        Component delayText = new TextComponent("Clock Tick Delay");
+        int delayWidth = this.font.width("Clock Tick Delay");
+        Component durationText = new TextComponent("Clock Tick Duration");
+        int durationWidth = this.font.width("Clock Tick Duration");
         this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
-        this.font.draw(pPoseStack, "Clock Tick Delay", 78, 40, -16777216);
-        this.font.draw(pPoseStack, "Clock Tick Duration", 75, 85, -16777216);
+        this.font.draw(pPoseStack, delayText, this.imageWidth/2-delayWidth/2, 40, -16777216);
+        this.font.draw(pPoseStack, durationText, this.imageWidth/2-durationWidth/2, 85, -16777216);
     }
 
     @Override

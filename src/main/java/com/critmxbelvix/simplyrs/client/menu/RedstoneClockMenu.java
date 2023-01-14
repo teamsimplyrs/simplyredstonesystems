@@ -10,11 +10,8 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,8 +22,6 @@ public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier
     public RedstoneClockEntity blockEntity;
     public final static HashMap<String, Object> guiState = new HashMap<>();
 
-    private boolean bound = false;
-    private IItemHandler internal;
     private final Level level;
     public final Player player;
     public final DataSlot delaySlot;
@@ -42,7 +37,6 @@ public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier
         blockEntity = ((RedstoneClockEntity) entity);
         this.level = inv.player.level;
         this.player = inv.player;
-        this.internal = new ItemStackHandler(0);
 
         delaySlot = new DataSlot() {
             @Override
@@ -69,14 +63,6 @@ public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier
         };
         this.addDataSlot(delaySlot);
         this.addDataSlot(durationSlot);
-    }
-
-    @Override
-    public ItemStack quickMoveStack(Player playerIn, int index) {
-        Slot sourceSlot = slots.get(index);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
-        ItemStack sourceStack = sourceSlot.getItem();
-        return sourceStack;
     }
 
     @Override
