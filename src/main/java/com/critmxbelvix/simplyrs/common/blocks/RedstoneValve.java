@@ -49,7 +49,6 @@ public class RedstoneValve extends Block implements EntityBlock {
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final IntegerProperty OUTPUT_LEVEL = IntegerProperty.create("output_level",0,15);
-    private static final Logger LOGGER = LogManager.getLogger();
 
     public RedstoneValve(Properties pProperties) {
         super(pProperties);
