@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key":
+  {
+    "X": {"item": "simplyrs:piezoredstone_ingot"}
+  },
+  "result":
+  {
+    "item": "simplyrs:piezoredstone_block"
+  }
+}
