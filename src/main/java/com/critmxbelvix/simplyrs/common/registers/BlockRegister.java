@@ -2,6 +2,9 @@ package com.critmxbelvix.simplyrs.common.registers;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import com.critmxbelvix.simplyrs.common.blocks.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -148,6 +151,13 @@ public class BlockRegister {
             RedstoneValve.mGetTab()
     );
 
+    // Piezo-Redstone Block
+    public static final RegistryObject<Block> PIEZOREDSTONE_BLOCK = registerBlock(
+            PiezoRedstoneBlock.mGetName(),
+            ()-> new PiezoRedstoneBlock(PiezoRedstoneBlock.mGetProperties()),
+            PiezoRedstoneBlock.mGetTab()
+    );
+
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }
@@ -167,5 +177,6 @@ public class BlockRegister {
     {
         BLOCKS.register(eventBus);
     }
+
 
 }

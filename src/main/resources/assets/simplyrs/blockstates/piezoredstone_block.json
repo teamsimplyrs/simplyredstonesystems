@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north":
+      {
+        "model": "simplyrs:block/piezoredstone_block"
+      },
+    "facing=east":{
+        "model": "simplyrs:block/piezoredstone_block",
+        "y": 90
+      },
+    "facing=south":{
+        "model": "simplyrs:block/piezoredstone_block",
+        "y": 180
+      },
+    "facing=west":{
+        "model": "simplyrs:block/piezoredstone_block",
+        "y": 270
+    }
+  }
+}

@@ -12,6 +12,9 @@ import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreNOT;
 import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreOR;
 import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreXOR;
 import com.critmxbelvix.simplyrs.common.items.srsarmory.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -117,11 +120,10 @@ public class ItemRegister {
             ()-> new StoneRod(StoneRod.mGetProperties())
     );
 
-
-
     public static void register(IEventBus eventBus)
     {
         ITEMS.register(eventBus);
     }
+
 
 }

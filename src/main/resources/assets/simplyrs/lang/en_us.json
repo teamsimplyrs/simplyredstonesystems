@@ -18,6 +18,7 @@
   "block.simplyrs.redstone_crossbridge": "Redstone Crossbridge",
   "block.simplyrs.redstone_arithmetic_unit": "Redstone Arithmetic Unit",
   "block.simplyrs.redstone_valve": "Redstone Valve",
+  "block.simplyrs.piezoredstone_block": "Piezo-Redstone Block",
 
   "item.simplyrs.logiccore_or": "Logic Core: OR",
   "item.simplyrs.logiccore_and": "Logic Core: AND",
