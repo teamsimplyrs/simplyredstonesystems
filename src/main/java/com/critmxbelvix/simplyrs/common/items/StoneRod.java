@@ -3,9 +3,11 @@ package com.critmxbelvix.simplyrs.common.items;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class StoneRod extends Item {
-
+    private static final Logger LOGGER = LogManager.getLogger();
     static final String name = "stone_rod";
     static final CreativeModeTab tab = SimplyRSCreativeTab.SRS_CRAFTS_TAB;
     static final Properties properties = new Properties().tab(tab);
