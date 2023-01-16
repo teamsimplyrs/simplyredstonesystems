@@ -12,7 +12,7 @@ public class SimplyRSCreativeTab
     public static final CreativeModeTab SRS_TAB = new CreativeModeTab("simplyrscreativetab") {
         @Override @NotNull
         public ItemStack makeIcon() {
-            return new ItemStack(BlockRegister.LOGICGATE_OR.get());
+            return new ItemStack(BlockRegister.REDSTONE_CLOCK.get());
         }
     };
 
