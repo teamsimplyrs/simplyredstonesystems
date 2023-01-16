@@ -13,6 +13,9 @@ A Minecraft Mod that introduces many little utilities for redstone like gates, c
 <li> Redstone Crossbridge (Allows intersectional crossing of redstone signals without making a mess) ✅ </li>
 <li> Redstone Clock ✅ </li>
 <li> Redstone Cables ❌ </li>
+<li> Activator Weapons/Tools + Armor Series (Weapons, Tools and Armor with redstone utility based features) ⭕ </li>
+<li> Block Placers, Block Breakers ❌</li>
+<li> Mechanical Interaction Unit ❌</li>
 <li> Redstone Arithmetic Unit (adding, subtracting, multiplying and dividing input power values) ⭕ </li>
 <li> Configuration Wrench for Blocks ⭕ </li>
 <li> Flip-Flops ❌</li>
