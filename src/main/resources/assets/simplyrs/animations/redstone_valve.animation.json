@@ -3,12 +3,12 @@
 	"animations": {
 		"animation.redstone_valve.zero": {
 			"loop": true,
-			"animation_length": 0.08333,
+			"animation_length": 0.04167,
 			"bones": {
 				"valve": {
 					"rotation": {
 						"0.0": {
-							"vector": [0, 360, 0]
+							"vector": [0, 0, 0]
 						},
 						"0.0417": {
 							"vector": [0, 0, 0]
@@ -17,241 +17,17 @@
 				}
 			}
 		},
-		"animation.redstone_valve.zero_one": {
+		"animation.redstone_valve.fiften_fifteen": {
 			"loop": true,
-			"animation_length": 0.08333,
+			"animation_length": 0.04167,
 			"bones": {
 				"valve": {
 					"rotation": {
 						"0.0": {
-							"vector": [0, 0, 0]
+							"vector": [0, 337.5, 0]
 						},
-						"0.0833": {
-							"vector": [0, 22.5, -0.00002]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.one_two": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 22.5, -0.00002]
-						},
-						"0.0833": {
-							"vector": [-0.00002, 45, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.two_three": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0.00003, 45, 0.00002]
-						},
-						"0.0833": {
-							"vector": [0, 67.5, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.three_four": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 67.5, 0]
-						},
-						"0.0833": {
-							"vector": [0, 89.99994, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.four_five": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 90, 0]
-						},
-						"0.0833": {
-							"vector": [0, 112.5, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.five_six": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 112.5, 0]
-						},
-						"0.0833": {
-							"vector": [0, 135, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.six_seven": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 135, 0]
-						},
-						"0.0833": {
-							"vector": [0, 157.5, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.seven_eight": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 157.5, 0]
-						},
-						"0.0833": {
-							"vector": [0, 180, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.eight_nine": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 180, 0]
-						},
-						"0.0833": {
-							"vector": [0, 202.5, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.nine_ten": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 202.5, 0]
-						},
-						"0.0833": {
-							"vector": [0, 225, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.ten_eleven": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 225, 0]
-						},
-						"0.0833": {
-							"vector": [0, 247.5, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.eleven_twelve": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 247.5, 0]
-						},
-						"0.0833": {
-							"vector": [0, 270, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.twelve_thirteen": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 270, 0]
-						},
-						"0.0833": {
-							"vector": [0, 292.5, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.thirteen_fourteen": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 292.5, 0]
-						},
-						"0.0833": {
-							"vector": [0, 315, 0]
-						}
-					}
-				}
-			}
-		},
-		"animation.redstone_valve.fourteen_fifteen": {
-			"loop": true,
-			"animation_length": 0.08333,
-			"bones": {
-				"valve": {
-					"rotation": {
-						"0.0": {
-							"vector": [-0.00002, 315, 0]
-						},
-						"0.0833": {
-							"vector": [0, 337.5, 0.00002]
+						"0.0417": {
+							"vector": [0, -22.5, -0.00002]
 						}
 					}
 				}
@@ -259,14 +35,14 @@
 		},
 		"animation.redstone_valve.fifteen_zero": {
 			"loop": true,
-			"animation_length": 0.08333,
+			"animation_length": 0.04167,
 			"bones": {
 				"valve": {
 					"rotation": {
 						"0.0": {
 							"vector": [0, 337.5, 0.00002]
 						},
-						"0.0833": {
+						"0.0417": {
 							"vector": [0, 0, 0]
 						}
 					}
