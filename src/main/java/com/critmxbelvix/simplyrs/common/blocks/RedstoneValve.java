@@ -6,6 +6,7 @@ import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -30,8 +31,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.ticks.TickPriority;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -135,6 +134,7 @@ public class RedstoneValve extends Block implements EntityBlock {
             } else {
                 next_level = pState.getValue(OUTPUT_LEVEL) == 0 ? 15 : pState.getValue(OUTPUT_LEVEL) - 1;
             }
+            pPlayer.playSound(SoundEvents.LEVER_CLICK,1,1);
             pLevel.setBlockAndUpdate(pPos,pState.setValue(OUTPUT_LEVEL,next_level));
             pLevel.updateNeighborsAt(pPos.relative(pState.getValue(FACING)),pState.getBlock());
         }

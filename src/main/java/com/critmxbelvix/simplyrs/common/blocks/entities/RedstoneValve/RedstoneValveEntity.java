@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.Animation;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
@@ -21,8 +22,12 @@ public class RedstoneValveEntity extends BlockEntity implements IAnimatable {
     private AnimationFactory factory = GeckoLibUtil.createFactory(this);
     private AnimationController<RedstoneValveEntity> controller = new AnimationController<RedstoneValveEntity>
             (this, "valve_controller", 5, this::predicate);
+
     private static final Logger LOGGER = LogManager.getLogger();
-    private int current = 0;
+    private int previous = 0;
+    private int timer = 0;
+    private boolean single=false;
+    private boolean single2=false;
 
     public RedstoneValveEntity(BlockPos pPos, BlockState pBlockState) {
         super(BlockEntityRegister.REDSTONE_VALVE_ENTITY.get(), pPos, pBlockState);
@@ -40,85 +45,106 @@ public class RedstoneValveEntity extends BlockEntity implements IAnimatable {
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        int next = this.getBlockState().getValue(RedstoneValve.OUTPUT_LEVEL);
-        if (next != 0) {
+        int current = this.getBlockState().getValue(RedstoneValve.OUTPUT_LEVEL);
+        if (current != 0 || current != 15) {
+            single = false;
+            single2 = false;
             controller.transitionLengthTicks = 5;
         }
-        if (next == 1) {
+        if (current == 1) {
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.one", ILoopType.EDefaultLoopTypes.LOOP));
-        } else if (next == 2) {
+        } else if (current == 2) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.two", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 3) {
+        } else if (current == 3) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.three", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 4) {
+        } else if (current == 4) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.four", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 5) {
+        } else if (current == 5) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.five", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 6) {
+        } else if (current == 6) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.six", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 7) {
+        } else if (current == 7) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.seven", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 8) {
+        } else if (current == 8) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.eight", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 9) {
+        } else if (current == 9) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.nine", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 10) {
+        } else if (current == 10) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.ten", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 11) {
+        } else if (current == 11) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.eleven", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 12) {
+        } else if (current == 12) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.twelve", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 13) {
+        } else if (current == 13) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.thirteen", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 14) {
+        } else if (current == 14) {
 
             controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.fourteen", ILoopType.EDefaultLoopTypes.LOOP));
 
-        } else if (next == 15) {
-            if(current==0){
-                controller.transitionLengthTicks = 0;
-                controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.fifteen", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+        } else if (current == 15) {
+            if(previous ==0){
+                if(single2==false){
+                    single2=true;
+                    controller.transitionLengthTicks = 0;
+                    controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.zero_2", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+                }
+                else{
+                    controller.transitionLengthTicks = 5;
+                    controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.fifteen", ILoopType.EDefaultLoopTypes.LOOP));
+                }
             }
-            else{
+            else {
+                single2=false;
                 controller.transitionLengthTicks = 5;
                 controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.fifteen", ILoopType.EDefaultLoopTypes.LOOP));
             }
 
-        } else if (next == 0) {
-            if(current==15){
+        } else if (current == 0) {
+            if(previous ==15){
                 controller.transitionLengthTicks = 0;
-                controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.zero", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+                if(single==false){
+                    single=true;
+                    controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.fifteen_zero", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+                }
+                else{
+                    controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.zero", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
+                }
             }
             else {
+                single=false;
                 controller.transitionLengthTicks = 5;
                 controller.setAnimation(new AnimationBuilder().addAnimation("animation.redstone_valve.zero", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
             }
         }
-        current = next;
+        previous = current;
+        Animation animationname = controller.getCurrentAnimation();
+        if(animationname != null){
+            LOGGER.info(animationname.animationName + " " + single + " " + single2 + " " + controller.transitionLengthTicks);
+        }
         return PlayState.CONTINUE;
     }
 
@@ -126,4 +152,5 @@ public class RedstoneValveEntity extends BlockEntity implements IAnimatable {
     public AnimationFactory getFactory() {
         return this.factory;
     }
+
 }

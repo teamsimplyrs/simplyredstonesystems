@@ -17,17 +17,17 @@
 				}
 			}
 		},
-		"animation.redstone_valve.fiften_fifteen": {
+		"animation.redstone_valve.zero_2": {
 			"loop": true,
 			"animation_length": 0.04167,
 			"bones": {
 				"valve": {
 					"rotation": {
 						"0.0": {
-							"vector": [0, 337.5, 0]
+							"vector": [0, 360, -0.00002]
 						},
 						"0.0417": {
-							"vector": [0, -22.5, -0.00002]
+							"vector": [0, 360, 0]
 						}
 					}
 				}
@@ -40,7 +40,7 @@
 				"valve": {
 					"rotation": {
 						"0.0": {
-							"vector": [0, 337.5, 0.00002]
+							"vector": [0, -22.5, 0.00002]
 						},
 						"0.0417": {
 							"vector": [0, 0, 0]
@@ -273,7 +273,7 @@
 		},
 		"animation.redstone_valve.fifteen": {
 			"loop": true,
-			"animation_length": 0.04167,
+			"animation_length": 0.08333,
 			"bones": {
 				"valve": {
 					"rotation": {
@@ -285,6 +285,14 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.0": {
+					"effect": "idk man"
+				}
+			},
+			"timeline": {
+				"0.0417": "im tired"
 			}
 		}
 	},
