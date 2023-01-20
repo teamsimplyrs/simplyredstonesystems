@@ -12,6 +12,7 @@ A Minecraft Mod that introduces many little utilities for redstone like gates, c
 <li> All 2-input basic logic gates ✅</li>
 <li> Redstone Crossbridge (Allows intersectional crossing of redstone signals without making a mess) ✅ </li>
 <li> Redstone Clock ✅ </li>
+<li> Redstone Valve (Allows choosing the redstone power value from 0 to 15) ✅ </li>
 <li> Redstone Cables ❌ </li>
 <li> Activator Weapons/Tools + Armor Series (Weapons, Tools and Armor with redstone utility based features) ⭕ </li>
 <li> Block Placers, Block Breakers ❌</li>
