@@ -13,7 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-public class EventEntityHitWithSword {
+public class ActivatorToolEvents {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -24,9 +24,16 @@ public class EventEntityHitWithSword {
         return target_level.getBlockState(target_pos).getBlock();
     }
 
-    public static void summonSpriteOnPos(LivingEntity pTarget)
+    public static void swordSummonSpriteOnPos(LivingEntity pTarget)
     {
         Level target_level = pTarget.getLevel();
         if (pTarget.getFeetBlockState().getBlock()== Blocks.AIR) target_level.setBlockAndUpdate(pTarget.blockPosition(), BlockRegister.REDSTONE_SPRITE.get().defaultBlockState());
+    }
+
+    public static void toolSummonSpriteOnBreakPos(LivingEntity pPlayer, BlockPos pPos)
+    {
+        /*Level pLevel = pPlayer.getLevel();
+        LOGGER.info(pPos);
+        pLevel.setBlockAndUpdate(pPos,BlockRegister.REDSTONE_SPRITE.get().defaultBlockState());*/
     }
 }

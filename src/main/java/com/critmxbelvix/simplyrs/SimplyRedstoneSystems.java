@@ -1,6 +1,7 @@
 package com.critmxbelvix.simplyrs;
 
 import com.critmxbelvix.simplyrs.common.ClientSetupClass;
+import com.critmxbelvix.simplyrs.common.event.SRSEvents;
 import com.critmxbelvix.simplyrs.common.registers.*;
 import com.critmxbelvix.simplyrs.client.screen.RedstoneClockScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -43,8 +44,10 @@ public class SimplyRedstoneSystems
         eventBus.addListener(this::enqueueIMC);
         eventBus.addListener(this::processIMC);
         eventBus.addListener(this::clientsetup);
+        SRSEvents.registerEvents();
         GeckoLib.initialize();
         MinecraftForge.EVENT_BUS.register(this);
+
     }
     private void commonsetup(final FMLCommonSetupEvent event)
     {

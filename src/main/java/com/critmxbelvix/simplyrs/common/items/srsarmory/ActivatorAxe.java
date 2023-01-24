@@ -1,12 +1,17 @@
 package com.critmxbelvix.simplyrs.common.items.srsarmory;
 
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
+import com.critmxbelvix.simplyrs.common.event.ActivatorToolEvents;
 import com.critmxbelvix.simplyrs.common.registers.ItemRegister;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
 
@@ -81,4 +86,14 @@ public class ActivatorAxe extends AxeItem {
         return newItemStack.getDamageValue() >= newItemStack.getMaxDamage() ? newItemStack : ItemStack.EMPTY;
     }
 
+    @Override
+    public boolean mineBlock(ItemStack pStack, Level pLevel, BlockState pState, BlockPos pPos, LivingEntity pEntityLiving) {
+        if (!pLevel.isClientSide && pState.getDestroySpeed(pLevel, pPos) != 0.0F) {
+            pStack.hurtAndBreak(1, pEntityLiving, (p_40992_) -> {
+                p_40992_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+            });
+        }
+        //ActivatorToolEvents.toolSummonSpriteOnBreakPos(pEntityLiving,pPos);
+        return true;
+    }
 }

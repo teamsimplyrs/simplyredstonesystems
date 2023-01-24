@@ -1,7 +1,7 @@
 package com.critmxbelvix.simplyrs.common.items.srsarmory;
 
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
-import com.critmxbelvix.simplyrs.common.event.EventEntityHitWithSword;
+import com.critmxbelvix.simplyrs.common.event.ActivatorToolEvents;
 import com.critmxbelvix.simplyrs.common.registers.ItemRegister;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -101,9 +101,7 @@ public class ActivatorSword extends SwordItem {
             p_43296_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
 
-        Block block_underneath = EventEntityHitWithSword.getBlockUnderneathEntity(pTarget);
-        LOGGER.info("Entity is on: "+block_underneath);
-        EventEntityHitWithSword.summonSpriteOnPos(pTarget);
+        ActivatorToolEvents.swordSummonSpriteOnPos(pTarget);
         return true;
     }
 
