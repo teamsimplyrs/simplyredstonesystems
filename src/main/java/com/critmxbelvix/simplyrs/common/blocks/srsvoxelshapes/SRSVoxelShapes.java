@@ -94,4 +94,7 @@ public class SRSVoxelShapes {
             Block.box(1, 7.75, 1, 15, 9.25, 15)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
+    // Redstone Sprite VoxelShape
+    public static final VoxelShape SPRITE_SHAPE = Block.box(6, 4, 6, 10, 8, 10);
+
 }

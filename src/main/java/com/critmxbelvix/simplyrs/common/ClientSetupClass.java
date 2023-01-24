@@ -26,6 +26,7 @@ public class ClientSetupClass {
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_CROSSBRIDGE.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_ARITHMETIC_UNIT.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_VALVE.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_SPRITE.get(), RenderType.translucent());
     }
 
 

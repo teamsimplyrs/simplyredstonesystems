@@ -2,6 +2,7 @@ package com.critmxbelvix.simplyrs.common.registers;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import com.critmxbelvix.simplyrs.common.blocks.*;
+import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneSprite;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -156,6 +157,13 @@ public class BlockRegister {
             PiezoRedstoneBlock.mGetName(),
             ()-> new PiezoRedstoneBlock(PiezoRedstoneBlock.mGetProperties()),
             PiezoRedstoneBlock.mGetTab()
+    );
+
+    // Redstone Sprite
+    public static final RegistryObject<Block> REDSTONE_SPRITE = registerBlock(
+            RedstoneSprite.mGetName(),
+            ()-> new RedstoneSprite(RedstoneSprite.mGetProperties()),
+            RedstoneSprite.mGetTab()
     );
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {

@@ -103,7 +103,7 @@ public class ActivatorSword extends SwordItem {
 
         Block block_underneath = EventEntityHitWithSword.getBlockUnderneathEntity(pTarget);
         LOGGER.info("Entity is on: "+block_underneath);
-        EventEntityHitWithSword.powerBlockUnderneath(pTarget);
+        EventEntityHitWithSword.summonSpriteOnPos(pTarget);
         return true;
     }
 
