@@ -13,6 +13,7 @@
   "block.simplyrs.logicgate_nor2": "Logic Gate: NOR (2-input)",
   "block.simplyrs.logicgate_xor2": "Logic Gate: XOR (2-input)",
   "block.simplyrs.logicgate_xnor2": "Logic Gate: XNOR (2-input)",
+  "block.simplyrs.flipflop": "Redstone Flip-Flop (SR)",
 
   "block.simplyrs.redstone_clock": "Redstone Clock",
   "block.simplyrs.redstone_crossbridge": "Redstone Crossbridge",

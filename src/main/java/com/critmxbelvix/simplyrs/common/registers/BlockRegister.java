@@ -166,6 +166,13 @@ public class BlockRegister {
             RedstoneSprite.mGetTab()
     );
 
+    // Redstone Flip-Flop (SR)
+    public static final RegistryObject<Block> REDSTONE_FLIPFLOP = registerBlock(
+            FlipFlopBlock.mGetName(),
+            ()-> new FlipFlopBlock(FlipFlopBlock.mGetProperties()),
+            FlipFlopBlock.mGetTab()
+    );
+
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }
