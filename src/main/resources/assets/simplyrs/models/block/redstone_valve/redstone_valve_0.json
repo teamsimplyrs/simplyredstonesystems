@@ -1,4 +1,5 @@
 {
+	"parent": "block/cube_all",
 	"textures": {
 		"0": "simplyrs:item/redstone_valve_indicator",
 		"1": "block/copper_block",
