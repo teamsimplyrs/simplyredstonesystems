@@ -1,10 +1,13 @@
 package com.critmxbelvix.simplyrs.common.items.srsarmory;
 
+
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import com.critmxbelvix.simplyrs.common.registers.ItemRegister;
+import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
@@ -15,6 +18,7 @@ import java.util.List;
 
 public abstract class ActivatorArmor extends ArmorItem {
 
+    static final String name = "simplyrs:activator";
     static final CreativeModeTab tab = SimplyRSCreativeTab.SRS_ARMORY_TAB;
     static final Properties properties = new Properties().tab(tab);
 
@@ -37,7 +41,7 @@ public abstract class ActivatorArmor extends ArmorItem {
 
             @Override
             public SoundEvent getEquipSound() {
-                return null;
+                return SoundEvents.ARMOR_EQUIP_GOLD;
             }
 
             @Override
@@ -47,12 +51,12 @@ public abstract class ActivatorArmor extends ArmorItem {
 
             @Override
             public String getName() {
-                return "activator_armor";
+                return name;
             }
 
             @Override
             public float getToughness() {
-                return 0;
+                return 1;
             }
 
             @Override
@@ -79,7 +83,7 @@ public abstract class ActivatorArmor extends ArmorItem {
 
         @Override
         public String getArmorTexture(ItemStack itemStack, Entity pEntity, EquipmentSlot pSlot, String pType) {
-            return "xyz_layer_1.png";
+            return "simplyrs:textures/models/armor/activator_layer_1.png";
         }
         public static String mGetName() { return name; }
 
@@ -101,7 +105,7 @@ public abstract class ActivatorArmor extends ArmorItem {
 
         @Override
         public String getArmorTexture(ItemStack itemStack, Entity pEntity, EquipmentSlot pSlot, String pType) {
-            return "xyz_layer_1.png";
+            return "simplyrs:textures/models/armor/activator_layer_1.png";
         }
         public static String mGetName() { return name; }
     }
@@ -122,7 +126,7 @@ public abstract class ActivatorArmor extends ArmorItem {
 
         @Override
         public String getArmorTexture(ItemStack itemStack, Entity pEntity, EquipmentSlot pSlot, String pType) {
-            return "xyz_layer_2.png";
+            return "simplyrs:textures/models/armor/activator_layer_2.png";
         }
         public static String mGetName() { return name; }
     }
@@ -143,9 +147,11 @@ public abstract class ActivatorArmor extends ArmorItem {
 
         @Override
         public String getArmorTexture(ItemStack itemStack, Entity pEntity, EquipmentSlot pSlot, String pType) {
-            return "xyz_layer_1.png";
+            return "simplyrs:textures/models/armor/activator_layer_1.png";
         }
         public static String mGetName() { return name; }
+
+
     }
 
 }
