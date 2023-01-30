@@ -1,3 +1,7 @@
 {
-  "parent": "simplyrs:block/redstone_valve/redstone_valve_0"
+  "parent": "item/generated",
+  "textures":
+  {
+    "layer0": "simplyrs:item/redstone_valve"
+  }
 }
