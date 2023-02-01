@@ -143,7 +143,7 @@ public class RedstoneValveEntity extends BlockEntity implements IAnimatable {
         previous = current;
         Animation animationname = controller.getCurrentAnimation();
         if(animationname != null){
-            LOGGER.info(animationname.animationName + " " + single + " " + single2 + " " + controller.transitionLengthTicks);
+           // LOGGER.info(animationname.animationName + " " + single + " " + single2 + " " + controller.transitionLengthTicks);
         }
         return PlayState.CONTINUE;
     }

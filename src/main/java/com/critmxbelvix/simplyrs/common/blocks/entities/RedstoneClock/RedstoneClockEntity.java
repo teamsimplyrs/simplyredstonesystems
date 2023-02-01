@@ -88,7 +88,6 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
         {
             pLevel.setBlockAndUpdate(pPos,pState.setValue(RedstoneClock.POWERED, false));
         }
-
     }
 
     /* Geckolib */

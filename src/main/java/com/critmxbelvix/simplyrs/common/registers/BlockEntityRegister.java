@@ -2,6 +2,7 @@ package com.critmxbelvix.simplyrs.common.registers;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import com.critmxbelvix.simplyrs.common.blocks.entities.ArithmeticUnit.ArithmeticBlockEntity;
+import com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop.JKFlipFlopEntity;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClock.RedstoneClockEntity;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneValve.RedstoneValveEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -25,6 +26,10 @@ public class BlockEntityRegister {
     public static final RegistryObject<BlockEntityType<RedstoneValveEntity>> REDSTONE_VALVE_ENTITY =
             BLOCKENTITIES.register("redstone_valve_entity", () ->
                     BlockEntityType.Builder.of(RedstoneValveEntity::new,BlockRegister.REDSTONE_VALVE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<JKFlipFlopEntity>> JK_FLIPFLOP_ENTITY =
+            BLOCKENTITIES.register("jk_flipflop_entity", () ->
+                    BlockEntityType.Builder.of(JKFlipFlopEntity::new,BlockRegister.REDSTONE_FLIPFLOP.get()).build(null));
 
     public static void register(IEventBus eventBus)
     {

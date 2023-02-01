@@ -1,10 +1,11 @@
 package com.critmxbelvix.simplyrs.common.blocks;
 
+import com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop.JKFlipFlopEntity;
 import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.SRSVoxelShapes;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
+import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -13,6 +14,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -27,15 +30,15 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.ticks.TickPriority;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Random;
 
 import static java.util.Collections.singletonList;
 
-public class FlipFlopBlock extends Block {
+public class FlipFlopBlock extends BaseEntityBlock {
 
-    static final String name = "flipflop";
+    static final String name = "jk_flipflop";
     static final CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
     static final Properties flipflop_properties = Properties.of(Material.STONE).strength(0.3f).dynamicShape();
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -150,17 +153,6 @@ public class FlipFlopBlock extends Block {
         return true;
     }
 
-    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, Random pRand) {
-        boolean flag = pState.getValue(POWERED);
-        boolean flag1 = this.shouldTurnOn(pLevel, pPos, pState);
-        if (flag && !flag1) {
-            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(false)), 2);
-        } else if(flag1){
-            pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(true)), 2);
-        }
-        pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
-    }
-
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if(!pState.canSurvive(pLevel,pPos)){
@@ -206,5 +198,28 @@ public class FlipFlopBlock extends Block {
             return drops;
         return singletonList(new ItemStack(this, 1));
     }
+
+    @Override
+    public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
+        if (!pBlockState.getValue(POWERED)) {
+            return 0;
+        } else {
+            return pBlockState.getValue(FACING).getOpposite() == pSide ? this.getOutputSignal(pBlockAccess, pPos, pBlockState) : 0;
+        }
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new JKFlipFlopEntity(pPos, pState);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return createTickerHelper(pBlockEntityType, BlockEntityRegister.JK_FLIPFLOP_ENTITY.get(),
+                JKFlipFlopEntity::tick);
+    }
+
 
 }
