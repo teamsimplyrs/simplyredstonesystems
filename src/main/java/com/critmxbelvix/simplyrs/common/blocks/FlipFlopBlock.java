@@ -208,6 +208,11 @@ public class FlipFlopBlock extends BaseEntityBlock {
         }
     }
 
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
+    }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
@@ -220,6 +225,7 @@ public class FlipFlopBlock extends BaseEntityBlock {
         return createTickerHelper(pBlockEntityType, BlockEntityRegister.JK_FLIPFLOP_ENTITY.get(),
                 JKFlipFlopEntity::tick);
     }
+
 
 
 }
