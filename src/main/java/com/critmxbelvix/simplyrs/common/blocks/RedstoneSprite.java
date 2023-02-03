@@ -1,14 +1,19 @@
-package com.critmxbelvix.simplyrs.common.blocks.entities;
+package com.critmxbelvix.simplyrs.common.blocks;
 
+import com.critmxbelvix.simplyrs.common.blocks.entities.SpriteEntity;
 import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.SRSVoxelShapes;
+import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -21,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class RedstoneSprite extends Block {
+public class RedstoneSprite extends BaseEntityBlock {
 
     static final String name = "redstone_sprite";
     static final Properties sprite_properties = Properties.of(Material.STONE).strength(0).dynamicShape().noCollission();
@@ -85,5 +90,18 @@ public class RedstoneSprite extends Block {
     @Override
     public boolean canConnectRedstone(BlockState state, BlockGetter level, BlockPos pos, @Nullable Direction direction) {
         return true;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new SpriteEntity(pPos,pState);
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return createTickerHelper(pBlockEntityType, BlockEntityRegister.REDSTONE_SPRITE_ENTITY.get(),
+                SpriteEntity::tick);
     }
 }

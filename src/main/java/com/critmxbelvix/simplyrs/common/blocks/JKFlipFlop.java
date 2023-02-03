@@ -36,7 +36,7 @@ import java.util.List;
 
 import static java.util.Collections.singletonList;
 
-public class FlipFlopBlock extends BaseEntityBlock {
+public class JKFlipFlop extends BaseEntityBlock {
 
     static final String name = "jk_flipflop";
     static final CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
@@ -48,7 +48,7 @@ public class FlipFlopBlock extends BaseEntityBlock {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public FlipFlopBlock(Properties pProperties) {
+    public JKFlipFlop(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(
                 this.getStateDefinition().any()

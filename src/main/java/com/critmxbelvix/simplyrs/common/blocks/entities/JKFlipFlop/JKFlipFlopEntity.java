@@ -1,6 +1,6 @@
 package com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop;
 
-import com.critmxbelvix.simplyrs.common.blocks.FlipFlopBlock;
+import com.critmxbelvix.simplyrs.common.blocks.JKFlipFlop;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -17,7 +17,7 @@ public class JKFlipFlopEntity extends BlockEntity {
 
     public JKFlipFlopEntity(BlockPos pPos, BlockState pBlockState) {
         super(BlockEntityRegister.JK_FLIPFLOP_ENTITY.get(), pPos, pBlockState);
-        this.previous = pBlockState.getValue(FlipFlopBlock.INPUT_CLK);
+        this.previous = pBlockState.getValue(JKFlipFlop.INPUT_CLK);
     }
 
     protected void saveAdditional(CompoundTag pTag) {
@@ -40,10 +40,10 @@ public class JKFlipFlopEntity extends BlockEntity {
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, JKFlipFlopEntity pBlockEntity) {
         LOGGER.info("Ticked");
-        boolean current = pState.getValue(FlipFlopBlock.POWERED);
-        boolean clock = pState.getValue(FlipFlopBlock.INPUT_CLK);
-        boolean J_Input = pState.getValue(FlipFlopBlock.INPUT_1);
-        boolean K_Input = pState.getValue(FlipFlopBlock.INPUT_2);
+        boolean current = pState.getValue(JKFlipFlop.POWERED);
+        boolean clock = pState.getValue(JKFlipFlop.INPUT_CLK);
+        boolean J_Input = pState.getValue(JKFlipFlop.INPUT_1);
+        boolean K_Input = pState.getValue(JKFlipFlop.INPUT_2);
         if(!pBlockEntity.previous && clock){
             if(J_Input && !K_Input && !current){
                 LOGGER.info("first");
@@ -63,7 +63,7 @@ public class JKFlipFlopEntity extends BlockEntity {
                     LOGGER.info("fourth");
                 }
             }
-            pLevel.setBlockAndUpdate(pPos, pState.setValue(FlipFlopBlock.POWERED,current));
+            pLevel.setBlockAndUpdate(pPos, pState.setValue(JKFlipFlop.POWERED,current));
         }
         pBlockEntity.previous = clock;
     }

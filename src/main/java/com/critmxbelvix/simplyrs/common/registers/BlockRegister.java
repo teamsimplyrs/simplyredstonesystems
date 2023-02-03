@@ -2,10 +2,7 @@ package com.critmxbelvix.simplyrs.common.registers;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import com.critmxbelvix.simplyrs.common.blocks.*;
-import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneSprite;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
+import com.critmxbelvix.simplyrs.common.blocks.RedstoneSprite;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -166,11 +163,18 @@ public class BlockRegister {
             RedstoneSprite.mGetTab()
     );
 
-    // Redstone Flip-Flop (SR)
-    public static final RegistryObject<Block> REDSTONE_FLIPFLOP = registerBlock(
-            FlipFlopBlock.mGetName(),
-            ()-> new FlipFlopBlock(FlipFlopBlock.mGetProperties()),
-            FlipFlopBlock.mGetTab()
+    // Redstone JK Flip-Flop (SR)
+    public static final RegistryObject<Block> REDSTONE_JK_FLIPFLOP = registerBlock(
+            JKFlipFlop.mGetName(),
+            ()-> new JKFlipFlop(JKFlipFlop.mGetProperties()),
+            JKFlipFlop.mGetTab()
+    );
+
+    // Redstone T Flip-Flop (SR)
+    public static final RegistryObject<Block> REDSTONE_T_FLIPFLOP = registerBlock(
+            TFlipFlop.mGetName(),
+            ()-> new TFlipFlop(TFlipFlop.mGetProperties()),
+            TFlipFlop.mGetTab()
     );
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
