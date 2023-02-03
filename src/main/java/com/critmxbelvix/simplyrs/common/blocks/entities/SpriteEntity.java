@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class SpriteEntity extends BlockEntity {
-    static int lifetime;
+    int lifetime;
     private static final Logger LOGGER = LogManager.getLogger();
 
     public SpriteEntity(BlockPos pPos, BlockState pBlockState) {
@@ -18,11 +18,14 @@ public class SpriteEntity extends BlockEntity {
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, SpriteEntity pBlockEntity) {
-        if (pLevel.isClientSide) {
-            if(!pState.canSurvive(pLevel,pPos) || lifetime == 0){
+
+        if (!pLevel.isClientSide) {
+            if(!pState.canSurvive(pLevel,pPos) || pBlockEntity.lifetime == 0){
                 pLevel.removeBlock(pPos, false);
             }
-            if (lifetime!=0) lifetime--;
+            if (pBlockEntity.lifetime!=0) {
+                pBlockEntity.lifetime--;
+            }
         }
     }
 }

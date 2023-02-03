@@ -39,28 +39,23 @@ public class JKFlipFlopEntity extends BlockEntity {
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, JKFlipFlopEntity pBlockEntity) {
-        LOGGER.info("Ticked");
         boolean current = pState.getValue(JKFlipFlop.POWERED);
         boolean clock = pState.getValue(JKFlipFlop.INPUT_CLK);
         boolean J_Input = pState.getValue(JKFlipFlop.INPUT_1);
         boolean K_Input = pState.getValue(JKFlipFlop.INPUT_2);
         if(!pBlockEntity.previous && clock){
             if(J_Input && !K_Input && !current){
-                LOGGER.info("first");
                 current = true;
             }
             else if(K_Input && !J_Input && current){
                 current = false;
-                LOGGER.info("second");
             }
             else if(J_Input && K_Input){
                 if(current){
                     current = false;
-                    LOGGER.info("third");
                 }
                 else{
                     current = true;
-                    LOGGER.info("fourth");
                 }
             }
             pLevel.setBlockAndUpdate(pPos, pState.setValue(JKFlipFlop.POWERED,current));

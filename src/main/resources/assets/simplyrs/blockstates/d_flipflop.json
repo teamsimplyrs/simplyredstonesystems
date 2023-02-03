@@ -1,0 +1,9 @@
+{
+  "variants":
+  {
+    "facing=north": {"model": "simplyrs:block/jk_flipflop"},
+    "facing=east": {"model": "simplyrs:block/jk_flipflop","y": 90},
+    "facing=south": {"model": "simplyrs:block/jk_flipflop","y": 180},
+    "facing=west": {"model": "simplyrs:block/jk_flipflop","y": 270}
+  }
+}

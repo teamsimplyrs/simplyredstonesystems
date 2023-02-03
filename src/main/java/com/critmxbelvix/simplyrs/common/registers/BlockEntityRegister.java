@@ -2,6 +2,7 @@ package com.critmxbelvix.simplyrs.common.registers;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import com.critmxbelvix.simplyrs.common.blocks.entities.ArithmeticUnit.ArithmeticBlockEntity;
+import com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop.DFlipFlopEntity;
 import com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop.JKFlipFlopEntity;
 import com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop.TFlipFlopEntity;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClock.RedstoneClockEntity;
@@ -36,6 +37,10 @@ public class BlockEntityRegister {
     public static final RegistryObject<BlockEntityType<TFlipFlopEntity>> T_FLIPFLOP_ENTITY =
             BLOCKENTITIES.register("t_flipflop_entity", () ->
                     BlockEntityType.Builder.of(TFlipFlopEntity::new,BlockRegister.REDSTONE_T_FLIPFLOP.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<DFlipFlopEntity>> D_FLIPFLOP_ENTITY =
+            BLOCKENTITIES.register("d_flipflop_entity", () ->
+                    BlockEntityType.Builder.of(DFlipFlopEntity::new,BlockRegister.REDSTONE_D_FLIPFLOP.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<SpriteEntity>> REDSTONE_SPRITE_ENTITY =
             BLOCKENTITIES.register("sprite_entity", () ->
