@@ -30,7 +30,7 @@ import java.util.Random;
 public class RedstoneSprite extends BaseEntityBlock {
 
     static final String name = "redstone_sprite";
-    static final Properties sprite_properties = Properties.of(Material.STONE).strength(0).dynamicShape().noCollission();
+    static final Properties sprite_properties = Properties.of(Material.GLASS).strength(50f,10000).dynamicShape().noCollission();
     static final CreativeModeTab tab = null;
 
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;

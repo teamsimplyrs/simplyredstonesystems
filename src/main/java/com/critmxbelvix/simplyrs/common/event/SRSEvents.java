@@ -1,6 +1,7 @@
 package com.critmxbelvix.simplyrs.common.event;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
+import com.critmxbelvix.simplyrs.common.blocks.RedstoneSprite;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClock.RedstoneClockRenderer;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneValve.RedstoneValveRenderer;
 import com.critmxbelvix.simplyrs.common.items.srsarmory.ActivatorAxe;
@@ -15,6 +16,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,12 +47,19 @@ public class SRSEvents {
             boolean toolIsValid = tool instanceof ActivatorAxe || tool instanceof ActivatorPickaxe || tool instanceof ActivatorHoe || tool instanceof ActivatorShovel;
             BlockPos breakPos = breakEvent.getPos();
             LOGGER.info("Tool: "+tool+"\nIs tool valid?"+toolIsValid);
-            if (toolIsValid)
-            {
+            LOGGER.info(level.getBlockState(breakPos).getBlock());
+            if(level.getBlockState(breakPos).getBlock() instanceof RedstoneSprite){
+                LOGGER.info("called");
                 breakEvent.setCanceled(true);
-                level.destroyBlock(breakPos,true);
-                level.setBlockAndUpdate(breakPos, BlockRegister.REDSTONE_SPRITE.get().defaultBlockState());
-                LOGGER.info("New block in place of broken block: "+level.getBlockState(breakPos));
+            }
+            else{
+                if (toolIsValid)
+                {
+                    breakEvent.setCanceled(true);
+                    level.destroyBlock(breakPos,true);
+                    level.setBlockAndUpdate(breakPos, BlockRegister.REDSTONE_SPRITE.get().defaultBlockState());
+                    LOGGER.info("New block in place of broken block: "+level.getBlockState(breakPos));
+                }
             }
         }
     }
@@ -73,7 +82,9 @@ public class SRSEvents {
     {
         LOGGER.info(fallEvent.getEntityLiving()+" has taken fall damage!");
         ItemStack bootsWorn = fallEvent.getEntityLiving().getArmorSlots().iterator().next();
-        if (bootsWorn.getItem()==ItemRegister.ACTIVATOR_BOOTS.get() && fallEvent.getEntityLiving().fallDistance>3.3f)
+        BlockPos placePosition = fallEvent.getEntityLiving().blockPosition();
+        boolean isAir = fallEvent.getEntityLiving().getLevel().getBlockState(placePosition).getBlock() == Blocks.AIR;
+        if (bootsWorn.getItem()==ItemRegister.ACTIVATOR_BOOTS.get() && fallEvent.getEntityLiving().fallDistance>3.3f && isAir)
             fallEvent.getEntityLiving().getLevel().setBlockAndUpdate(fallEvent.getEntityLiving().blockPosition(),BlockRegister.REDSTONE_SPRITE.get().defaultBlockState());
     }
     public static void activatorChestplateDamageEvent(LivingDamageEvent dmgEvent)
@@ -81,9 +92,11 @@ public class SRSEvents {
         DamageSource source = dmgEvent.getSource();
         Iterable<ItemStack> armorWorn = dmgEvent.getEntityLiving().getArmorSlots();
         boolean isActivatorChestplateFlag = false;
+        BlockPos placePosition = dmgEvent.getEntityLiving().blockPosition();
+        boolean isAir = dmgEvent.getEntityLiving().getLevel().getBlockState(placePosition).getBlock() == Blocks.AIR;
         for (ItemStack chestplate : armorWorn)
             if (chestplate.is(ItemRegister.ACTIVATOR_CHESPLATE.get())) { isActivatorChestplateFlag = true; break; }
-        if (isActivatorChestplateFlag && source!=DamageSource.FALL)
+        if (isActivatorChestplateFlag && source!=DamageSource.FALL && isAir)
             dmgEvent.getEntityLiving().getLevel().setBlockAndUpdate(dmgEvent.getEntityLiving().blockPosition(),BlockRegister.REDSTONE_SPRITE.get().defaultBlockState());
     }
 
@@ -91,10 +104,13 @@ public class SRSEvents {
     {
         Iterable<ItemStack> armorWorn = jumpEvent.getEntityLiving().getArmorSlots();
         boolean isActivatorLeggingsFlag = false;
+        BlockPos placePosition = jumpEvent.getEntityLiving().blockPosition();
+        boolean isAir = jumpEvent.getEntityLiving().getLevel().getBlockState(placePosition).getBlock() == Blocks.AIR;
+        LOGGER.info(isAir);
         for (ItemStack leggings : armorWorn)
             if (leggings.is(ItemRegister.ACTIVATOR_LEGGINGS.get())) { isActivatorLeggingsFlag = true; break; }
 
-        if (isActivatorLeggingsFlag)
+        if (isActivatorLeggingsFlag && isAir)
             jumpEvent.getEntityLiving().getLevel().setBlockAndUpdate(jumpEvent.getEntityLiving().blockPosition(),BlockRegister.REDSTONE_SPRITE.get().defaultBlockState());
     }
     public static void registerEvents() {
