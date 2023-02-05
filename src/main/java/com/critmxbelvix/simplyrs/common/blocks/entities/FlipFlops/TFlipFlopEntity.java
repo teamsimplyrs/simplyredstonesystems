@@ -1,6 +1,5 @@
-package com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop;
+package com.critmxbelvix.simplyrs.common.blocks.entities.FlipFlops;
 
-import com.critmxbelvix.simplyrs.common.blocks.DFlipFlop;
 import com.critmxbelvix.simplyrs.common.blocks.TFlipFlop;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
@@ -11,13 +10,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class DFlipFlopEntity extends BlockEntity {
+public class TFlipFlopEntity extends BlockEntity {
 
     private boolean previous;
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public DFlipFlopEntity(BlockPos pPos, BlockState pBlockState) {
-        super(BlockEntityRegister.D_FLIPFLOP_ENTITY.get(), pPos, pBlockState);
+    public TFlipFlopEntity(BlockPos pPos, BlockState pBlockState) {
+        super(BlockEntityRegister.T_FLIPFLOP_ENTITY.get(), pPos, pBlockState);
         this.previous = pBlockState.getValue(TFlipFlop.INPUT_CLK);
     }
 
@@ -39,14 +38,13 @@ public class DFlipFlopEntity extends BlockEntity {
         this.previous = pPrev;
     }
 
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, DFlipFlopEntity pBlockEntity) {
-        LOGGER.info("Ticked");
-        boolean current = pState.getValue(DFlipFlop.POWERED);
-        boolean clock = pState.getValue(DFlipFlop.INPUT_CLK);
-        boolean J_Input = pState.getValue(DFlipFlop.INPUT_1);
-        boolean K_Input = pState.getValue(DFlipFlop.INPUT_2);
-        if(!pBlockEntity.previous && clock){
-            pLevel.setBlockAndUpdate(pPos, pState.setValue(DFlipFlop.POWERED,J_Input));
+    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, TFlipFlopEntity pBlockEntity) {
+        boolean current = pState.getValue(TFlipFlop.POWERED);
+        boolean clock = pState.getValue(TFlipFlop.INPUT_CLK);
+        boolean J_Input = pState.getValue(TFlipFlop.INPUT_1);
+        boolean K_Input = pState.getValue(TFlipFlop.INPUT_2);
+        if(!pBlockEntity.previous && clock && J_Input){
+            pLevel.setBlockAndUpdate(pPos, pState.setValue(TFlipFlop.POWERED,!current));
         }
         pBlockEntity.previous = clock;
     }

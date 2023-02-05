@@ -1,4 +1,4 @@
-package com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop;
+package com.critmxbelvix.simplyrs.common.blocks.entities.FlipFlops;
 
 import com.critmxbelvix.simplyrs.common.blocks.JKFlipFlop;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;

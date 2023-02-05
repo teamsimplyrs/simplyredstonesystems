@@ -2,9 +2,9 @@ package com.critmxbelvix.simplyrs.common.registers;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import com.critmxbelvix.simplyrs.common.blocks.entities.ArithmeticUnit.ArithmeticBlockEntity;
-import com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop.DFlipFlopEntity;
-import com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop.JKFlipFlopEntity;
-import com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop.TFlipFlopEntity;
+import com.critmxbelvix.simplyrs.common.blocks.entities.FlipFlops.DFlipFlopEntity;
+import com.critmxbelvix.simplyrs.common.blocks.entities.FlipFlops.JKFlipFlopEntity;
+import com.critmxbelvix.simplyrs.common.blocks.entities.FlipFlops.TFlipFlopEntity;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneClock.RedstoneClockEntity;
 import com.critmxbelvix.simplyrs.common.blocks.entities.RedstoneValve.RedstoneValveEntity;
 import com.critmxbelvix.simplyrs.common.blocks.entities.SpriteEntity;
