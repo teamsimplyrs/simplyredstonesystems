@@ -8,7 +8,7 @@
 		"6": "block/smooth_stone",
 		"7": "block/stonecutter_bottom",
 		"8": "block/light_blue_concrete",
-		"particle": "simplyrs:block/bright_blue_light"
+		"particle": "block/smooth_stone"
 	},
 	"elements": [
 		{
