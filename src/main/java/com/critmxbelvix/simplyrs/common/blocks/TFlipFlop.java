@@ -1,6 +1,7 @@
 package com.critmxbelvix.simplyrs.common.blocks;
 
 import com.critmxbelvix.simplyrs.common.blocks.entities.JKFlipFlop.TFlipFlopEntity;
+import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.JKFlipFlopVoxelShapes;
 import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.SRSVoxelShapes;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
@@ -73,7 +74,7 @@ public class TFlipFlop extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SRSVoxelShapes.FLIPFLOP_SHAPE;
+        return JKFlipFlopVoxelShapes.NORTH_SHAPE;
     }
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         return canSupportRigidBlock(pLevel, pPos.below());

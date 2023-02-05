@@ -1,9 +1,87 @@
 {
   "variants":
   {
-    "facing=north": {"model": "simplyrs:block/jk_flipflop"},
-    "facing=east": {"model": "simplyrs:block/jk_flipflop","y": 90},
-    "facing=south": {"model": "simplyrs:block/jk_flipflop","y": 180},
-    "facing=west": {"model": "simplyrs:block/jk_flipflop","y": 270}
+    "facing=north,input_1=false,input_2=false,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop"},
+    "facing=north,input_1=false,input_2=false,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_on"},
+    "facing=north,input_1=false,input_2=false,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_clk"},
+    "facing=north,input_1=false,input_2=false,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_clk_on"},
+
+    "facing=north,input_1=false,input_2=true,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01"},
+    "facing=north,input_1=false,input_2=true,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_on"},
+    "facing=north,input_1=false,input_2=true,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_clk"},
+    "facing=north,input_1=false,input_2=true,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_clk_on"},
+
+    "facing=north,input_1=true,input_2=false,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10"},
+    "facing=north,input_1=true,input_2=false,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_on"},
+    "facing=north,input_1=true,input_2=false,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_clk"},
+    "facing=north,input_1=true,input_2=false,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_clk_on"},
+
+    "facing=north,input_1=true,input_2=true,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11"},
+    "facing=north,input_1=true,input_2=true,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_on"},
+    "facing=north,input_1=true,input_2=true,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_clk"},
+    "facing=north,input_1=true,input_2=true,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_clk_on"},
+
+
+    "facing=east,input_1=false,input_2=false,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop","y": 90},
+    "facing=east,input_1=false,input_2=false,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_on","y": 90},
+    "facing=east,input_1=false,input_2=false,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_clk","y": 90},
+    "facing=east,input_1=false,input_2=false,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_clk_on","y": 90},
+
+    "facing=east,input_1=false,input_2=true,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01","y": 90},
+    "facing=east,input_1=false,input_2=true,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_on","y": 90},
+    "facing=east,input_1=false,input_2=true,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_clk","y": 90},
+    "facing=east,input_1=false,input_2=true,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_clk_on","y": 90},
+
+    "facing=east,input_1=true,input_2=false,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10","y": 90},
+    "facing=east,input_1=true,input_2=false,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_on","y": 90},
+    "facing=east,input_1=true,input_2=false,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_clk","y": 90},
+    "facing=east,input_1=true,input_2=false,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_clk_on","y": 90},
+
+    "facing=east,input_1=true,input_2=true,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11","y": 90},
+    "facing=east,input_1=true,input_2=true,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_on","y": 90},
+    "facing=east,input_1=true,input_2=true,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_clk","y": 90},
+    "facing=east,input_1=true,input_2=true,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_clk_on","y": 90},
+
+
+    "facing=south,input_1=false,input_2=false,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop","y": 180},
+    "facing=south,input_1=false,input_2=false,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_on","y": 180},
+    "facing=south,input_1=false,input_2=false,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_clk","y": 180},
+    "facing=south,input_1=false,input_2=false,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_clk_on","y": 180},
+
+    "facing=south,input_1=false,input_2=true,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01","y": 180},
+    "facing=south,input_1=false,input_2=true,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_on","y": 180},
+    "facing=south,input_1=false,input_2=true,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_clk","y": 180},
+    "facing=south,input_1=false,input_2=true,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_clk_on","y": 180},
+
+    "facing=south,input_1=true,input_2=false,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10","y": 180},
+    "facing=south,input_1=true,input_2=false,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_on","y": 180},
+    "facing=south,input_1=true,input_2=false,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_clk","y": 180},
+    "facing=south,input_1=true,input_2=false,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_clk_on","y": 180},
+
+    "facing=south,input_1=true,input_2=true,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11","y": 180},
+    "facing=south,input_1=true,input_2=true,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_on","y": 180},
+    "facing=south,input_1=true,input_2=true,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_clk","y": 180},
+    "facing=south,input_1=true,input_2=true,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_clk_on","y": 180},
+
+
+    "facing=west,input_1=false,input_2=false,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop","y": 270},
+    "facing=west,input_1=false,input_2=false,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_on","y": 270},
+    "facing=west,input_1=false,input_2=false,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_clk","y": 270},
+    "facing=west,input_1=false,input_2=false,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_00_clk_on","y": 270},
+
+    "facing=west,input_1=false,input_2=true,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01","y": 270},
+    "facing=west,input_1=false,input_2=true,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_on","y": 270},
+    "facing=west,input_1=false,input_2=true,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_clk","y": 270},
+    "facing=west,input_1=false,input_2=true,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_01_clk_on","y": 270},
+
+    "facing=west,input_1=true,input_2=false,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10","y": 270},
+    "facing=west,input_1=true,input_2=false,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_on","y": 270},
+    "facing=west,input_1=true,input_2=false,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_clk","y": 270},
+    "facing=west,input_1=true,input_2=false,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_10_clk_on","y": 270},
+
+    "facing=west,input_1=true,input_2=true,input_clk=false,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11","y": 270},
+    "facing=west,input_1=true,input_2=true,input_clk=false,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_on","y": 270},
+    "facing=west,input_1=true,input_2=true,input_clk=true,powered=false": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_clk","y": 270},
+    "facing=west,input_1=true,input_2=true,input_clk=true,powered=true": {"model": "simplyrs:block/jk_flipflop/jk_flipflop_11_clk_on","y": 270}
   }
 }
