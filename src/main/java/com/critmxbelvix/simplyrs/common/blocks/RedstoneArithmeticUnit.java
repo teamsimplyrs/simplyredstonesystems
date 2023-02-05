@@ -7,6 +7,7 @@ import com.critmxbelvix.simplyrs.common.items.RedstoneWrench;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -31,6 +32,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.ticks.TickPriority;
+import net.minecraftforge.network.NetworkHooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
@@ -137,7 +139,15 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
             pLevel.setBlockAndUpdate(pPos,pState.setValue(MODE,newMode));
             pLevel.updateNeighborsAt(pPos.relative(pState.getValue(FACING)),pState.getBlock());
         }
-        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+        else if (!pLevel.isClientSide()) {
+            BlockEntity entity = pLevel.getBlockEntity(pPos);
+            if(entity instanceof ArithmeticBlockEntity) {
+                NetworkHooks.openGui(((ServerPlayer)pPlayer), (ArithmeticBlockEntity)entity, pPos);
+            } else {
+                throw new IllegalStateException("Our Container provider is missing!");
+            }
+        }
+        return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
     @Nullable
@@ -146,7 +156,7 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
         return new ArithmeticBlockEntity(pPos,pState);
     }
 
-    enum ArithmeticModes implements StringRepresentable {
+    public enum ArithmeticModes implements StringRepresentable {
         ADD("add"),
         SUBTRACT("subtract"),
         MULTIPLY("multiply"),

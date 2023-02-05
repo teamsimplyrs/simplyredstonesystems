@@ -1,5 +1,6 @@
 package com.critmxbelvix.simplyrs;
 
+import com.critmxbelvix.simplyrs.client.screen.RedstoneArithmeticUnitScreen;
 import com.critmxbelvix.simplyrs.common.ClientSetupClass;
 import com.critmxbelvix.simplyrs.common.event.SRSEvents;
 import com.critmxbelvix.simplyrs.common.registers.*;
@@ -60,6 +61,7 @@ public class SimplyRedstoneSystems
     {
         ClientSetupClass.renderAllTranslucent();
         MenuScreens.register(MenuTypeRegister.REDSTONE_CLOCK_MENU.get(), RedstoneClockScreen::new);
+        MenuScreens.register(MenuTypeRegister.REDSTONE_ARITHMETIC_UNIT_MENU.get(), RedstoneArithmeticUnitScreen::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
