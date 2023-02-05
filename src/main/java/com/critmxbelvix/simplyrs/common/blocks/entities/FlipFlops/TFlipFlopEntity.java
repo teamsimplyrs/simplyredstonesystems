@@ -42,7 +42,6 @@ public class TFlipFlopEntity extends BlockEntity {
         boolean current = pState.getValue(TFlipFlop.POWERED);
         boolean clock = pState.getValue(TFlipFlop.INPUT_CLK);
         boolean J_Input = pState.getValue(TFlipFlop.INPUT_1);
-        boolean K_Input = pState.getValue(TFlipFlop.INPUT_2);
         if(!pBlockEntity.previous && clock && J_Input){
             pLevel.setBlockAndUpdate(pPos, pState.setValue(TFlipFlop.POWERED,!current));
         }

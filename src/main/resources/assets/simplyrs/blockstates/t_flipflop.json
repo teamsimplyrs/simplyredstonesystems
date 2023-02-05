@@ -1,9 +1,47 @@
 {
   "variants":
   {
-    "facing=north": {"model": "simplyrs:block/jk_flipflop"},
-    "facing=east": {"model": "simplyrs:block/jk_flipflop","y": 90},
-    "facing=south": {"model": "simplyrs:block/jk_flipflop","y": 180},
-    "facing=west": {"model": "simplyrs:block/jk_flipflop","y": 270}
+    "facing=north,input_1=false,input_clk=false,powered=false": {"model": "simplyrs:block/t_flipflop"},
+    "facing=north,input_1=false,input_clk=false,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_on"},
+    "facing=north,input_1=false,input_clk=true,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_clk"},
+    "facing=north,input_1=false,input_clk=true,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_clk_on"},
+
+    "facing=north,input_1=true,input_clk=false,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_1"},
+    "facing=north,input_1=true,input_clk=false,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_on"},
+    "facing=north,input_1=true,input_clk=true,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_clk"},
+    "facing=north,input_1=true,input_clk=true,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_clk_on"},
+
+
+    "facing=east,input_1=false,input_clk=false,powered=false": {"model": "simplyrs:block/t_flipflop","y": 90},
+    "facing=east,input_1=false,input_clk=false,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_on","y": 90},
+    "facing=east,input_1=false,input_clk=true,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_clk","y": 90},
+    "facing=east,input_1=false,input_clk=true,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_clk_on","y": 90},
+
+    "facing=east,input_1=true,input_clk=false,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_1","y": 90},
+    "facing=east,input_1=true,input_clk=false,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_on","y": 90},
+    "facing=east,input_1=true,input_clk=true,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_clk","y": 90},
+    "facing=east,input_1=true,input_clk=true,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_clk_on","y": 90},
+
+
+    "facing=south,input_1=false,input_clk=false,powered=false": {"model": "simplyrs:block/t_flipflop","y": 180},
+    "facing=south,input_1=false,input_clk=false,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_on","y": 180},
+    "facing=south,input_1=false,input_clk=true,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_clk","y": 180},
+    "facing=south,input_1=false,input_clk=true,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_clk_on","y": 180},
+
+    "facing=south,input_1=true,input_clk=false,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_1","y": 180},
+    "facing=south,input_1=true,input_clk=false,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_on","y": 180},
+    "facing=south,input_1=true,input_clk=true,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_clk","y": 180},
+    "facing=south,input_1=true,input_clk=true,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_clk_on","y": 180},
+
+
+    "facing=west,input_1=false,input_clk=false,powered=false": {"model": "simplyrs:block/t_flipflop","y": 270},
+    "facing=west,input_1=false,input_clk=false,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_on","y": 270},
+    "facing=west,input_1=false,input_clk=true,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_clk","y": 270},
+    "facing=west,input_1=false,input_clk=true,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_clk_on","y": 270},
+
+    "facing=west,input_1=true,input_clk=false,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_1","y": 270},
+    "facing=west,input_1=true,input_clk=false,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_on","y": 270},
+    "facing=west,input_1=true,input_clk=true,powered=false": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_clk","y": 270},
+    "facing=west,input_1=true,input_clk=true,powered=true": {"model": "simplyrs:block/t_flipflop/t_flipflop_1_clk_on","y": 270}
   }
 }
