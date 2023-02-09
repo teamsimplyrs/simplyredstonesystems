@@ -403,19 +403,6 @@
 				"up": {"uv": [0, 0, 2, 2], "texture": "#4"},
 				"down": {"uv": [0, 0, 2, 2], "texture": "#4"}
 			}
-		},
-		{
-			"from": [4, 1, 9],
-			"to": [12, 2, 10.75],
-			"color": 2,
-			"faces": {
-				"north": {"uv": [0, 0, 8, 1], "texture": "#missing"},
-				"east": {"uv": [0, 0, 1.75, 1], "texture": "#missing"},
-				"south": {"uv": [0, 0, 8, 1], "texture": "#missing"},
-				"west": {"uv": [0, 0, 1.75, 1], "texture": "#missing"},
-				"up": {"uv": [0, 0, 8, 1.75], "texture": "#missing"},
-				"down": {"uv": [0, 0, 8, 1.75], "texture": "#missing"}
-			}
 		}
 	],
 	"groups": [
@@ -453,7 +440,7 @@
 			"name": "redstone_lines",
 			"origin": [8, 8, 8],
 			"color": 0,
-			"children": [26, 27, 28, 29, 30, 31, 32]
+			"children": [26, 27, 28, 29, 30, 31]
 		}
 	]
 }
