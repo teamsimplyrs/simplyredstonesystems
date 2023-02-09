@@ -3,12 +3,12 @@
 	"textures": {
 		"1": "simplyrs:block/bright_red_light",
 		"2": "simplyrs:block/dark_blue_light",
-		"3": "simplyrs:block/gold_block",
-		"4": "simplyrs:block/red_concrete",
-		"5": "simplyrs:block/redstone_torch_off",
-		"6": "simplyrs:block/smooth_stone",
-		"7": "simplyrs:block/stonecutter_bottom",
-		"8": "simplyrs:block/light_blue_concrete",
+		"3": "block/gold_block",
+		"4": "block/red_concrete",
+		"5": "block/redstone_torch_off",
+		"6": "block/smooth_stone",
+		"7": "block/stonecutter_bottom",
+		"8": "block/light_blue_concrete",
 		"particle": "block/smooth_stone"
 	},
 	"elements": [
