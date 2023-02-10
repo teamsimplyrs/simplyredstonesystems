@@ -199,7 +199,7 @@ public class RedstoneClock extends BaseEntityBlock {
     }
 
     public static boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
-        return pState.getValue(INPUT);
+        return ((RedstoneClockEntity)pLevel.getBlockEntity(pPos)).redstone_needed ? pState.getValue(INPUT) : true;
     }
     @Override
     public int getDirectSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {

@@ -49,6 +49,10 @@ public class PacketUpdateClock extends PacketBase{
                         clockBE.duration += message.change;
                     }
                 }
+                else if(message.type==2){
+                    clockBE.redstone_needed = !clockBE.redstone_needed;
+                    world.sendBlockUpdated(message.pos,world.getBlockState(message.pos),world.getBlockState(message.pos),2);
+                }
                 clockBE.setChanged();
             }
         });

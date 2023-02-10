@@ -5,8 +5,12 @@ import com.critmxbelvix.simplyrs.common.blocks.RedstoneClock;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -33,6 +37,7 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
     private static final Logger LOGGER = LogManager.getLogger();
     public int delay;
     public int duration;
+    public boolean redstone_needed;
     private int ticksSinceNextPulse;
 
     public RedstoneClockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -40,6 +45,7 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
         this.delay=1;
         this.ticksSinceNextPulse=0;
         this.duration = 10;
+        this.redstone_needed = false;
     }
 
     @Override
@@ -57,6 +63,7 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.putInt("delay",this.delay);
         tag.putInt("duration",this.duration);
+        tag.putBoolean("toggle",this.redstone_needed);
         super.saveAdditional(tag);
     }
 
@@ -65,9 +72,34 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
         super.load(nbt);
         this.delay = nbt.getInt("delay");
         this.duration = nbt.getInt("duration");
+        this.redstone_needed = nbt.getBoolean("toggle");
+    }
+
+    @Nullable
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
+        this.redstone_needed = pkt.getTag().getBoolean("toggle");
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        CompoundTag tag = new CompoundTag();
+        tag.putBoolean("toggle",this.redstone_needed);
+        return tag;
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, RedstoneClockEntity pBlockEntity) {
+        if(pLevel.isClientSide){
+            LOGGER.info(pBlockEntity.redstone_needed + " client");
+        }
+        else{
+            LOGGER.info(pBlockEntity.redstone_needed + " server");
+        }
         pBlockEntity.ticksSinceNextPulse++;
         boolean powered;
         boolean prevPowered = pState.getValue(RedstoneClock.POWERED);
