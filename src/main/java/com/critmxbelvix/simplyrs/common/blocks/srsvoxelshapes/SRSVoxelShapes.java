@@ -68,7 +68,7 @@ public class SRSVoxelShapes {
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     // Gates VoxelShape
-    public static final VoxelShape GATE_SHAPE = Block.box(1, 0, 1, 15, 1, 15);
+    public static final VoxelShape GATE_SHAPE = Shapes.join(Block.box(0.25, 0, 0.25, 15.75, 1, 15.75), Block.box(0.5, 1, 0.5, 15.5, 3, 15.5), BooleanOp.OR);
 
     // Valve VoxelShape
     public static final VoxelShape VALVE_SHAPE = Stream.of(
