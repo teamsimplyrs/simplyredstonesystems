@@ -94,12 +94,7 @@ public class RedstoneClockEntity extends BlockEntity implements MenuProvider, IA
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, RedstoneClockEntity pBlockEntity) {
-        if(pLevel.isClientSide){
-            LOGGER.info(pBlockEntity.redstone_needed + " client");
-        }
-        else{
-            LOGGER.info(pBlockEntity.redstone_needed + " server");
-        }
+
         pBlockEntity.ticksSinceNextPulse++;
         boolean powered;
         boolean prevPowered = pState.getValue(RedstoneClock.POWERED);
