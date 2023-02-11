@@ -34,6 +34,7 @@ public class DecrementButton extends ImageButton {
         this.screen = screen;
         this.tooltips.add(new TextComponent("Shift click: -5"));
         this.tooltips.add(new TextComponent("Ctrl click: -10"));
+        this.tooltips.add(new TextComponent("Alt click: -50"));
     }
 
     @Override
@@ -44,6 +45,10 @@ public class DecrementButton extends ImageButton {
         }
         else if(Screen.hasControlDown()){
             change=-10;
+        }
+        else if(Screen.hasAltDown())
+        {
+            change=-50;
         }
         PacketRegister.INSTANCE.sendToServer(new PacketUpdateClock(blockpos,change,type));
     }

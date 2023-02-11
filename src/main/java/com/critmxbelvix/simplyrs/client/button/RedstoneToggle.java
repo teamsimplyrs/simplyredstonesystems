@@ -9,10 +9,14 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RedstoneToggle extends Button {
@@ -23,6 +27,7 @@ public class RedstoneToggle extends Button {
     private final int yDiffTex;
     private final int textureWidth;
     private final int textureHeight;
+    private final List<Component> tooltips = new ArrayList<>();
     private final RedstoneClockScreen screen;
     private boolean redstone_needed;
 
@@ -36,6 +41,7 @@ public class RedstoneToggle extends Button {
         this.yDiffTex = 17;
         this.resourceLocation = new ResourceLocation(SimplyRedstoneSystems.MOD_ID, "textures/gui/redstone_clock_gui.png");
         this.screen = screen;
+        this.tooltips.add(new TextComponent("Redstone Toggle"));
         redstone_needed = screen.getMenu().blockEntity.redstone_needed;
     }
 
@@ -61,6 +67,11 @@ public class RedstoneToggle extends Button {
         if (this.isHovered) {
             this.renderToolTip(pPoseStack, pMouseX, pMouseY);
         }
+    }
+
+    @Override
+    public void renderToolTip(PoseStack pPoseStack, int pMouseX, int pMouseY) {
+        screen.renderComponentTooltip(pPoseStack,tooltips,pMouseX,pMouseY);
     }
 
 }
