@@ -39,9 +39,6 @@ public class LogicGateNOT extends Block
 
     public static final BooleanProperty INPUT = BooleanProperty.create("input");
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-
-    private static final Logger LOGGER = LogManager.getLogger();
-
     final static String name = "logicgate_not";
     final static CreativeModeTab tab = SimplyRSCreativeTab.SRS_TAB;
     private final static Properties gate_not_properties = Properties.of(Material.STONE).strength(0.1f).dynamicShape();
@@ -104,8 +101,6 @@ public class LogicGateNOT extends Block
     public boolean isInput(BlockState pState, LevelReader pLevel, BlockPos pPos)
     {
         Direction faceSouth= pState.getValue(FACING).getOpposite();
-
-        LOGGER.info(getInputSignalAt(pLevel,pPos,faceSouth));
         return getInputSignalAt(pLevel,pPos,faceSouth) > 0;
     }
 
@@ -114,7 +109,6 @@ public class LogicGateNOT extends Block
 
         if (this.isSideInput(blockstate)) {
             if (blockstate.is(Blocks.REDSTONE_BLOCK)) {
-                LOGGER.info("BLOCK");
                 return 15;
             } else {
                 return blockstate.is(Blocks.REDSTONE_WIRE) ? blockstate.getValue(RedStoneWireBlock.POWER) : blockstate.getSignal(pLevel,pPos,pSide);

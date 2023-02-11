@@ -78,7 +78,7 @@ public abstract class ActivatorArmor extends ArmorItem {
         public void appendHoverText(ItemStack itemStack, Level pLevel, List<Component> pList, TooltipFlag pFlag) {
             super.appendHoverText(itemStack, pLevel, pList, pFlag);
             pList.add(new TextComponent("Emits redstone pulse when wearer obtains a potion effect"));
-            pList.add(new TextComponent("Configure traits in the Activation Augmenter"));
+            pList.add(new TextComponent("Configure traits in the Activation Augmenter [WIP]"));
         }
 
         @Override
@@ -100,7 +100,7 @@ public abstract class ActivatorArmor extends ArmorItem {
         public void appendHoverText(ItemStack itemStack, Level pLevel, List<Component> pList, TooltipFlag pFlag) {
             super.appendHoverText(itemStack, pLevel, pList, pFlag);
             pList.add(new TextComponent("Emits redstone pulse when wearer takes direct physical or projectile damage"));
-            pList.add(new TextComponent("Configure traits in the Activation Augmenter"));
+            pList.add(new TextComponent("Configure traits in the Activation Augmenter [WIP]"));
         }
 
         @Override
@@ -121,7 +121,7 @@ public abstract class ActivatorArmor extends ArmorItem {
         public void appendHoverText(ItemStack itemStack, Level pLevel, List<Component> pList, TooltipFlag pFlag) {
             super.appendHoverText(itemStack, pLevel, pList, pFlag);
             pList.add(new TextComponent("Emits redstone pulse when wearer jumps"));
-            pList.add(new TextComponent("Configure traits in the Activation Augmenter"));
+            pList.add(new TextComponent("Configure traits in the Activation Augmenter [WIP]"));
         }
 
         @Override
@@ -142,7 +142,7 @@ public abstract class ActivatorArmor extends ArmorItem {
         public void appendHoverText(ItemStack itemStack, Level pLevel, List<Component> pList, TooltipFlag pFlag) {
             super.appendHoverText(itemStack, pLevel, pList, pFlag);
             pList.add(new TextComponent("Emits redstone pulse when wearer takes fall damage"));
-            pList.add(new TextComponent("Configure traits in the Activation Augmenter"));
+            pList.add(new TextComponent("Configure traits in the Activation Augmenter [WIP]"));
         }
 
         @Override

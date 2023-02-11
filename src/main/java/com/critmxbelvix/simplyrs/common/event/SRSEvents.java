@@ -46,10 +46,7 @@ public class SRSEvents {
         if(!level.isClientSide()){
             boolean toolIsValid = tool instanceof ActivatorAxe || tool instanceof ActivatorPickaxe || tool instanceof ActivatorHoe || tool instanceof ActivatorShovel;
             BlockPos breakPos = breakEvent.getPos();
-            LOGGER.info("Tool: "+tool+"\nIs tool valid?"+toolIsValid);
-            LOGGER.info(level.getBlockState(breakPos).getBlock());
             if(level.getBlockState(breakPos).getBlock() instanceof RedstoneSprite){
-                LOGGER.info("called");
                 breakEvent.setCanceled(true);
             }
             else{
@@ -58,7 +55,6 @@ public class SRSEvents {
                     breakEvent.setCanceled(true);
                     level.destroyBlock(breakPos,true);
                     level.setBlockAndUpdate(breakPos, BlockRegister.REDSTONE_SPRITE.get().defaultBlockState());
-                    LOGGER.info("New block in place of broken block: "+level.getBlockState(breakPos));
                 }
             }
         }
@@ -80,7 +76,6 @@ public class SRSEvents {
 
     public static void activatorBootsFallDamageEvent(LivingFallEvent fallEvent)
     {
-        LOGGER.info(fallEvent.getEntityLiving()+" has taken fall damage!");
         ItemStack bootsWorn = fallEvent.getEntityLiving().getArmorSlots().iterator().next();
         BlockPos placePosition = fallEvent.getEntityLiving().blockPosition();
         boolean isAir = fallEvent.getEntityLiving().getLevel().getBlockState(placePosition).getBlock() == Blocks.AIR;
@@ -106,7 +101,6 @@ public class SRSEvents {
         boolean isActivatorLeggingsFlag = false;
         BlockPos placePosition = jumpEvent.getEntityLiving().blockPosition();
         boolean isAir = jumpEvent.getEntityLiving().getLevel().getBlockState(placePosition).getBlock() == Blocks.AIR;
-        LOGGER.info(isAir);
         for (ItemStack leggings : armorWorn)
             if (leggings.is(ItemRegister.ACTIVATOR_LEGGINGS.get())) { isActivatorLeggingsFlag = true; break; }
 
