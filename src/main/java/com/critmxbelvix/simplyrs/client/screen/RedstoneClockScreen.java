@@ -3,6 +3,7 @@ package com.critmxbelvix.simplyrs.client.screen;
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
 import com.critmxbelvix.simplyrs.client.button.DecrementButton;
 import com.critmxbelvix.simplyrs.client.button.IncrementButton;
+import com.critmxbelvix.simplyrs.client.button.RedstoneToggle;
 import com.critmxbelvix.simplyrs.client.menu.RedstoneClockMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -27,6 +28,7 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
     private static final Logger LOGGER = LogManager.getLogger();
     private final int MID_X = (width - 247)/2;
     private final int MID_Y = (height - 165) / 2;
+    private RedstoneToggle redstoneToggle;
 
     public RedstoneClockScreen(RedstoneClockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -44,6 +46,7 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         super.init();
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
         // Add widgets and precomputed values
+        redstoneToggle = this.addRenderableWidget(new RedstoneToggle(getMidX()+80, getMidY()-70, this));
 
         this.addRenderableWidget(new IncrementButton(getMidX()+34,getMidY()-28,this.menu.blockEntity.getBlockPos(),0,this));
         this.addRenderableWidget(new DecrementButton(getMidX()-51,getMidY()-28,this.menu.blockEntity.getBlockPos(),0,this));
@@ -86,6 +89,7 @@ public class RedstoneClockScreen extends AbstractContainerScreen<RedstoneClockMe
         this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
         this.font.draw(pPoseStack, delayText, this.imageWidth/2-delayWidth/2, 40, -16777216);
         this.font.draw(pPoseStack, durationText, this.imageWidth/2-durationWidth/2, 85, -16777216);
+        redstoneToggle.updateStatus(this.menu.blockEntity);
     }
 
     @Override

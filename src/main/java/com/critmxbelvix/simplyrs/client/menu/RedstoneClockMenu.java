@@ -26,6 +26,7 @@ public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier
     public final Player player;
     public final DataSlot delaySlot;
     public final DataSlot durationSlot;
+    public final DataSlot toggleSlot;
 
     public RedstoneClockMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId,inv,inv.player.level.getBlockEntity(extraData.readBlockPos()));
@@ -59,6 +60,24 @@ public class RedstoneClockMenu extends AbstractContainerMenu implements Supplier
             @Override
             public void set(int pValue) {
                 RedstoneClockMenu.this.blockEntity.duration = pValue;
+            }
+        };
+
+        toggleSlot = new DataSlot() {
+            @Override
+            public int get() {
+                return RedstoneClockMenu.this.blockEntity.redstone_needed ? 1 : 0;
+            }
+
+            @Override
+            public void set(int pValue) {
+                if(pValue==0){
+                    RedstoneClockMenu.this.blockEntity.redstone_needed = false;
+                }
+                else if(pValue==1){
+                    RedstoneClockMenu.this.blockEntity.redstone_needed = true;
+                }
+
             }
         };
         this.addDataSlot(delaySlot);
