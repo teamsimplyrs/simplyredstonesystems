@@ -1,7 +1,7 @@
 package com.critmxbelvix.simplyrs.common.blocks;
 
 import com.critmxbelvix.simplyrs.common.blocks.entities.FlipFlops.DFlipFlopEntity;
-import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.JKFlipFlopVoxelShapes;
+import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.DFlipFlopVoxelShapes;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
 import com.critmxbelvix.simplyrs.common.registers.BlockEntityRegister;
 import net.minecraft.core.BlockPos;
@@ -42,7 +42,6 @@ public class DFlipFlop extends BaseEntityBlock {
     static final Properties flipflop_properties = Properties.of(Material.STONE).strength(0.3f).dynamicShape();
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty INPUT_1 = BooleanProperty.create("input_1");
-    public static final BooleanProperty INPUT_2 = BooleanProperty.create("input_2");
     public static final BooleanProperty INPUT_CLK = BooleanProperty.create("input_clk");
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     private static final Logger LOGGER = LogManager.getLogger();
@@ -52,7 +51,6 @@ public class DFlipFlop extends BaseEntityBlock {
         this.registerDefaultState(
                 this.getStateDefinition().any()
                         .setValue(INPUT_1,false)
-                        .setValue(INPUT_2, false)
                         .setValue(INPUT_CLK, false)
                         .setValue(POWERED,false)
         );
@@ -73,7 +71,13 @@ public class DFlipFlop extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return JKFlipFlopVoxelShapes.NORTH_SHAPE;
+        return switch (pState.getValue(FACING))
+                {
+                    default -> DFlipFlopVoxelShapes.NORTH_SHAPE;
+                    case EAST -> DFlipFlopVoxelShapes.EAST_SHAPE;
+                    case WEST -> DFlipFlopVoxelShapes.WEST_SHAPE;
+                    case SOUTH -> DFlipFlopVoxelShapes.SOUTH_SHAPE;
+                };
     }
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         return canSupportRigidBlock(pLevel, pPos.below());
@@ -90,7 +94,7 @@ public class DFlipFlop extends BaseEntityBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
-        pBuilder.add(FACING,INPUT_1,INPUT_2,INPUT_CLK,POWERED);
+        pBuilder.add(FACING,INPUT_1,INPUT_CLK,POWERED);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext)
@@ -101,7 +105,6 @@ public class DFlipFlop extends BaseEntityBlock {
         return this.defaultBlockState()
                 .setValue(FACING,direction)
                 .setValue(INPUT_1,isInputOne(pContext.getLevel(),pContext.getClickedPos().relative(direction.getCounterClockWise()),blockstate))
-                .setValue(INPUT_2,isInputTwo(pContext.getLevel(),pContext.getClickedPos().relative(direction.getClockWise()),blockstate))
                 .setValue(INPUT_CLK,isInputCLK(pContext.getLevel(),pContext.getClickedPos().relative(direction.getOpposite()),blockstate))
                 .setValue(POWERED,false);
     }
@@ -167,7 +170,6 @@ public class DFlipFlop extends BaseEntityBlock {
 
             BlockState blockstate = pLevel.getBlockState(pPos)
                     .setValue(INPUT_1, pLevel.getSignal(pPos.relative(direction1), direction1) > 0)
-                    .setValue(INPUT_2, pLevel.getSignal(pPos.relative(direction2), direction2) > 0)
                     .setValue(INPUT_CLK, pLevel.getSignal(pPos.relative(direction3), direction3) > 0);
             pLevel.setBlockAndUpdate(pPos, blockstate);
             pLevel.scheduleTick(pPos, this, 1, TickPriority.VERY_HIGH);

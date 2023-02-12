@@ -40,11 +40,9 @@ public class DFlipFlopEntity extends BlockEntity {
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, DFlipFlopEntity pBlockEntity) {
-        LOGGER.info("Ticked");
         boolean current = pState.getValue(DFlipFlop.POWERED);
         boolean clock = pState.getValue(DFlipFlop.INPUT_CLK);
         boolean J_Input = pState.getValue(DFlipFlop.INPUT_1);
-        boolean K_Input = pState.getValue(DFlipFlop.INPUT_2);
         if(!pBlockEntity.previous && clock){
             pLevel.setBlockAndUpdate(pPos, pState.setValue(DFlipFlop.POWERED,J_Input));
         }
