@@ -7,10 +7,7 @@ import com.critmxbelvix.simplyrs.common.items.RedstoneClockItem;
 import com.critmxbelvix.simplyrs.common.items.RedstoneWrench;
 import com.critmxbelvix.simplyrs.common.items.StoneRod;
 import com.critmxbelvix.simplyrs.common.items.ingots.PiezoRedstoneIngot;
-import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreAND;
-import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreNOT;
-import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreOR;
-import com.critmxbelvix.simplyrs.common.items.logiccores.LogicCoreXOR;
+import com.critmxbelvix.simplyrs.common.items.logiccores.*;
 import com.critmxbelvix.simplyrs.common.items.srsarmory.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -51,6 +48,11 @@ public class ItemRegister {
     public static final RegistryObject<Item> LOGICCORE_NOT = ITEMS.register(
             LogicCoreNOT.mGetName(),
             ()-> new LogicCoreNOT(LogicCoreNOT.mGetProperties())
+    );
+
+    public static final RegistryObject<Item> LOGICCORE_LATCH = ITEMS.register(
+            LogicCoreLatch.mGetName(),
+            ()-> new LogicCoreLatch(LogicCoreLatch.mGetProperties())
     );
 
     // Redstone Wrench:

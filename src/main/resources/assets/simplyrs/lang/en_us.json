@@ -27,6 +27,7 @@
   "item.simplyrs.logiccore_and": "Logic Core: AND",
   "item.simplyrs.logiccore_xor": "Logic Core: XOR",
   "item.simplyrs.logiccore_not": "Logic Core: NOT",
+  "item.simplyrs.logiccore_latch": "Logic Core: Latch",
   "item.simplyrs.piezoredstone_ingot": "Piezo-Redstone Ingot",
   "item.simplyrs.actuator_rod": "Actuator Rod",
   "item.simplyrs.stone_rod": "Stone Rod",
