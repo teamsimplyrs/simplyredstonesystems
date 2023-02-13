@@ -4,13 +4,12 @@
   [
     "o",
     "|",
-    "#"
+    "o"
   ],
   "key":
   {
     "o": {"tag": "forge:nuggets/gold"},
-    "|": {"tag": "forge:rods/stone"},
-    "#": {"tag": "forge:ingots/gold"}
+    "|": {"tag": "forge:rods/stone"}
   },
   "result":
   {

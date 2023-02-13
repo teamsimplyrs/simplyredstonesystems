@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "#N#",
+    "AXA",
+    "#N#"
+  ],
+  "key":
+  {
+    "X": {"tag": "forge:ingots/gold"},
+    "#": {"tag": "forge:dusts/redstone"},
+    "A": {"item": "simplyrs:logiccore_and"},
+    "N": {"item": "simplyrs:logiccore_not"}
+  },
+  "result":
+  {
+    "item": "simplyrs:logiccore_latch",
+    "count": 1
+  }
+}

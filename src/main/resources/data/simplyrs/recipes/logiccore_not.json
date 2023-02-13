@@ -8,8 +8,8 @@
   ],
   "key":
   {
-    "X": {"item": "minecraft:redstone"},
-    "#": {"item": "minecraft:gold_ingot"},
+    "X": {"tag": "forge:dusts/redstone"},
+    "#": {"tag": "forge:ingots/gold"},
     "z": {"item": "minecraft:stone_slab"}
   },
   "result":
