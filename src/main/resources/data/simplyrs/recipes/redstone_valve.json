@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "CXb",
+    "#|#",
+    "_^_"
+  ],
+  "key":
+  {
+    "b": {"tag": "forge:dyes/blue"},
+    "|": {"item": "simplyrs:actuator_rod"},
+    "C": {"item": "minecraft:compass"},
+    "#": {"tag": "forge:dusts/redstone"},
+    "X": {"tag": "forge:ingots/copper"},
+    "_": {"item": "minecraft:stone_slab"},
+    "^": {"tag": "forge:gems/quartz"}
+  },
+  "result":
+  {
+    "item": "simplyrs:redstone_valve",
+    "count": 1
+  }
+}

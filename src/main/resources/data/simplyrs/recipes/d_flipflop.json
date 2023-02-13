@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "b|b",
+    "|L ",
+    "#|#"
+  ],
+  "key":
+  {
+    "b": {"tag": "forge:dyes/blue"},
+    "|": {"item": "minecraft:redstone_torch"},
+    "L": {"item": "simplyrs:logiccore_latch"},
+    "#": {"tag": "forge:dusts/redstone"}
+  },
+  "result":
+  {
+    "item": "simplyrs:d_flipflop",
+    "count": 1
+  }
+}
