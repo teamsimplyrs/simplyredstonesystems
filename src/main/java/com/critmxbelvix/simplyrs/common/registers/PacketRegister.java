@@ -1,6 +1,7 @@
 package com.critmxbelvix.simplyrs.common.registers;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
+import com.critmxbelvix.simplyrs.net.PacketUpdateArithmeticUnit;
 import com.critmxbelvix.simplyrs.net.PacketUpdateClock;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkRegistry;
@@ -19,6 +20,8 @@ public class PacketRegister {
         int id=0;
         INSTANCE.registerMessage(id++, PacketUpdateClock.class, PacketUpdateClock::encode, PacketUpdateClock::decode,
                 PacketUpdateClock::handle);
+        INSTANCE.registerMessage(id++, PacketUpdateArithmeticUnit.class, PacketUpdateArithmeticUnit::encode, PacketUpdateArithmeticUnit::decode,
+                PacketUpdateArithmeticUnit::handle);
     }
 
 }
