@@ -144,6 +144,7 @@ public abstract class GateBlock extends Block{
             pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(true)), 2);
         }
         pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
+        pLevel.updateNeighborsAt(pPos.relative(pState.getValue(FACING)),this);
     }
 
     //Abstract function implemented in the respective gates
@@ -172,7 +173,7 @@ public abstract class GateBlock extends Block{
                     .setValue(INPUT_2, pLevel.getSignal(pPos.relative(direction2), direction2) > 0)
                     .setValue(INPUT_3, pLevel.getSignal(pPos.relative(direction3), direction3) > 0);
             pLevel.setBlockAndUpdate(pPos, blockstate);
-            pLevel.scheduleTick(pPos, this, 1, TickPriority.VERY_HIGH);
+            pLevel.scheduleTick(pPos, this, 2, TickPriority.VERY_HIGH);
         }
     }
 

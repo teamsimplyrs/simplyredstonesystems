@@ -24,8 +24,6 @@ public class RedstoneArithmeticUnitMenu extends AbstractContainerMenu implements
 
     private final Level level;
     public final Player player;
-    public final DataSlot operationSlot;
-
     public RedstoneArithmeticUnitMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId,inv,inv.player.level.getBlockEntity(extraData.readBlockPos()));
     }
@@ -36,20 +34,17 @@ public class RedstoneArithmeticUnitMenu extends AbstractContainerMenu implements
         blockEntity = ((ArithmeticBlockEntity) entity);
         this.level = inv.player.level;
         this.player = inv.player;
-
-        operationSlot = new DataSlot() {
+        this.addDataSlot(new DataSlot() {
             @Override
             public int get() {
-                return RedstoneArithmeticUnitMenu.this.blockEntity.getOperation();
+                return blockEntity.getOperands();
             }
 
             @Override
             public void set(int pValue) {
-                RedstoneArithmeticUnitMenu.this.blockEntity.setOperation(pValue);
+                blockEntity.setOperands(pValue);
             }
-        };
-
-        this.addDataSlot(operationSlot);
+        });
     }
 
     @Override

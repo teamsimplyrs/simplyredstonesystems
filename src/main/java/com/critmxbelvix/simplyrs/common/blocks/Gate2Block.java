@@ -132,6 +132,7 @@ public abstract class Gate2Block extends Block
             pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(true)), 2);
         }
         pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
+        pLevel.updateNeighborsAt(pPos.relative(pState.getValue(FACING)),this);
     }
 
     //Abstract function implemented in the respective gates

@@ -23,8 +23,6 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.ticks.TickPriority;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Random;
@@ -134,6 +132,7 @@ public class LogicGateNOT extends Block
             pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.valueOf(true)), 2);
         }
         pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
+        pLevel.updateNeighborsAt(pPos.relative(pState.getValue(FACING)),this);
     }
 
     /* neighborChanged is called by a block's neighboring blocks whenever the neighboring block undergoes a blockstate

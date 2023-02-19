@@ -1,6 +1,7 @@
 package com.critmxbelvix.simplyrs.client.screen;
 
 import com.critmxbelvix.simplyrs.SimplyRedstoneSystems;
+import com.critmxbelvix.simplyrs.client.button.TriStateOperandButton;
 import com.critmxbelvix.simplyrs.client.menu.RedstoneArithmeticUnitMenu;
 import com.critmxbelvix.simplyrs.client.menu.RedstoneClockMenu;
 import com.critmxbelvix.simplyrs.common.blocks.RedstoneArithmeticUnit;
@@ -26,6 +27,7 @@ public class RedstoneArithmeticUnitScreen extends AbstractContainerScreen<Redsto
     private static final Logger LOGGER = LogManager.getLogger();
     private final int MID_X = (width - 247)/2;
     private final int MID_Y = (height - 165) / 2;
+    public int currentOperand;
 
     public RedstoneArithmeticUnitScreen(RedstoneArithmeticUnitMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -34,6 +36,7 @@ public class RedstoneArithmeticUnitScreen extends AbstractContainerScreen<Redsto
         this.inventoryLabelX = 1000;
         this.inventoryLabelY = 1000;
         this.player = pMenu.player;
+        this.currentOperand = 0;
     }
 
     @Override
@@ -43,6 +46,13 @@ public class RedstoneArithmeticUnitScreen extends AbstractContainerScreen<Redsto
         this.imageHeight = 127;
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
         // Add widgets and precomputed values
+        this.addRenderableWidget(new TriStateOperandButton(this.leftPos+24,this.topPos+59,0,1,this));
+        this.addRenderableWidget(new TriStateOperandButton(this.leftPos+60,this.topPos+59,0,2,this));
+        this.addRenderableWidget(new TriStateOperandButton(this.leftPos+96,this.topPos+59,0,3,this));
+        this.addRenderableWidget(new TriStateOperandButton(this.leftPos+24,this.topPos+89,1,0,this));
+        this.addRenderableWidget(new TriStateOperandButton(this.leftPos+60,this.topPos+89,1,1,this));
+        this.addRenderableWidget(new TriStateOperandButton(this.leftPos+96,this.topPos+89,1,2,this));
+        this.addRenderableWidget(new TriStateOperandButton(this.leftPos+132,this.topPos+89,1,3,this));
     }
 
     @Override
@@ -57,6 +67,8 @@ public class RedstoneArithmeticUnitScreen extends AbstractContainerScreen<Redsto
     @Override
     public void containerTick() {
         super.containerTick();
+        //this.menu.blockEntity.setOperands(0b100101);
+        //LOGGER.info(this.currentOperand);
     }
     @Override
     protected void renderBg(PoseStack pPoseStack, float pPartialTick, int pMouseX, int pMouseY) {
@@ -91,9 +103,39 @@ public class RedstoneArithmeticUnitScreen extends AbstractContainerScreen<Redsto
     @Override
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
         this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
-        this.font.draw(pPoseStack, "a",30,64,0);
-        this.font.draw(pPoseStack, "b",66,64,0);
-        this.font.draw(pPoseStack, "c",102,64,0);
+        int operands = this.menu.blockEntity.getOperands();
+        int operand1 = operands & 0b11;
+        int operand2 = operands & 0b1100;
+        operand2 = operand2 >> 2;
+        int operand3 = operands & 0b110000;
+        operand3 = operand3 >> 4;
+        if(operand1==0){
+            this.font.draw(pPoseStack, "a",30,64,0);
+        }
+        else if(operand1==1){
+            this.font.draw(pPoseStack, "b",30,64,0);
+        }
+        else if(operand1==2){
+            this.font.draw(pPoseStack, "c",30,64,0);
+        }
+        if(operand2==0){
+            this.font.draw(pPoseStack, "a",66,64,0);
+        }
+        else if(operand2==1){
+            this.font.draw(pPoseStack, "b",66,64,0);
+        }
+        else if(operand2==2){
+            this.font.draw(pPoseStack, "c",66,64,0);
+        }
+        if(operand3==0){
+            this.font.draw(pPoseStack, "a",102,64,0);
+        }
+        else if(operand3==1){
+            this.font.draw(pPoseStack, "b",102,64,0);
+        }
+        else if(operand3==2){
+            this.font.draw(pPoseStack, "c",102,64,0);
+        }
         this.font.draw(pPoseStack, "a",30,94,0);
         this.font.draw(pPoseStack, "b",66,94,0);
         this.font.draw(pPoseStack, "c",102,94,0);
