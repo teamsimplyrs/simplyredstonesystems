@@ -1,0 +1,21 @@
+{
+  "name": "Activator Series Armor",
+  "icon": "simplyrs:activator_chestplate",
+  "category": "simplyrs:armory_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Activator Series Armor is a set of armor crafted using Piezo-Redstone, that provides more protection than iron but less than diamond armor. The main functionality of this armor is for use as physical redstone triggers, as such it is best to make Mobs wear it [WIP] to use in contraptions. Upon receiving their specific triggers, they give a temporary redstone signal at the entity's feet position."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:activator_helmet",
+      "recipe2": "simplyrs:activator_chestplate"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:activator_leggings",
+      "recipe2": "simplyrs:activator_boots"
+    }
+  ]
+}

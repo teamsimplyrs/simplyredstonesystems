@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Logic Cores are used for crafting Logic Gates and other logic-related blocks and items. For example, the AND Gate is crafted using the Logic Core for AND. Their recipes are given on the following pages."
+      "text": "Logic Cores are used for crafting Logic Gates and other logic-related blocks and items. For example, the AND Gate is crafted using the Logic Core for AND. Logic Core: Latch is used to craft Flip-Flops. Their recipes are given on the following pages."
     },
     {
       "type": "patchouli:crafting",
@@ -16,6 +16,10 @@
       "type": "patchouli:crafting",
       "recipe": "simplyrs:logiccore_xor",
       "recipe2": "simplyrs:logiccore_not"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:logiccore_latch"
     }
   ]
 }

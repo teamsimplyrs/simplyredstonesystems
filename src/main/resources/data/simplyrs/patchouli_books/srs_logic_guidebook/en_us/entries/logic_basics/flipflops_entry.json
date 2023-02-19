@@ -1,0 +1,15 @@
+{
+  "name":"Intro to Flip-Flops",
+  "icon": "simplyrs:t_flipflop",
+  "category": "simplyrs:logic_basics_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Flip-Flops are generally circuits that can operate based on the single-bit data stored in them (0 or 1). Along with logic gates, flip-flops are the next basic building blocks in digital systems. They can be used to store information like the current state of a system, or to help with timing systems. §4Simply §6Redstone §4Systems§0 adds 3 types of flip-flops; J-K, D and T."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Flip-flops store the stable state of the inputs. So they can stay on or off based on the input combinations, until triggered by a dedicated input. Usually, this dedicated input that changes the state of the flip-flop is known as the 'clock input', and the input given is generally a clock. In Simply Redstone Systems, Flip-flops change state every positive clock edge (or every turning on of the clock input)"
+    }
+  ]
+}

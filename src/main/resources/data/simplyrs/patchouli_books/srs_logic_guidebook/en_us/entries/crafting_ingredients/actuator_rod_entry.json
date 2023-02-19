@@ -1,0 +1,16 @@
+{
+  "name": "Actuator Rod",
+  "icon": "simplyrs:actuator_rod",
+  "category": "simplyrs:crafting_ingredients_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Actuator Rod is exactly as advertised; an actuator rod. Crafted using a Stone Rod and 2 Gold Nuggets, it can act as a physically responsive unit for Piezo-Redstone tools, armor and certain other items that interact physically with the world."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:actuator_rod",
+      "recipe2": "simplyrs:stone_rod"
+    }
+  ]
+}
