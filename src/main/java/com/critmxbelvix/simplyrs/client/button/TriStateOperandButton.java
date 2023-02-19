@@ -60,9 +60,12 @@ public class TriStateOperandButton extends Button{
         RenderSystem.setShaderTexture(0, this.resourceLocation);
         int i = this.yTexStart;
 
-        if (this.isHovered) {
-            i+= this.yDiffTex;
+        if (operand == screen.currentOperand && type==0) {
+            i+= 2* this.yDiffTex;
             this.renderToolTip(pPoseStack, pMouseX, pMouseY);
+        }
+        if(type==1 && this.isHovered){
+            i += 2* this.yDiffTex;
         }
 
         RenderSystem.enableDepthTest();
