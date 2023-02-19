@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -33,6 +34,17 @@ public class RedstoneArithmeticUnitMenu extends AbstractContainerMenu implements
         blockEntity = ((ArithmeticBlockEntity) entity);
         this.level = inv.player.level;
         this.player = inv.player;
+        this.addDataSlot(new DataSlot() {
+            @Override
+            public int get() {
+                return blockEntity.getOperands();
+            }
+
+            @Override
+            public void set(int pValue) {
+                blockEntity.setOperands(pValue);
+            }
+        });
     }
 
     @Override

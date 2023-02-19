@@ -237,6 +237,21 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
         else {
             ArithmeticModes mode = pState.getValue(MODE);
             Direction direction = pState.getValue(FACING);
+            BlockEntity be = pLevel.getBlockEntity(pPos);
+//            Direction aDir, bDir, cDir;
+//            if(be instanceof  ArithmeticBlockEntity) {
+//                int operands = ((ArithmeticBlockEntity) be).getOperands();
+//                int operand1 = operands & 0b11;
+//                int operand2 = operands & 0b1100;
+//                operand2 = operand2 >> 2;
+//                int operand3 = operands & 0b110000;
+//                operand3 = operand3 >> 4;
+//                switch(operand1){
+//                    case 0:
+//
+//                }
+//            }
+
             int a = getInputSignalAt(pLevel,pPos.relative(direction.getCounterClockWise()),direction.getCounterClockWise());
             int b = getInputSignalAt(pLevel,pPos.relative(direction.getOpposite()),direction.getOpposite());
             int c = getInputSignalAt(pLevel,pPos.relative(direction.getClockWise()),direction.getClockWise());
@@ -250,7 +265,6 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
 
                 case DIVIDE -> a!=0 && b!=0 && c!=0 ? a/b/c : 0;
             };
-            BlockEntity be = pLevel.getBlockEntity(pPos);
             if(be instanceof  ArithmeticBlockEntity) {
                 ((ArithmeticBlockEntity) pLevel.getBlockEntity(pPos)).setOutputSignal(strength);
             }

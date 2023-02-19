@@ -35,12 +35,14 @@ public class ArithmeticBlockEntity extends BlockEntity implements MenuProvider {
 
     protected void saveAdditional(CompoundTag pTag) {
         pTag.putInt("OutputSignal", this.output);
+        pTag.putInt("operands", this.getOperands());
         super.saveAdditional(pTag);
     }
 
     public void load(CompoundTag pTag) {
         super.load(pTag);
         this.output = pTag.getInt("OutputSignal");
+        this.setOperands(pTag.getInt("operands"));
     }
 
 //    @Nullable

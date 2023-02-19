@@ -103,39 +103,39 @@ public class RedstoneArithmeticUnitScreen extends AbstractContainerScreen<Redsto
     @Override
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
         this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
-//        int operands = this.menu.blockEntity.getOperands();
-//        int operand1 = operands & 0b11;
-//        int operand2 = operands & 0b1100;
-//        operand2 = operand2 >> 2;
-//        int operand3 = operands & 0b110000;
-//        operand3 = operand3 >> 4;
-//        if(operand1==0){
+        int operands = this.menu.blockEntity.getOperands();
+        int operand1 = operands & 0b11;
+        int operand2 = operands & 0b1100;
+        operand2 = operand2 >> 2;
+        int operand3 = operands & 0b110000;
+        operand3 = operand3 >> 4;
+        if(operand1==0){
             this.font.draw(pPoseStack, "a",30,64,0);
-//        }
-//        else if(operand1==1){
-//            this.font.draw(pPoseStack, "b",30,64,0);
-//        }
-//        else if(operand1==2){
-//            this.font.draw(pPoseStack, "c",30,64,0);
-//        }
-//        if(operand2==0){
-//            this.font.draw(pPoseStack, "a",66,64,0);
-//        }
-//        else if(operand2==1){
+        }
+        else if(operand1==1){
+            this.font.draw(pPoseStack, "b",30,64,0);
+        }
+        else if(operand1==2){
+            this.font.draw(pPoseStack, "c",30,64,0);
+        }
+        if(operand2==0){
+            this.font.draw(pPoseStack, "a",66,64,0);
+        }
+        else if(operand2==1){
             this.font.draw(pPoseStack, "b",66,64,0);
-//        }
-//        else if(operand2==2){
-//            this.font.draw(pPoseStack, "c",66,64,0);
-//        }
-//        if(operand3==0){
-//            this.font.draw(pPoseStack, "a",102,64,0);
-//        }
-//        else if(operand3==1){
-//            this.font.draw(pPoseStack, "b",102,64,0);
-//        }
-//        else if(operand3==2){
+        }
+        else if(operand2==2){
+            this.font.draw(pPoseStack, "c",66,64,0);
+        }
+        if(operand3==0){
+            this.font.draw(pPoseStack, "a",102,64,0);
+        }
+        else if(operand3==1){
+            this.font.draw(pPoseStack, "b",102,64,0);
+        }
+        else if(operand3==2){
             this.font.draw(pPoseStack, "c",102,64,0);
-//        }
+        }
         this.font.draw(pPoseStack, "a",30,94,0);
         this.font.draw(pPoseStack, "b",66,94,0);
         this.font.draw(pPoseStack, "c",102,94,0);

@@ -35,15 +35,13 @@ public class PacketUpdateArithmeticUnit extends PacketBase{
             BlockEntity be = world.getBlockEntity(message.pos);
             if (be instanceof ArithmeticBlockEntity) {
                 ArithmeticBlockEntity arithmeticBE = (ArithmeticBlockEntity) be;
-                LOGGER.info("packet process");
                 int operands = arithmeticBE.getOperands();
                 int operand1 = operands & 0b11;
                 int operand2 = operands & 0b1100;
                 operand2 = operand2 >> 2;
-                int operand3 = operands & 0b1100000;
+                int operand3 = operands & 0b110000;
                 operand3 = operand3 >> 4;
                 if(message.current == 1){
-                    int temp = operand1;
                     if(operand2== message.operand){
                         operand2=operand1;
                     }
@@ -53,7 +51,6 @@ public class PacketUpdateArithmeticUnit extends PacketBase{
                     operand1 = message.operand;
                 }
                 else if(message.current == 2){
-                    int temp = operand2;
                     if(operand1== message.operand){
                         operand1=operand2;
                     }
@@ -63,12 +60,10 @@ public class PacketUpdateArithmeticUnit extends PacketBase{
                     operand2 = message.operand;
                 }
                 else if(message.current == 3){
-                    int temp = operand3;
                     if(operand1== message.operand){
                         operand1=operand3;
                     }
                     else if(operand2 == message.operand){
-                        LOGGER.info("yes");
                         operand2=operand3;
                     }
                     operand3 = message.operand;
@@ -79,7 +74,6 @@ public class PacketUpdateArithmeticUnit extends PacketBase{
                 int binary_op3 = operand3 << 4;
                 operands += binary_op2;
                 operands += binary_op3;
-                LOGGER.info(Integer.toBinaryString(operands));
                 arithmeticBE.setOperands(operands);
                 arithmeticBE.setChanged();
             }
