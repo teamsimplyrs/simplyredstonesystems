@@ -83,8 +83,6 @@ public class ArithmeticBlockEntity extends BlockEntity implements MenuProvider {
         int binary_op3 = operand3 << 4;
         operands += binary_op2;
         operands += binary_op3;
-        LOGGER.info(Integer.toBinaryString(operands));
-        LOGGER.info(operand1 + " " + operand2 + " " +operand3);
         return operands;
     }
 
@@ -94,7 +92,6 @@ public class ArithmeticBlockEntity extends BlockEntity implements MenuProvider {
         operand2 = operand2 >> 2;
         operand3 = operands & 0b110000;
         operand3 = operand3 >> 4;
-        LOGGER.info(operand1 + " " + operand2 + " " +operand3);
     }
 
 

@@ -31,8 +31,8 @@ public class PacketUpdateArithmeticUnit extends PacketBase{
     public static void handle(PacketUpdateArithmeticUnit message, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
-            Level world = player.getCommandSenderWorld();
-            BlockEntity be = world.getBlockEntity(message.pos);
+            Level level = player.getCommandSenderWorld();
+            BlockEntity be = level.getBlockEntity(message.pos);
             if (be instanceof ArithmeticBlockEntity) {
                 ArithmeticBlockEntity arithmeticBE = (ArithmeticBlockEntity) be;
                 int operands = arithmeticBE.getOperands();
@@ -75,6 +75,7 @@ public class PacketUpdateArithmeticUnit extends PacketBase{
                 operands += binary_op2;
                 operands += binary_op3;
                 arithmeticBE.setOperands(operands);
+                level.updateNeighborsAt(message.pos,arithmeticBE.getBlockState().getBlock());
                 arithmeticBE.setChanged();
             }
         });

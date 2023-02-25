@@ -221,6 +221,32 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
         pLevel.neighborChanged(pPos.relative(pState.getValue(FACING)),this,pPos);
     }
 
+    private int addRedstone(int a, int b, int c){
+        if(a==-1){
+            a=0;
+        }
+        if(b==-1){
+            b=0;
+        }
+        if(c==-1){
+            c=0;
+        }
+        return Math.min((a + b + c), 15);
+    }
+
+    private int divideRedstone(int a, int b, int c) {
+        if(a==-1 && b!=0 && c!=0){
+            return b/c;
+        }
+        else if(b==-1 && a!=0 && c!=0){
+            return a/c;
+        }
+        else if(c==-1 && a!=0 && b!=0){
+            return a/b;
+        }
+        return a!=0 && b!=0 && c!=0 ? a/b/c : 0;
+    }
+
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
 
@@ -238,32 +264,92 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
             ArithmeticModes mode = pState.getValue(MODE);
             Direction direction = pState.getValue(FACING);
             BlockEntity be = pLevel.getBlockEntity(pPos);
-//            Direction aDir, bDir, cDir;
-//            if(be instanceof  ArithmeticBlockEntity) {
-//                int operands = ((ArithmeticBlockEntity) be).getOperands();
-//                int operand1 = operands & 0b11;
-//                int operand2 = operands & 0b1100;
-//                operand2 = operand2 >> 2;
-//                int operand3 = operands & 0b110000;
-//                operand3 = operand3 >> 4;
-//                switch(operand1){
-//                    case 0:
-//
-//                }
-//            }
+            Direction aDir= west;
+            Direction bDir = south;
+            Direction cDir = east;
+            int operand1, operand2, operand3;
+            int operands=-1;
 
-            int a = getInputSignalAt(pLevel,pPos.relative(direction.getCounterClockWise()),direction.getCounterClockWise());
-            int b = getInputSignalAt(pLevel,pPos.relative(direction.getOpposite()),direction.getOpposite());
-            int c = getInputSignalAt(pLevel,pPos.relative(direction.getClockWise()),direction.getClockWise());
+            int a,b,c;
+
+            if(be instanceof  ArithmeticBlockEntity) {
+                operands = ((ArithmeticBlockEntity) be).getOperands();
+                operand1 = operands & 0b11;
+                operand2 = operands & 0b1100;
+                operand2 = operand2 >> 2;
+                operand3 = operands & 0b110000;
+                operand3 = operand3 >> 4;
+                switch(operand1){
+                    case 0:
+                        aDir = west;
+                        break;
+                    case 1:
+                        aDir = south;
+                        break;
+                    case 2:
+                        aDir = east;
+                        break;
+                    case 3:
+                        aDir = Direction.UP;
+                        break;
+                }
+                switch(operand2){
+                    case 0:
+                        bDir = west;
+                        break;
+                    case 1:
+                        bDir = south;
+                        break;
+                    case 2:
+                        bDir = east;
+                        break;
+                    case 3:
+                        bDir = Direction.UP;
+                        break;
+                }
+                switch(operand3){
+                    case 0:
+                        cDir = west;
+                        break;
+                    case 1:
+                        cDir = south;
+                        break;
+                    case 2:
+                        cDir = east;
+                        break;
+                    case 3:
+                        cDir = Direction.UP;
+                        break;
+                }
+            }
+
+            if(aDir!=Direction.UP){
+                a = getInputSignalAt(pLevel,pPos.relative(aDir),aDir);
+            }
+            else{
+                a=-1;
+            }
+            if(bDir!=Direction.UP){
+                b = getInputSignalAt(pLevel,pPos.relative(bDir),bDir);
+            }
+            else{
+                b=-1;
+            }
+            if(cDir!=Direction.UP){
+                c = getInputSignalAt(pLevel,pPos.relative(cDir),cDir);
+            }
+            else{
+                c=-1;
+            }
 
             int strength = switch (mode) {
-                case ADD -> Math.min((a + b + c), 15);
+                case ADD -> addRedstone(a,b,c);
 
                 case SUBTRACT -> (a - b - c) >= 0 ? (a - b - c) : -(a - b - c);
 
                 case MULTIPLY -> Math.min((a * b * c), 15);
 
-                case DIVIDE -> a!=0 && b!=0 && c!=0 ? a/b/c : 0;
+                case DIVIDE -> divideRedstone(a,b,c);
             };
             if(be instanceof  ArithmeticBlockEntity) {
                 ((ArithmeticBlockEntity) pLevel.getBlockEntity(pPos)).setOutputSignal(strength);
@@ -271,6 +357,8 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
             pLevel.scheduleTick(pPos, this, 1, TickPriority.VERY_HIGH);
         }
     }
+
+
 
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
