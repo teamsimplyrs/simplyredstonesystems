@@ -1,11 +1,24 @@
 {
   "name": "Redstone Arithmetic Unit",
-  "icon": "minecraft:structure_void",
+  "icon": "simplyrs:redstone_arithmetic_unit",
   "category": "simplyrs:misc_utils_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "§oComing soon to a CurseForge page near you!"
+      "text": "The Redstone Arithmetic Unit performs addition, subtraction, multiplication or division of up to 3 redstone signals. The output signal level is based on the calculation result (minimum 0, maximum 15). Modes of the block can be cycled using a Redstone Wrench. Using the block's GUI, the input sides can be reconfigured. By default, first slot is the block's west side, second is the south side, and third is the east side."
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "title": "Arithmetic GUI",
+      "images": ["simplyrs:textures/gui/book_contents/arithmetic_default.png","simplyrs:textures/gui/book_contents/arithmetic_customized.png"],
+      "text": "Image 1: Default Sides$(br)Image 2: Customized Sides"
+    },
+    {
+      "type": "patchouli:image",
+      "border": "true",
+      "title": "Default Sides",
+      "images": ["simplyrs:textures/gui/book_contents/arithmetic_sides.png"]
     }
   ]
 }

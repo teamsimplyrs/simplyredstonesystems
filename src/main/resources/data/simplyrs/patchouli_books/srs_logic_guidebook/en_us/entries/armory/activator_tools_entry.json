@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Crafted using the breakthrough Piezo-Redstone Ingots, the Activator Series of tools have the ability to give a temporary Redstone signal at the point of physical contact depending on the specific trigger of ecah tool. These tools are stronger and faster than iron, but weaker than diamond tools. The Sword responds to slashes. The Pickaxe responds to breaking only, Axe responds to breaking and stripping logs, Shovel responds to breaking and paving paths, Hoe responds to breaking and tilling. These tools are customizable [WIP]"
+      "text": "The Activator Series of tools has the ability to give a temporary Redstone signal at the point of physical contact depending on the specific trigger of ecah tool. These tools are stronger and faster than iron, but weaker than diamond tools. The Sword responds to striking, Pickaxe to breaking blocks, Axe to breaking and stripping logs, Shovel to breaking and paving paths, Hoe to breaking and tilling. Traits are customizable [WIP]"
     },
     {
       "type": "patchouli:crafting",

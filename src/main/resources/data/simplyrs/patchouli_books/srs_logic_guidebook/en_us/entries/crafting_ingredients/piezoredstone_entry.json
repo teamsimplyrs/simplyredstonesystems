@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "As it turns out, alloying a highly conductive metal such as gold with redstone and quartz, allows it to harness the piezo-electric properties of quartz while being in metal form. The Piezo-Redstone Ingot is a breakthrough invention that allows creation of Redstone-metal tools and other items that can be triggered through physical stimuli such as hits, breaks, strikes, and may even interact with changes in the human body! This fancy alloy is used to make such tools and armor."
+      "text": "As it turns out, alloying a highly conductive metal such as gold with redstone and quartz, allows it to harness the piezo-electric properties of quartz while being in metal form. The Piezo-Redstone Ingot allows creation of tools and other items that can be triggered through physical stimuli such as hits, breaks, strikes, and may even interact with changes in the human body!"
     },
     {
       "type": "patchouli:crafting",

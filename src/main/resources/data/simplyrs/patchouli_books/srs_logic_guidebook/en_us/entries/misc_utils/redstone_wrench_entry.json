@@ -1,0 +1,12 @@
+{
+  "name": "Redstone Wrench",
+  "icon": "simplyrs:redstone_wrench",
+  "category": "simplyrs:misc_utils_category",
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:redstone_wrench",
+      "text": "The Redstone Wrench is a simple wrench tool used to customize, change, or update various blocks added by Simply Redstone Systems."
+    }
+  ]
+}

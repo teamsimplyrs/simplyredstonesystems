@@ -10,6 +10,24 @@
     {
       "type": "patchouli:text",
       "text": "Flip-flops store the stable state of the inputs. So they can stay on or off based on the input combinations, until triggered by a dedicated input. Usually, this dedicated input that changes the state of the flip-flop is known as the 'clock input', and the input given is generally a clock. In Simply Redstone Systems, Flip-flops change state every positive clock edge (or every turning on of the clock input)"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "JK Flip-Flop Table",
+      "images": ["simplyrs:textures/gui/book_contents/table_jk.png"],
+      "text": "0: OFF$(br)1: ON$(br)Qn: Current State$(br)Q(n+1): Next State"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "D Flip-Flop Table",
+      "images": ["simplyrs:textures/gui/book_contents/table_d.png"],
+      "text": "0: OFF     1: ON$(br)Qn: Current State     Q(n+1): Next State"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "T Flip-Flop Table",
+      "images": ["simplyrs:textures/gui/book_contents/table_t.png"],
+      "text": "0: OFF     1: ON$(br)Qn: Current State     Q(n+1): Next State"
     }
   ]
 }
