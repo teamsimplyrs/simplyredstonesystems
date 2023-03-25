@@ -48,7 +48,6 @@ public class TriStateOperandButton extends Button{
     public void onPress() {
         if(type == 0){
             screen.currentOperand = operand;
-            LOGGER.info(screen.currentOperand);
         }
         else{
             PacketRegister.INSTANCE.sendToServer(new PacketUpdateArithmeticUnit(screen.getMenu().blockEntity.getBlockPos(),operand,screen.currentOperand));
