@@ -55,6 +55,11 @@ public class ItemRegister {
             ()-> new LogicCoreLatch(LogicCoreLatch.mGetProperties())
     );
 
+    public static final RegistryObject<Item> ARITHMETIC_CORE = ITEMS.register(
+            ArithmeticCore.mGetName(),
+            ()-> new ArithmeticCore(ArithmeticCore.mGetProperties())
+    );
+
     // Redstone Wrench:
 
     public static final RegistryObject<Item> REDSTONE_WRENCH = ITEMS.register(

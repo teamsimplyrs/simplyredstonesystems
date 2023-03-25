@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "simplyrs:logiccore_or"
+    },
+    {
+      "item": "simplyrs:logiccore_and"
+    },
+    {
+      "item": "simplyrs:logiccore_not"
+    },
+    {
+      "item": "simplyrs:logiccore_xor"
+    },
+    {
+      "tag": "forge:dyes/blue"
+    }
+  ],
+  "result": {
+    "item": "simplyrs:arithmetic_core",
+    "count": 2
+  }
+}

@@ -19,6 +19,10 @@
       "border": "true",
       "title": "Default Sides",
       "images": ["simplyrs:textures/gui/book_contents/arithmetic_sides.png"]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "simplyrs:redstone_arithmetic_unit"
     }
   ]
 }

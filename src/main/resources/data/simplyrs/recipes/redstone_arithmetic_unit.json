@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " G ",
+    "oCo",
+    "_#_"
+  ],
+  "key":
+  {
+    "G": {"tag": "forge:glass/black"},
+    "o": {"tag": "forge:nuggets/gold"},
+    "C": {"item": "simplyrs:arithmetic_core"},
+    "_": {"item": "minecraft:stone_slab"},
+    "#": {"tag": "forge:dusts/redstone"}
+  },
+  "result":
+  {
+    "item": "simplyrs:redstone_arithmetic_unit",
+    "count": 1
+  }
+}
