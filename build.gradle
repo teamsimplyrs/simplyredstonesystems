@@ -16,7 +16,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.18.2-0.1.0b'
+version = '1.18.2-0.2.0b'
 group = 'com.critmxbelvix.simplyrs' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'simplyrs'
 
@@ -188,7 +188,7 @@ jar {
         attributes([
                 "Specification-Title"     : "simplyrs",
                 "Specification-Vendor"    : "CriTMx & Belvix",
-                "Specification-Version"   : "0.1.0b", // We are version 1 of ourselves
+                "Specification-Version"   : "0.2.0b", // We are version 1 of ourselves
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "CriTMx & Belvix",
