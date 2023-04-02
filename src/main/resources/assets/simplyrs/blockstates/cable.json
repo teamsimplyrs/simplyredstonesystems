@@ -48,7 +48,7 @@
     "north=false,east=true,west=false,south=false,up=false,down=true": {"model":"simplyrs:block/cable/cable_ed"},
     "north=false,east=true,west=false,south=false,up=true,down=true": {"model":"simplyrs:block/cable/cable_eud"},
 
-    "north=false,east=true,west=true,south=false,up=false,down=false": {"model":"simplyrs:block/cable/cable_ew"},
+    "north=false,east=true,west=true,south=false,up=false,down=false": {"model":"simplyrs:block/cable/cable_ns", "y": 90},
     "north=false,east=true,west=true,south=false,up=true,down=false": {"model":"simplyrs:block/cable/cable_ewu"},
     "north=false,east=true,west=true,south=false,up=false,down=true": {"model":"simplyrs:block/cable/cable_ewd"},
     "north=false,east=true,west=true,south=false,up=true,down=true": {"model":"simplyrs:block/cable/cable_ewud"},

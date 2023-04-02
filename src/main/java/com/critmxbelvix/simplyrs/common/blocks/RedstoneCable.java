@@ -2,11 +2,13 @@ package com.critmxbelvix.simplyrs.common.blocks;
 
 import com.critmxbelvix.simplyrs.common.blocks.srsvoxelshapes.CableVoxelShapes;
 import com.critmxbelvix.simplyrs.common.creativetabs.SimplyRSCreativeTab;
+import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -84,4 +86,22 @@ public class RedstoneCable extends Block {
         return this.defaultBlockState();
     }
 
+    @Override
+    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
+        LOGGER.info(pNeighborState+" "+pDirection);
+        BooleanProperty direction = switch(pDirection){
+            case UP -> SIDE_UP;
+            case DOWN -> SIDE_DOWN;
+            case EAST -> SIDE_EAST;
+            case WEST -> SIDE_WEST;
+            case NORTH -> SIDE_NORTH;
+            case SOUTH -> SIDE_SOUTH;
+        };
+        if(pNeighborState.is(BlockRegister.REDSTONE_CABLE.get())){
+            return pState.setValue(direction,true);
+        }
+        else{
+            return pState.setValue(direction,false);
+        }
+    }
 }
