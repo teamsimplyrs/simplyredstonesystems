@@ -1,0 +1,80 @@
+{
+  "variants":
+  {
+    "north=false,east=false,west=false,south=false,up=false,down=false": {"model":"simplyrs:block/cable/cable_isolated"},
+
+    "north=true,east=false,west=false,south=false,up=false,down=false": {"model":"simplyrs:block/cable/cable_n"},
+    "north=true,east=false,west=false,south=false,up=true,down=false": {"model":"simplyrs:block/cable/cable_nu"},
+    "north=true,east=false,west=false,south=false,up=false,down=true": {"model":"simplyrs:block/cable/cable_nd"},
+    "north=true,east=false,west=false,south=false,up=true,down=true": {"model":"simplyrs:block/cable/cable_nud"},
+
+    "north=true,east=true,west=false,south=false,up=false,down=false": {"model":"simplyrs:block/cable/cable_ne"},
+    "north=true,east=true,west=false,south=false,up=true,down=false": {"model":"simplyrs:block/cable/cable_neu"},
+    "north=true,east=true,west=false,south=false,up=false,down=true": {"model":"simplyrs:block/cable/cable_ned"},
+    "north=true,east=true,west=false,south=false,up=true,down=true": {"model":"simplyrs:block/cable/cable_neud"},
+
+    "north=true,east=false,west=true,south=false,up=false,down=false": {"model":"simplyrs:block/cable/cable_nw"},
+    "north=true,east=false,west=true,south=false,up=true,down=false": {"model":"simplyrs:block/cable/cable_nwu"},
+    "north=true,east=false,west=true,south=false,up=false,down=true": {"model":"simplyrs:block/cable/cable_nwd"},
+    "north=true,east=false,west=true,south=false,up=true,down=true": {"model":"simplyrs:block/cable/cable_nwud"},
+
+    "north=true,east=false,west=false,south=true,up=false,down=false": {"model":"simplyrs:block/cable/cable_ns"},
+    "north=true,east=false,west=false,south=true,up=true,down=false": {"model":"simplyrs:block/cable/cable_nsu"},
+    "north=true,east=false,west=false,south=true,up=false,down=true": {"model":"simplyrs:block/cable/cable_nsd"},
+    "north=true,east=false,west=false,south=true,up=true,down=true": {"model":"simplyrs:block/cable/cable_nsud"},
+
+    "north=true,east=true,west=true,south=false,up=false,down=false": {"model":"simplyrs:block/cable/cable_nwe"},
+    "north=true,east=true,west=true,south=false,up=true,down=false": {"model":"simplyrs:block/cable/cable_nweu"},
+    "north=true,east=true,west=true,south=false,up=false,down=true": {"model":"simplyrs:block/cable/cable_nwed"},
+    "north=true,east=true,west=true,south=false,up=true,down=true": {"model":"simplyrs:block/cable/cable_nweud"},
+
+    "north=true,east=true,west=false,south=true,up=false,down=false": {"model":"simplyrs:block/cable/cable_nes"},
+    "north=true,east=true,west=false,south=true,up=true,down=false": {"model":"simplyrs:block/cable/cable_nesu"},
+    "north=true,east=true,west=false,south=true,up=false,down=true": {"model":"simplyrs:block/cable/cable_nesd"},
+    "north=true,east=true,west=false,south=true,up=true,down=true": {"model":"simplyrs:block/cable/cable_nesud"},
+
+    "north=true,east=false,west=true,south=true,up=false,down=false": {"model":"simplyrs:block/cable/cable_nws"},
+    "north=true,east=false,west=true,south=true,up=true,down=false": {"model":"simplyrs:block/cable/cable_nwsu"},
+    "north=true,east=false,west=true,south=true,up=false,down=true": {"model":"simplyrs:block/cable/cable_nwsd"},
+    "north=true,east=false,west=true,south=true,up=true,down=true": {"model":"simplyrs:block/cable/cable_nwsud"},
+
+    "north=true,east=true,west=true,south=true,up=false,down=false": {"model":"simplyrs:block/cable/cable_news"},
+    "north=true,east=true,west=true,south=true,up=true,down=false": {"model":"simplyrs:block/cable/cable_newsu"},
+    "north=true,east=true,west=true,south=true,up=false,down=true": {"model":"simplyrs:block/cable/cable_newsd"},
+    "north=true,east=true,west=true,south=true,up=true,down=true": {"model":"simplyrs:block/cable/cable_newsud"},
+
+    "north=false,east=true,west=false,south=false,up=false,down=false": {"model":"simplyrs:block/cable/cable_e"},
+    "north=false,east=true,west=false,south=false,up=true,down=false": {"model":"simplyrs:block/cable/cable_eu"},
+    "north=false,east=true,west=false,south=false,up=false,down=true": {"model":"simplyrs:block/cable/cable_ed"},
+    "north=false,east=true,west=false,south=false,up=true,down=true": {"model":"simplyrs:block/cable/cable_eud"},
+
+    "north=false,east=true,west=true,south=false,up=false,down=false": {"model":"simplyrs:block/cable/cable_ew"},
+    "north=false,east=true,west=true,south=false,up=true,down=false": {"model":"simplyrs:block/cable/cable_ewu"},
+    "north=false,east=true,west=true,south=false,up=false,down=true": {"model":"simplyrs:block/cable/cable_ewd"},
+    "north=false,east=true,west=true,south=false,up=true,down=true": {"model":"simplyrs:block/cable/cable_ewud"},
+
+    "north=false,east=true,west=false,south=true,up=false,down=false": {"model":"simplyrs:block/cable/cable_es"},
+    "north=false,east=true,west=false,south=true,up=true,down=false": {"model":"simplyrs:block/cable/cable_esu"},
+    "north=false,east=true,west=false,south=true,up=false,down=true": {"model":"simplyrs:block/cable/cable_esd"},
+    "north=false,east=true,west=false,south=true,up=true,down=true": {"model":"simplyrs:block/cable/cable_esud"},
+
+    "north=false,east=false,west=true,south=false,up=false,down=false": {"model":"simplyrs:block/cable/cable_w"},
+    "north=false,east=false,west=true,south=false,up=true,down=false": {"model":"simplyrs:block/cable/cable_wu"},
+    "north=false,east=false,west=true,south=false,up=false,down=true": {"model":"simplyrs:block/cable/cable_wd"},
+    "north=false,east=false,west=true,south=false,up=true,down=true": {"model":"simplyrs:block/cable/cable_wud"},
+
+    "north=false,east=false,west=true,south=true,up=false,down=false": {"model":"simplyrs:block/cable/cable_ws"},
+    "north=false,east=false,west=true,south=true,up=true,down=false": {"model":"simplyrs:block/cable/cable_wsu"},
+    "north=false,east=false,west=true,south=true,up=false,down=true": {"model":"simplyrs:block/cable/cable_wsd"},
+    "north=false,east=false,west=true,south=true,up=true,down=true": {"model":"simplyrs:block/cable/cable_wsud"},
+
+    "north=false,east=false,west=false,south=true,up=false,down=false": {"model":"simplyrs:block/cable/cable_s"},
+    "north=false,east=false,west=false,south=true,up=true,down=false": {"model":"simplyrs:block/cable/cable_su"},
+    "north=false,east=false,west=false,south=true,up=false,down=true": {"model":"simplyrs:block/cable/cable_sd"},
+    "north=false,east=false,west=false,south=true,up=true,down=true": {"model":"simplyrs:block/cable/cable_sud"},
+
+    "north=false,east=false,west=false,south=false,up=true,down=false": {"model":"simplyrs:block/cable/cable_u"},
+    "north=false,east=false,west=false,south=false,up=false,down=true": {"model":"simplyrs:block/cable/cable_d"},
+    "north=false,east=false,west=false,south=false,up=true,down=true": {"model":"simplyrs:block/cable/cable_ud"}
+  }
+}

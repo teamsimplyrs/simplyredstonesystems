@@ -163,25 +163,32 @@ public class BlockRegister {
             RedstoneSprite.mGetTab()
     );
 
-    // Redstone JK Flip-Flop (SR)
+    // Redstone JK Flip-Flop
     public static final RegistryObject<Block> REDSTONE_JK_FLIPFLOP = registerBlock(
             JKFlipFlop.mGetName(),
             ()-> new JKFlipFlop(JKFlipFlop.mGetProperties()),
             JKFlipFlop.mGetTab()
     );
 
-    // Redstone T Flip-Flop (SR)
+    // Redstone T Flip-Flop
     public static final RegistryObject<Block> REDSTONE_T_FLIPFLOP = registerBlock(
             TFlipFlop.mGetName(),
             ()-> new TFlipFlop(TFlipFlop.mGetProperties()),
             TFlipFlop.mGetTab()
     );
 
-    // Redstone D Flip-Flop (SR)
+    // Redstone D Flip-Flop
     public static final RegistryObject<Block> REDSTONE_D_FLIPFLOP = registerBlock(
             DFlipFlop.mGetName(),
             ()-> new DFlipFlop(DFlipFlop.mGetProperties()),
             DFlipFlop.mGetTab()
+    );
+
+    // Redstone Cable
+    public static final RegistryObject<Block> REDSTONE_CABLE = registerBlock(
+            RedstoneCable.mGetName(),
+            ()-> new RedstoneCable(RedstoneCable.mGetProperties()),
+            RedstoneCable.mGetTab()
     );
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
