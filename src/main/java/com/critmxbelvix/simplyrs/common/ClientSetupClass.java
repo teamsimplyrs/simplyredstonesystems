@@ -3,7 +3,6 @@ package com.critmxbelvix.simplyrs.common;
 import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.level.block.Block;
 
 public class ClientSetupClass {
 
@@ -27,6 +26,7 @@ public class ClientSetupClass {
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_ARITHMETIC_UNIT.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_VALVE.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_SPRITE.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BlockRegister.REDSTONE_CABLE.get(), RenderType.translucent());
     }
 
 
