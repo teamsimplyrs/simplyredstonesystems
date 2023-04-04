@@ -70,7 +70,13 @@ public class RedstoneCable extends Block {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return CableVoxelShapes.getShape(pState);
+        boolean N = pState.getValue(SIDE_NORTH);
+        boolean E = pState.getValue(SIDE_EAST);
+        boolean W = pState.getValue(SIDE_WEST);
+        boolean S = pState.getValue(SIDE_SOUTH);
+        boolean U = pState.getValue(SIDE_UP);
+        boolean D = pState.getValue(SIDE_DOWN);
+        return CableVoxelShapes.getShape(pState,N,E,W,S,U,D);
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
@@ -97,7 +103,7 @@ public class RedstoneCable extends Block {
             case NORTH -> SIDE_NORTH;
             case SOUTH -> SIDE_SOUTH;
         };
-        if(pNeighborState.is(BlockRegister.REDSTONE_CABLE.get())){
+        if(pNeighborState.is(BlockRegister.REDSTONE_CABLE.get()) || pNeighborState.canRedstoneConnectTo(pLevel,pNeighborPos,pDirection.getOpposite())){
             return pState.setValue(direction,true);
         }
         else{

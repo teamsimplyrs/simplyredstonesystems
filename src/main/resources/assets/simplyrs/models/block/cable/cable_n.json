@@ -3,7 +3,6 @@
 	"textures": {
 		"0": "simplyrs:block/cable_connector",
 		"1": "simplyrs:block/cable_core",
-		"2": "simplyrs:block/cable_core_90",
 		"3": "simplyrs:block/solid_gold_1x1",
 		"4": "simplyrs:block/cable_core_stretch_bottom",
 		"6": "simplyrs:block/cable_core_stretch_top",
@@ -44,7 +43,7 @@
 			"to": [9, 2.25, 2.5],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#9"},
 				"south": {"uv": [0, 0, 16, 16], "texture": "#1"},
 				"west": {"uv": [0, 0, 16, 16], "texture": "#7"},
 				"up": {"uv": [0, 0, 16, 16], "texture": "#4"},
