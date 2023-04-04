@@ -34,13 +34,6 @@ public class RedstoneCable extends Block {
     public static final BooleanProperty SIDE_DOWN = BooleanProperty.create("down");
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-//    public static final IntegerProperty I_N = IntegerProperty.create("input_north",0,15);
-//    public static final IntegerProperty I_E = IntegerProperty.create("input_east",0,15);
-//    public static final IntegerProperty I_W = IntegerProperty.create("input_west",0,15);
-//    public static final IntegerProperty I_S = IntegerProperty.create("input_south",0,15);
-//    public static final IntegerProperty I_U = IntegerProperty.create("input_up",0,15);
-//    public static final IntegerProperty I_D = IntegerProperty.create("input_down",0,15);
-
     public static String mGetName()
     {
         return name;
@@ -94,7 +87,7 @@ public class RedstoneCable extends Block {
 
     @Override
     public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
-        LOGGER.info(pNeighborState+" "+pDirection);
+        //LOGGER.info(pNeighborState+" "+pDirection);
         BooleanProperty direction = switch(pDirection){
             case UP -> SIDE_UP;
             case DOWN -> SIDE_DOWN;

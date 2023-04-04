@@ -13,14 +13,15 @@ import java.util.stream.Stream;
 public class CableVoxelShapes {
 
     // Isolated
-    public static final VoxelShape ISO = Block.box(4.5, 0, 4.5, 11.5, 7, 11.5);
+    public static final VoxelShape ISO = Block.box(2, 0, 2, 14, 10, 14);
+    public static final VoxelShape empty_box = Block.box(0,0,0,0,0,0);
+    public static VoxelShape boxN,boxE,boxW,boxS,boxU,boxD, final_shape;
 
     public static VoxelShape getShape(BlockState pState, boolean N, boolean E, boolean W, boolean S, boolean U, boolean D)
     {
-        VoxelShape empty_box = Block.box(0,0,0,0,0,0);
-        VoxelShape boxN,boxE,boxW,boxS,boxU,boxD, final_shape;
-
+        /*
         if (!(N || E || W || S || U || D))
+
             return ISO;
         else
         {
@@ -36,6 +37,8 @@ public class CableVoxelShapes {
         }
 
         return final_shape;
+        */
+        return ISO;
     }
 
 //    // NU
