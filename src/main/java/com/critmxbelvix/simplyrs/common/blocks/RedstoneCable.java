@@ -131,34 +131,34 @@ public class RedstoneCable extends Block {
         }
     }
 
-    protected int getOutputSignal(BlockGetter pLevel, BlockPos pPos, BlockState pState, Direction pSide) {
+    protected int getOutputSignal(Level pLevel, BlockPos pPos) {
         //return 15;
         return Math.max(
                     Math.max(
-                        Math.max(getInputSignalAt(pLevel,pPos,Direction.NORTH), getInputSignalAt(pLevel,pPos,Direction.EAST)),
-                        Math.max(getInputSignalAt(pLevel,pPos,Direction.WEST), getInputSignalAt(pLevel,pPos,Direction.SOUTH))
+                        Math.max(getInputSignalAt(pLevel,pPos.relative(Direction.NORTH),Direction.NORTH), getInputSignalAt(pLevel,pPos.relative(Direction.EAST),Direction.EAST)),
+                        Math.max(getInputSignalAt(pLevel,pPos.relative(Direction.WEST),Direction.WEST), getInputSignalAt(pLevel,pPos.relative(Direction.SOUTH),Direction.SOUTH))
                     ),
-                    Math.max(getInputSignalAt(pLevel,pPos,Direction.UP),getInputSignalAt(pLevel,pPos,Direction.UP))
+                    Math.max(getInputSignalAt(pLevel,pPos.relative(Direction.UP),Direction.UP),getInputSignalAt(pLevel,pPos.relative(Direction.DOWN),Direction.DOWN))
             );
     }
 
     public boolean isInputN(LevelReader pLevel, BlockPos pPos, BlockState pState){
-        return getInputSignalAt(pLevel, pPos, Direction.NORTH) > 0;
+        return getInputSignalAt(pLevel, pPos.relative(Direction.NORTH), Direction.NORTH) > 0;
     }
     public boolean isInputE(LevelReader pLevel, BlockPos pPos, BlockState pState){
-        return getInputSignalAt(pLevel, pPos, Direction.EAST) > 0;
+        return getInputSignalAt(pLevel, pPos.relative(Direction.EAST), Direction.EAST) > 0;
     }
     public boolean isInputW(LevelReader pLevel, BlockPos pPos, BlockState pState){
-        return getInputSignalAt(pLevel, pPos, Direction.WEST) > 0;
+        return getInputSignalAt(pLevel, pPos.relative(Direction.WEST), Direction.WEST) > 0;
     }
     public boolean isInputS(LevelReader pLevel, BlockPos pPos, BlockState pState){
-        return getInputSignalAt(pLevel, pPos, Direction.SOUTH) > 0;
+        return getInputSignalAt(pLevel, pPos.relative(Direction.SOUTH), Direction.SOUTH) > 0;
     }
     public boolean isInputU(LevelReader pLevel, BlockPos pPos, BlockState pState){
-        return getInputSignalAt(pLevel, pPos, Direction.UP) > 0;
+        return getInputSignalAt(pLevel, pPos.relative(Direction.UP), Direction.UP) > 0;
     }
     public boolean isInputD(LevelReader pLevel, BlockPos pPos, BlockState pState){
-        return getInputSignalAt(pLevel, pPos, Direction.DOWN) > 0;
+        return getInputSignalAt(pLevel, pPos.relative(Direction.DOWN), Direction.DOWN) > 0;
     }
 
     public boolean isSignalSource(BlockState pState) {
@@ -173,7 +173,7 @@ public class RedstoneCable extends Block {
 
     @Override
     public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
-        return getOutputSignal(pBlockAccess,pPos,pBlockState,pSide);
+        return pBlockState.getValue(SIGNAL);
     }
 
     @Override
@@ -197,10 +197,10 @@ public class RedstoneCable extends Block {
             pLevel.removeBlock(pPos, false);
         }
         else {
-
+            LOGGER.info(pLevel.getBlockState(pPos));
             BlockState blockstate = pLevel.getBlockState(pPos)
                     .setValue(POWERED, shouldTurnOn(pLevel,pPos,pState))
-                    .setValue(SIGNAL, getSignal(pState,pLevel,pPos,Direction.NORTH)); // Direction.NORTH is a dummy entry, the final function call does not use pSide value
+                    .setValue(SIGNAL, getOutputSignal(pLevel,pPos)); // Direction.NORTH is a dummy entry, the final function call does not use pSide value
             pLevel.setBlockAndUpdate(pPos, blockstate);
             pLevel.scheduleTick(pPos, this, 1, TickPriority.VERY_HIGH);
         }
