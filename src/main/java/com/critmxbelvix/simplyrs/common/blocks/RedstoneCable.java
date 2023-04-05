@@ -6,19 +6,33 @@ import com.critmxbelvix.simplyrs.common.registers.BlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RedStoneWireBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.ticks.TickPriority;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
+
+import static java.util.Collections.singletonList;
 
 public class RedstoneCable extends Block {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -32,6 +46,7 @@ public class RedstoneCable extends Block {
     public static final BooleanProperty SIDE_SOUTH = BooleanProperty.create("south");
     public static final BooleanProperty SIDE_UP = BooleanProperty.create("up");
     public static final BooleanProperty SIDE_DOWN = BooleanProperty.create("down");
+    public static final IntegerProperty SIGNAL = IntegerProperty.create("signal",0,15);
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public static String mGetName()
@@ -58,6 +73,7 @@ public class RedstoneCable extends Block {
                         .setValue(SIDE_UP, false)
                         .setValue(SIDE_DOWN, false)
                         .setValue(POWERED,false)
+                        .setValue(SIGNAL,0)
         );
     }
 
@@ -73,16 +89,17 @@ public class RedstoneCable extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder){
-        pBuilder.add(SIDE_NORTH,SIDE_EAST,SIDE_WEST,SIDE_SOUTH,SIDE_UP,SIDE_DOWN,POWERED);
+        pBuilder.add(SIDE_NORTH,SIDE_EAST,SIDE_WEST,SIDE_SOUTH,SIDE_UP,SIDE_DOWN,POWERED,SIGNAL);
 //        pBuilder.add(SIDE_NORTH,SIDE_EAST,SIDE_WEST,SIDE_SOUTH,SIDE_UP,SIDE_DOWN,I_N,I_E,I_W,I_S,I_U,I_D,POWERED);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext)
     {
         BlockState blockstate = super.getStateForPlacement(pContext);
-        Direction direction = pContext.getHorizontalDirection();
         pContext.getLevel().scheduleTick(pContext.getClickedPos(),blockstate.getBlock(),1);
-        return this.defaultBlockState();
+        return this.defaultBlockState()
+                .setValue(POWERED,shouldTurnOn(pContext.getLevel(),pContext.getClickedPos(),blockstate))
+                .setValue(SIGNAL,getSignal(blockstate,pContext.getLevel(),pContext.getClickedPos(),Direction.NORTH)); // Direction.NORTH is a dummy data since final function call does not use pSide value
     }
 
     @Override
@@ -103,4 +120,108 @@ public class RedstoneCable extends Block {
             return pState.setValue(direction,false);
         }
     }
+
+    protected int getInputSignalAt(BlockGetter pLevel, BlockPos pPos, Direction pSide) {
+
+        BlockState blockstate = pLevel.getBlockState(pPos);
+        if (blockstate.is(Blocks.REDSTONE_BLOCK)) {
+            return 15;
+        } else {
+            return blockstate.is(Blocks.REDSTONE_WIRE) ? blockstate.getValue(RedStoneWireBlock.POWER) : blockstate.getSignal(pLevel, pPos, pSide);
+        }
+    }
+
+    protected int getOutputSignal(BlockGetter pLevel, BlockPos pPos, BlockState pState, Direction pSide) {
+        //return 15;
+        return Math.max(
+                    Math.max(
+                        Math.max(getInputSignalAt(pLevel,pPos,Direction.NORTH), getInputSignalAt(pLevel,pPos,Direction.EAST)),
+                        Math.max(getInputSignalAt(pLevel,pPos,Direction.WEST), getInputSignalAt(pLevel,pPos,Direction.SOUTH))
+                    ),
+                    Math.max(getInputSignalAt(pLevel,pPos,Direction.UP),getInputSignalAt(pLevel,pPos,Direction.UP))
+            );
+    }
+
+    public boolean isInputN(LevelReader pLevel, BlockPos pPos, BlockState pState){
+        return getInputSignalAt(pLevel, pPos, Direction.NORTH) > 0;
+    }
+    public boolean isInputE(LevelReader pLevel, BlockPos pPos, BlockState pState){
+        return getInputSignalAt(pLevel, pPos, Direction.EAST) > 0;
+    }
+    public boolean isInputW(LevelReader pLevel, BlockPos pPos, BlockState pState){
+        return getInputSignalAt(pLevel, pPos, Direction.WEST) > 0;
+    }
+    public boolean isInputS(LevelReader pLevel, BlockPos pPos, BlockState pState){
+        return getInputSignalAt(pLevel, pPos, Direction.SOUTH) > 0;
+    }
+    public boolean isInputU(LevelReader pLevel, BlockPos pPos, BlockState pState){
+        return getInputSignalAt(pLevel, pPos, Direction.UP) > 0;
+    }
+    public boolean isInputD(LevelReader pLevel, BlockPos pPos, BlockState pState){
+        return getInputSignalAt(pLevel, pPos, Direction.DOWN) > 0;
+    }
+
+    public boolean isSignalSource(BlockState pState) {
+        return true;
+    }
+
+    protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
+        return isInputN(pLevel,pPos,pState) || isInputE(pLevel,pPos,pState)
+                || isInputW(pLevel,pPos,pState) || isInputS(pLevel,pPos,pState)
+                || isInputU(pLevel,pPos,pState) || isInputD(pLevel,pPos,pState);
+    }
+
+    @Override
+    public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
+        return getOutputSignal(pBlockAccess,pPos,pBlockState,pSide);
+    }
+
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (!pIsMoving && !pState.is(pNewState.getBlock())) {
+            super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+            pLevel.neighborChanged(pPos.relative(Direction.NORTH),this, pPos);
+            pLevel.neighborChanged(pPos.relative(Direction.EAST),this, pPos);
+            pLevel.neighborChanged(pPos.relative(Direction.WEST),this, pPos);
+            pLevel.neighborChanged(pPos.relative(Direction.SOUTH),this, pPos);
+            pLevel.neighborChanged(pPos.relative(Direction.UP),this, pPos);
+            pLevel.neighborChanged(pPos.relative(Direction.DOWN),this, pPos);
+        }
+    }
+
+    @Override
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        if(!pState.canSurvive(pLevel,pPos)){
+            BlockEntity blockentity = pState.hasBlockEntity() ? pLevel.getBlockEntity(pPos) : null;
+            dropResources(pState, pLevel, pPos, blockentity);
+            pLevel.removeBlock(pPos, false);
+        }
+        else {
+
+            BlockState blockstate = pLevel.getBlockState(pPos)
+                    .setValue(POWERED, shouldTurnOn(pLevel,pPos,pState))
+                    .setValue(SIGNAL, getSignal(pState,pLevel,pPos,Direction.NORTH)); // Direction.NORTH is a dummy entry, the final function call does not use pSide value
+            pLevel.setBlockAndUpdate(pPos, blockstate);
+            pLevel.scheduleTick(pPos, this, 1, TickPriority.VERY_HIGH);
+        }
+    }
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState state) {
+        return PushReaction.DESTROY;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+
+        List<ItemStack> drops = super.getDrops(pState, pBuilder);
+        if (!drops.isEmpty())
+            return drops;
+        return singletonList(new ItemStack(this, 1));
+    }
+
 }
+
+
+
+
