@@ -234,6 +234,19 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
         return Math.min((a + b + c), 15);
     }
 
+    private int subtractRedstone(int a, int b, int c){
+        if(a==-1){
+            a=0;
+        }
+        if(b==-1){
+            b=0;
+        }
+        if(c==-1){
+            c=0;
+        }
+        return (a - b - c) >= 0 ? (a - b - c) : -(a - b - c);
+    }
+
     private int divideRedstone(int a, int b, int c) {
         if(a==-1 && b!=0 && c!=0){
             return b/c;
@@ -345,7 +358,7 @@ public class RedstoneArithmeticUnit extends Block implements EntityBlock {
             int strength = switch (mode) {
                 case ADD -> addRedstone(a,b,c);
 
-                case SUBTRACT -> (a - b - c) >= 0 ? (a - b - c) : -(a - b - c);
+                case SUBTRACT -> subtractRedstone(a,b,c);
 
                 case MULTIPLY -> Math.min((a * b * c), 15);
 
